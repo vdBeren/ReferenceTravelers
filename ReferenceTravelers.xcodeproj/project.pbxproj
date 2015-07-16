@@ -10,7 +10,6 @@
 		540711C31B54159E00252EF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540711C21B54159E00252EF9 /* AppDelegate.swift */; };
 		540711C91B54159E00252EF9 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540711C81B54159E00252EF9 /* GameViewController.swift */; };
 		540711CC1B54159E00252EF9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 540711CA1B54159E00252EF9 /* Main.storyboard */; };
-		540711CE1B54159E00252EF9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 540711CD1B54159E00252EF9 /* Images.xcassets */; };
 		540711D11B54159E00252EF9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 540711CF1B54159E00252EF9 /* LaunchScreen.xib */; };
 		540711DD1B54159E00252EF9 /* ReferenceTravelersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540711DC1B54159E00252EF9 /* ReferenceTravelersTests.swift */; };
 		540711E71B5419F800252EF9 /* RTCombatScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540711E61B5419F800252EF9 /* RTCombatScene.swift */; };
@@ -23,7 +22,9 @@
 		540712051B56F1AE00252EF9 /* RTAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540712041B56F1AE00252EF9 /* RTAttributes.swift */; };
 		540712071B56F95C00252EF9 /* RTAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540712061B56F95C00252EF9 /* RTAudio.swift */; };
 		5407120B1B571F8D00252EF9 /* RTBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5407120A1B571F8D00252EF9 /* RTBackground.swift */; };
-		5407120D1B572ABE00252EF9 /* RTSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5407120C1B572ABE00252EF9 /* RTSettings.swift */; };
+		5407120D1B572ABE00252EF9 /* RTSettingsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5407120C1B572ABE00252EF9 /* RTSettingsScene.swift */; };
+		5407120F1B57709300252EF9 /* RTButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5407120E1B57709300252EF9 /* RTButton.swift */; };
+		545F85DD1B579B20003ABC76 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 545F85DC1B579B20003ABC76 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +43,6 @@
 		540711C21B54159E00252EF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		540711C81B54159E00252EF9 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		540711CB1B54159E00252EF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		540711CD1B54159E00252EF9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		540711D01B54159E00252EF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		540711D61B54159E00252EF9 /* ReferenceTravelersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReferenceTravelersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		540711DB1B54159E00252EF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -57,7 +57,9 @@
 		540712041B56F1AE00252EF9 /* RTAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTAttributes.swift; sourceTree = "<group>"; };
 		540712061B56F95C00252EF9 /* RTAudio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTAudio.swift; sourceTree = "<group>"; };
 		5407120A1B571F8D00252EF9 /* RTBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTBackground.swift; sourceTree = "<group>"; };
-		5407120C1B572ABE00252EF9 /* RTSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTSettings.swift; sourceTree = "<group>"; };
+		5407120C1B572ABE00252EF9 /* RTSettingsScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTSettingsScene.swift; sourceTree = "<group>"; };
+		5407120E1B57709300252EF9 /* RTButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTButton.swift; sourceTree = "<group>"; };
+		545F85DC1B579B20003ABC76 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,8 +106,8 @@
 				540711EA1B5426D800252EF9 /* Scenes */,
 				540711FA1B542BA200252EF9 /* Classes */,
 				540711CA1B54159E00252EF9 /* Main.storyboard */,
-				540711CD1B54159E00252EF9 /* Images.xcassets */,
 				540711CF1B54159E00252EF9 /* LaunchScreen.xib */,
+				545F85DC1B579B20003ABC76 /* Images.xcassets */,
 				540711C01B54159E00252EF9 /* Supporting Files */,
 			);
 			path = ReferenceTravelers;
@@ -144,7 +146,7 @@
 				540711EF1B54287000252EF9 /* RTStageSelectionScene.swift */,
 				540711F11B5428AA00252EF9 /* RTBoardScene.swift */,
 				540711E61B5419F800252EF9 /* RTCombatScene.swift */,
-				5407120C1B572ABE00252EF9 /* RTSettings.swift */,
+				5407120C1B572ABE00252EF9 /* RTSettingsScene.swift */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -155,6 +157,7 @@
 				540711F31B54297B00252EF9 /* RTHideRequired.swift */,
 				540712061B56F95C00252EF9 /* RTAudio.swift */,
 				5407120A1B571F8D00252EF9 /* RTBackground.swift */,
+				5407120E1B57709300252EF9 /* RTButton.swift */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -257,8 +260,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				545F85DD1B579B20003ABC76 /* Images.xcassets in Resources */,
 				540711D11B54159E00252EF9 /* LaunchScreen.xib in Resources */,
-				540711CE1B54159E00252EF9 /* Images.xcassets in Resources */,
 				540711CC1B54159E00252EF9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -279,7 +282,7 @@
 			files = (
 				540711F41B54297B00252EF9 /* RTHideRequired.swift in Sources */,
 				5407120B1B571F8D00252EF9 /* RTBackground.swift in Sources */,
-				5407120D1B572ABE00252EF9 /* RTSettings.swift in Sources */,
+				5407120D1B572ABE00252EF9 /* RTSettingsScene.swift in Sources */,
 				540711F61B542A0700252EF9 /* RTHero.swift in Sources */,
 				540711E71B5419F800252EF9 /* RTCombatScene.swift in Sources */,
 				540711EE1B54283700252EF9 /* RTHeroSelectionScene.swift in Sources */,
@@ -288,6 +291,7 @@
 				540711F21B5428AA00252EF9 /* RTBoardScene.swift in Sources */,
 				540712071B56F95C00252EF9 /* RTAudio.swift in Sources */,
 				540711F01B54287000252EF9 /* RTStageSelectionScene.swift in Sources */,
+				5407120F1B57709300252EF9 /* RTButton.swift in Sources */,
 				540711EC1B5426EF00252EF9 /* RTTitleScene.swift in Sources */,
 				540712051B56F1AE00252EF9 /* RTAttributes.swift in Sources */,
 			);
@@ -489,6 +493,7 @@
 				540711E21B54159E00252EF9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		540711E31B54159E00252EF9 /* Build configuration list for PBXNativeTarget "ReferenceTravelersTests" */ = {
 			isa = XCConfigurationList;
@@ -497,6 +502,7 @@
 				540711E51B54159E00252EF9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

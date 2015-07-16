@@ -9,12 +9,11 @@
 import UIKit
 import SpriteKit
 
-var audioNode: RTAudio? = RTAudio()
 var backgroundNode: RTBackground?
 
 class RTTitleScene: SKScene {
-   
-    var nextScene: RTHeroSelectionScene?
+    
+    var buttonNodeRight: RTButton?
     
     override init(size: CGSize) {
         
@@ -27,10 +26,22 @@ class RTTitleScene: SKScene {
         //Background da Scene
         backgroundNode = RTBackground(imageNamed: "bg0")
         backgroundNode!.position = CGPoint(x: 0.0, y: 0.0)
-        addChild(backgroundNode!)
+        self.addChild(backgroundNode!)
 
+        buttonNodeRight = RTButton(imageNamed: "btnArrowDir")
+        buttonNodeRight!.position = CGPoint(x: size.width - buttonNodeRight!.size.width, y: size.height - buttonNodeRight!.size.height)
+        buttonNodeRight!.alpha = 0.3
         
-        nextScene = RTHeroSelectionScene(size: size)
+        //BLOCO DE AÇÃO DO BOTÃO
+        buttonNodeRight?.setRTButtonAction({ () -> () in
+            self.runAction(SKAction.waitForDuration(0.2))
+            let transition = SKTransition.pushWithDirection(SKTransitionDirection.Left, duration: 1.5)
+            self.scene?.view?.presentScene(GHeroSelectionScene, transition: transition)
+        })
+        self.addChild(buttonNodeRight!)
+        
+        self.userInteractionEnabled = false
+        
         
         
     }
@@ -44,11 +55,7 @@ class RTTitleScene: SKScene {
     
     //Recebe toques na Scene.
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-        
-        self.runAction(SKAction.waitForDuration(0.2))
-        let endTransition = SKTransition.pushWithDirection(SKTransitionDirection.Left, duration: 1.5)
-        self.scene?.view?.presentScene(nextScene, transition: endTransition)
-        
+
     }
     
     

@@ -8,13 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		540711C31B54159E00252EF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540711C21B54159E00252EF9 /* AppDelegate.swift */; };
-		540711C51B54159E00252EF9 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 540711C41B54159E00252EF9 /* GameScene.sks */; };
-		540711C71B54159E00252EF9 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540711C61B54159E00252EF9 /* GameScene.swift */; };
 		540711C91B54159E00252EF9 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540711C81B54159E00252EF9 /* GameViewController.swift */; };
 		540711CC1B54159E00252EF9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 540711CA1B54159E00252EF9 /* Main.storyboard */; };
 		540711CE1B54159E00252EF9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 540711CD1B54159E00252EF9 /* Images.xcassets */; };
 		540711D11B54159E00252EF9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 540711CF1B54159E00252EF9 /* LaunchScreen.xib */; };
 		540711DD1B54159E00252EF9 /* ReferenceTravelersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540711DC1B54159E00252EF9 /* ReferenceTravelersTests.swift */; };
+		540711E71B5419F800252EF9 /* RTCombatScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540711E61B5419F800252EF9 /* RTCombatScene.swift */; };
+		540711EC1B5426EF00252EF9 /* RTTitleScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540711EB1B5426EF00252EF9 /* RTTitleScene.swift */; };
+		540711EE1B54283700252EF9 /* RTHeroSelectionScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540711ED1B54283700252EF9 /* RTHeroSelectionScene.swift */; };
+		540711F01B54287000252EF9 /* RTStageSelectionScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540711EF1B54287000252EF9 /* RTStageSelectionScene.swift */; };
+		540711F21B5428AA00252EF9 /* RTBoardScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540711F11B5428AA00252EF9 /* RTBoardScene.swift */; };
+		540711F41B54297B00252EF9 /* RTHideRequired.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540711F31B54297B00252EF9 /* RTHideRequired.swift */; };
+		540711F61B542A0700252EF9 /* RTHero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540711F51B542A0700252EF9 /* RTHero.swift */; };
+		540712051B56F1AE00252EF9 /* RTAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540712041B56F1AE00252EF9 /* RTAttributes.swift */; };
+		540712071B56F95C00252EF9 /* RTAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540712061B56F95C00252EF9 /* RTAudio.swift */; };
+		5407120B1B571F8D00252EF9 /* RTBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5407120A1B571F8D00252EF9 /* RTBackground.swift */; };
+		5407120D1B572ABE00252EF9 /* RTSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5407120C1B572ABE00252EF9 /* RTSettings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,8 +40,6 @@
 		540711BD1B54159E00252EF9 /* ReferenceTravelers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReferenceTravelers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		540711C11B54159E00252EF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		540711C21B54159E00252EF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		540711C41B54159E00252EF9 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		540711C61B54159E00252EF9 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		540711C81B54159E00252EF9 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		540711CB1B54159E00252EF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		540711CD1B54159E00252EF9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -40,6 +47,17 @@
 		540711D61B54159E00252EF9 /* ReferenceTravelersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReferenceTravelersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		540711DB1B54159E00252EF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		540711DC1B54159E00252EF9 /* ReferenceTravelersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferenceTravelersTests.swift; sourceTree = "<group>"; };
+		540711E61B5419F800252EF9 /* RTCombatScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTCombatScene.swift; sourceTree = "<group>"; };
+		540711EB1B5426EF00252EF9 /* RTTitleScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTTitleScene.swift; sourceTree = "<group>"; };
+		540711ED1B54283700252EF9 /* RTHeroSelectionScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTHeroSelectionScene.swift; sourceTree = "<group>"; };
+		540711EF1B54287000252EF9 /* RTStageSelectionScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTStageSelectionScene.swift; sourceTree = "<group>"; };
+		540711F11B5428AA00252EF9 /* RTBoardScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTBoardScene.swift; sourceTree = "<group>"; };
+		540711F31B54297B00252EF9 /* RTHideRequired.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTHideRequired.swift; sourceTree = "<group>"; };
+		540711F51B542A0700252EF9 /* RTHero.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTHero.swift; sourceTree = "<group>"; };
+		540712041B56F1AE00252EF9 /* RTAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTAttributes.swift; sourceTree = "<group>"; };
+		540712061B56F95C00252EF9 /* RTAudio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTAudio.swift; sourceTree = "<group>"; };
+		5407120A1B571F8D00252EF9 /* RTBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTBackground.swift; sourceTree = "<group>"; };
+		5407120C1B572ABE00252EF9 /* RTSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTSettings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,9 +100,9 @@
 			isa = PBXGroup;
 			children = (
 				540711C21B54159E00252EF9 /* AppDelegate.swift */,
-				540711C41B54159E00252EF9 /* GameScene.sks */,
-				540711C61B54159E00252EF9 /* GameScene.swift */,
 				540711C81B54159E00252EF9 /* GameViewController.swift */,
+				540711EA1B5426D800252EF9 /* Scenes */,
+				540711FA1B542BA200252EF9 /* Classes */,
 				540711CA1B54159E00252EF9 /* Main.storyboard */,
 				540711CD1B54159E00252EF9 /* Images.xcassets */,
 				540711CF1B54159E00252EF9 /* LaunchScreen.xib */,
@@ -116,6 +134,47 @@
 				540711DB1B54159E00252EF9 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		540711EA1B5426D800252EF9 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				540711EB1B5426EF00252EF9 /* RTTitleScene.swift */,
+				540711ED1B54283700252EF9 /* RTHeroSelectionScene.swift */,
+				540711EF1B54287000252EF9 /* RTStageSelectionScene.swift */,
+				540711F11B5428AA00252EF9 /* RTBoardScene.swift */,
+				540711E61B5419F800252EF9 /* RTCombatScene.swift */,
+				5407120C1B572ABE00252EF9 /* RTSettings.swift */,
+			);
+			name = Scenes;
+			sourceTree = "<group>";
+		};
+		540711F91B542A6E00252EF9 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				540711F31B54297B00252EF9 /* RTHideRequired.swift */,
+				540712061B56F95C00252EF9 /* RTAudio.swift */,
+				5407120A1B571F8D00252EF9 /* RTBackground.swift */,
+			);
+			name = Base;
+			sourceTree = "<group>";
+		};
+		540711FA1B542BA200252EF9 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				540711F91B542A6E00252EF9 /* Base */,
+				540711FD1B544B5000252EF9 /* Character */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		540711FD1B544B5000252EF9 /* Character */ = {
+			isa = PBXGroup;
+			children = (
+				540712041B56F1AE00252EF9 /* RTAttributes.swift */,
+				540711F51B542A0700252EF9 /* RTHero.swift */,
+			);
+			name = Character;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,7 +259,6 @@
 			files = (
 				540711D11B54159E00252EF9 /* LaunchScreen.xib in Resources */,
 				540711CE1B54159E00252EF9 /* Images.xcassets in Resources */,
-				540711C51B54159E00252EF9 /* GameScene.sks in Resources */,
 				540711CC1B54159E00252EF9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -219,9 +277,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				540711C71B54159E00252EF9 /* GameScene.swift in Sources */,
+				540711F41B54297B00252EF9 /* RTHideRequired.swift in Sources */,
+				5407120B1B571F8D00252EF9 /* RTBackground.swift in Sources */,
+				5407120D1B572ABE00252EF9 /* RTSettings.swift in Sources */,
+				540711F61B542A0700252EF9 /* RTHero.swift in Sources */,
+				540711E71B5419F800252EF9 /* RTCombatScene.swift in Sources */,
+				540711EE1B54283700252EF9 /* RTHeroSelectionScene.swift in Sources */,
 				540711C91B54159E00252EF9 /* GameViewController.swift in Sources */,
 				540711C31B54159E00252EF9 /* AppDelegate.swift in Sources */,
+				540711F21B5428AA00252EF9 /* RTBoardScene.swift in Sources */,
+				540712071B56F95C00252EF9 /* RTAudio.swift in Sources */,
+				540711F01B54287000252EF9 /* RTStageSelectionScene.swift in Sources */,
+				540711EC1B5426EF00252EF9 /* RTTitleScene.swift in Sources */,
+				540712051B56F1AE00252EF9 /* RTAttributes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,6 +421,7 @@
 				INFOPLIST_FILE = ReferenceTravelers/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -363,6 +432,7 @@
 				INFOPLIST_FILE = ReferenceTravelers/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};

@@ -11,6 +11,9 @@ import SpriteKit
 
 
 class RTStageSelectionScene: SKScene {
+    
+    var buttonNodeLeft: RTButton?
+    
     override init(size: CGSize) {
         
         super.init(size: size)
@@ -19,9 +22,19 @@ class RTStageSelectionScene: SKScene {
         //Background da Scene
         backgroundNode = RTBackground(imageNamed: "bg2")
         backgroundNode!.position = CGPoint(x: 0.0, y: 0.0)
-        addChild(backgroundNode!)
+        self.addChild(backgroundNode!)
 
+        buttonNodeLeft = RTButton(imageNamed: "btnArrowEsq")
+        buttonNodeLeft!.position = CGPoint(x: 0.0, y: 0.0)
+        buttonNodeLeft!.alpha = 0.3
         
+        //BLOCO DE AÇÃO DO BOTÃO
+        buttonNodeLeft?.setRTButtonAction({ () -> () in
+            self.runAction(SKAction.waitForDuration(0.2))
+            let transition = SKTransition.pushWithDirection(SKTransitionDirection.Right, duration: 1.5)
+            self.scene?.view?.presentScene(GHeroSelectionScene, transition: transition)
+        })
+        self.addChild(buttonNodeLeft!)
         
     }
     

@@ -21,9 +21,11 @@ class RTBackground: RTHideRequired {
         
         super.init(texture: texture, color: color, size: size)
 
-        name = "BACKGROUND"
+        self.name = "BACKGROUND"
         self.anchorPoint = CGPoint(x: 0.0, y: 0.0)
         self.zPosition = -3
+        
+        self.userInteractionEnabled = false
         
     }
     

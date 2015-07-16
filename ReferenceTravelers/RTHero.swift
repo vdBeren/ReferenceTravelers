@@ -23,7 +23,7 @@ class RTHero: RTHideRequired {
         super.init(texture: texture, color: color, size: size)
         
         self.name = "CHARACTER"
-        userInteractionEnabled = false
+        self.userInteractionEnabled = false
         
         //Cria o corpo fisico do HEROI
         self.physicsBody = SKPhysicsBody(rectangleOfSize: self.size)

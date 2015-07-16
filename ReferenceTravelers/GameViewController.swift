@@ -9,9 +9,13 @@
 import UIKit
 import SpriteKit
 
+var GAudioNode: RTAudio? = RTAudio()
+var GTitleScene: RTTitleScene?
+var GHeroSelectionScene: RTHeroSelectionScene?
+var GStageSelectionScene: RTStageSelectionScene?
+
 class GameViewController: UIViewController {
     
-    var scene: RTTitleScene!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,11 +28,16 @@ class GameViewController: UIViewController {
         /* Sprite Kit applies additional optimizations to improve rendering performance */
         skView.ignoresSiblingOrder = true
         
-        /* Set the scale mode to scale to fit the window */
-        scene = RTTitleScene(size: skView.bounds.size)
-        scene.scaleMode = .AspectFill
+        var size = skView.bounds.size
+        //INICIALIZA TODAS AS SCENES DE MENUS
+        GTitleScene = RTTitleScene(size: size)
+        GHeroSelectionScene = RTHeroSelectionScene(size: size)
+        GStageSelectionScene = RTStageSelectionScene(size: size)
         
-        skView.presentScene(scene)
+        /* Set the scale mode to scale to fit the window */
+        GTitleScene!.scaleMode = .AspectFill
+        
+        skView.presentScene(GTitleScene)
     }
     
     

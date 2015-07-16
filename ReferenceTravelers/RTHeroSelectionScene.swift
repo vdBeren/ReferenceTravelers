@@ -12,7 +12,7 @@ import SpriteKit
 
 class RTHeroSelectionScene: SKScene {
     
-    var nextScene: RTStageSelectionScene?
+    var buttonNodeRight, buttonNodeLeft: RTButton?
     
     override init(size: CGSize) {
         
@@ -22,12 +22,36 @@ class RTHeroSelectionScene: SKScene {
         //Background da Scene
         backgroundNode = RTBackground(imageNamed: "bg1")
         backgroundNode!.position = CGPoint(x: 0.0, y: 0.0)
-        addChild(backgroundNode!)
+        self.addChild(backgroundNode!)
         
         
-        nextScene = RTStageSelectionScene(size: size)
+        buttonNodeLeft = RTButton(imageNamed: "btnArrowEsq")
+        buttonNodeLeft!.position = CGPoint(x: 0.0, y: 0.0)
+        buttonNodeLeft!.alpha = 0.3
+        
+        //BLOCO DE AÇÃO DO BOTÃO
+        buttonNodeLeft?.setRTButtonAction({ () -> () in
+            self.runAction(SKAction.waitForDuration(0.2))
+            let transition = SKTransition.pushWithDirection(SKTransitionDirection.Right, duration: 1.5)
+            self.scene?.view?.presentScene(GTitleScene, transition: transition)
+        })
+        self.addChild(buttonNodeLeft!)
+        
+        buttonNodeRight = RTButton(imageNamed: "btnArrowDir")
+        buttonNodeRight!.position = CGPoint(x: size.width - buttonNodeRight!.size.width, y: size.height - buttonNodeRight!.size.height)
+        buttonNodeRight!.alpha = 0.3
+        
+        //BLOCO DE AÇÃO DO BOTÃO
+        buttonNodeRight?.setRTButtonAction({ () -> () in
+            self.runAction(SKAction.waitForDuration(0.2))
+            let transition = SKTransition.pushWithDirection(SKTransitionDirection.Left, duration: 1.5)
+            self.scene?.view?.presentScene(GStageSelectionScene, transition: transition)
+        })
+        self.addChild(buttonNodeRight!)
         
         
+        self.userInteractionEnabled = false
+
     }
     
     //Chamado a todo frame. Usado para realizar o update dos nodes da Scene, em cascata.
@@ -40,9 +64,6 @@ class RTHeroSelectionScene: SKScene {
     //Recebe toques na Scene.
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         
-        self.runAction(SKAction.waitForDuration(0.2))
-        let endTransition = SKTransition.pushWithDirection(SKTransitionDirection.Left, duration: 1.5)
-        self.scene?.view?.presentScene(nextScene, transition: endTransition)
         
     }
     

@@ -29,6 +29,7 @@ class GameViewController: UIViewController {
         skView.ignoresSiblingOrder = true
         
         var size = skView.bounds.size
+        
         //INICIALIZA TODAS AS SCENES DE MENUS
         GTitleScene = RTTitleScene(size: size)
         GHeroSelectionScene = RTHeroSelectionScene(size: size)

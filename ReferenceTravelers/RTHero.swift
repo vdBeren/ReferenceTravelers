@@ -35,7 +35,7 @@ class RTHero: RTHideRequired {
     }
     
     
-    //Recebe toques na tela no Node.
+    //Recebe toques no Node.
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         
     }

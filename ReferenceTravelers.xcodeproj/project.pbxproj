@@ -25,6 +25,8 @@
 		5407120D1B572ABE00252EF9 /* RTSettingsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5407120C1B572ABE00252EF9 /* RTSettingsScene.swift */; };
 		5407120F1B57709300252EF9 /* RTButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5407120E1B57709300252EF9 /* RTButton.swift */; };
 		545F85DD1B579B20003ABC76 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 545F85DC1B579B20003ABC76 /* Images.xcassets */; };
+		5489501E1B584B3800032B67 /* RTGamePad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5489501D1B584B3800032B67 /* RTGamePad.swift */; };
+		548950211B58C03100032B67 /* RTSelectorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548950201B58C03100032B67 /* RTSelectorButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +62,8 @@
 		5407120C1B572ABE00252EF9 /* RTSettingsScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTSettingsScene.swift; sourceTree = "<group>"; };
 		5407120E1B57709300252EF9 /* RTButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTButton.swift; sourceTree = "<group>"; };
 		545F85DC1B579B20003ABC76 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		5489501D1B584B3800032B67 /* RTGamePad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTGamePad.swift; sourceTree = "<group>"; };
+		548950201B58C03100032B67 /* RTSelectorButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTSelectorButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,7 +161,6 @@
 				540711F31B54297B00252EF9 /* RTHideRequired.swift */,
 				540712061B56F95C00252EF9 /* RTAudio.swift */,
 				5407120A1B571F8D00252EF9 /* RTBackground.swift */,
-				5407120E1B57709300252EF9 /* RTButton.swift */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -165,6 +168,7 @@
 		540711FA1B542BA200252EF9 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				5489501F1B58BF5900032B67 /* Control */,
 				540711F91B542A6E00252EF9 /* Base */,
 				540711FD1B544B5000252EF9 /* Character */,
 			);
@@ -178,6 +182,16 @@
 				540711F51B542A0700252EF9 /* RTHero.swift */,
 			);
 			name = Character;
+			sourceTree = "<group>";
+		};
+		5489501F1B58BF5900032B67 /* Control */ = {
+			isa = PBXGroup;
+			children = (
+				5407120E1B57709300252EF9 /* RTButton.swift */,
+				548950201B58C03100032B67 /* RTSelectorButton.swift */,
+				5489501D1B584B3800032B67 /* RTGamePad.swift */,
+			);
+			name = Control;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -284,12 +298,14 @@
 				5407120B1B571F8D00252EF9 /* RTBackground.swift in Sources */,
 				5407120D1B572ABE00252EF9 /* RTSettingsScene.swift in Sources */,
 				540711F61B542A0700252EF9 /* RTHero.swift in Sources */,
+				548950211B58C03100032B67 /* RTSelectorButton.swift in Sources */,
 				540711E71B5419F800252EF9 /* RTCombatScene.swift in Sources */,
 				540711EE1B54283700252EF9 /* RTHeroSelectionScene.swift in Sources */,
 				540711C91B54159E00252EF9 /* GameViewController.swift in Sources */,
 				540711C31B54159E00252EF9 /* AppDelegate.swift in Sources */,
 				540711F21B5428AA00252EF9 /* RTBoardScene.swift in Sources */,
 				540712071B56F95C00252EF9 /* RTAudio.swift in Sources */,
+				5489501E1B584B3800032B67 /* RTGamePad.swift in Sources */,
 				540711F01B54287000252EF9 /* RTStageSelectionScene.swift in Sources */,
 				5407120F1B57709300252EF9 /* RTButton.swift in Sources */,
 				540711EC1B5426EF00252EF9 /* RTTitleScene.swift in Sources */,

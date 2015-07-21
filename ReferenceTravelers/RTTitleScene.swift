@@ -14,6 +14,7 @@ var backgroundNode: RTBackground?
 class RTTitleScene: SKScene {
     
     var buttonNodeRight: RTButton?
+    var gamePad: RTGamePad?
     
     override init(size: CGSize) {
         
@@ -27,7 +28,8 @@ class RTTitleScene: SKScene {
         backgroundNode = RTBackground(imageNamed: "bg0")
         backgroundNode!.position = CGPoint(x: 0.0, y: 0.0)
         self.addChild(backgroundNode!)
-
+        
+        
         buttonNodeRight = RTButton(imageNamed: "btnArrowDir")
         buttonNodeRight!.position = CGPoint(x: size.width - buttonNodeRight!.size.width, y: size.height - buttonNodeRight!.size.height)
         buttonNodeRight!.alpha = 0.3
@@ -39,6 +41,9 @@ class RTTitleScene: SKScene {
             self.scene?.view?.presentScene(GHeroSelectionScene, transition: transition)
         })
         self.addChild(buttonNodeRight!)
+        
+        gamePad = RTGamePad()
+        self.addChild(gamePad!)
         
         self.userInteractionEnabled = false
         

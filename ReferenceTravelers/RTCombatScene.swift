@@ -16,9 +16,6 @@ class RTCombatScene: SKScene{
         
         super.init(size: size)
         
-        //Node de Audio
-//        addChild(audioNode!)
-//        audioNode!.playMusic(RTAudio.MusicsEnum.Combate)
         
         //Background da Scene
         backgroundNode = RTBackground(imageNamed: "bg0")
@@ -26,7 +23,7 @@ class RTCombatScene: SKScene{
         addChild(backgroundNode!)
         
         //Gravidade
-        physicsWorld.gravity = CGVectorMake(0.0, -0.1)
+        physicsWorld.gravity = CGVectorMake(0.0, 0.1)
         userInteractionEnabled = true
         
         

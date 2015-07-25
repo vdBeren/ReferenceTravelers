@@ -1,18 +1,22 @@
 //
-//  RTHero.swift
+//  RTTile.swift
 //  ReferenceTravelers
 //
-//  Created by Victor D. Savariego on 13/7/15.
+//  Created by Victor D. Savariego on 25/7/15.
 //  Copyright (c) 2015 RTTeam. All rights reserved.
 //
 
 import UIKit
 import SpriteKit
 
-class RTHero: RTHideRequired {
-
-    var properties: RTAttributes = RTAttributes()
-    var information: String = ""
+class RTTile: RTHideRequired {
+   
+    var tileDescription: String = ""
+    var tileType: String = ""
+    var tileLevel: Int = 1
+    var tileEvent: (Void) -> (Void) = {}
+    //var tileHeroStats: RTAttributes = RTAttributes()
+    
     
     init(imageNamed imageName:String){
         
@@ -22,26 +26,33 @@ class RTHero: RTHideRequired {
         
         super.init(texture: texture, color: color, size: size)
         
-        self.name = "HERO"
+        self.name = "TILE"
         self.userInteractionEnabled = false
         
-        //Cria o corpo fisico do HEROI
-        self.physicsBody = SKPhysicsBody(rectangleOfSize: self.size)
-        self.physicsBody?.dynamic = true
-        
-        self.physicsBody?.mass = 0.01
-        
-        self.physicsBody!.collisionBitMask = 0
+        self.setRTTileEvent { () -> () in
+            fatalError("MUST OVERRIDE TILE EVENT")
+        }
+
+    }
+    
+    func setRTTileEvent(block: (Void)->(Void)) {
+        self.tileEvent = block
     }
     
     
     //Recebe toques no Node.
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        self.tileEvent()
+    }
+
+    
+    private func treasureEvent() -> Int{
         
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
     
 }

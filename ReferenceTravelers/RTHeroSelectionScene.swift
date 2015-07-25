@@ -20,12 +20,12 @@ class RTHeroSelectionScene: SKScene {
         
         
         //Background da Scene
-        backgroundNode = RTBackground(imageNamed: "bg1")
+        backgroundNode = RTBackground(imageNamed: "background1")
         backgroundNode!.position = CGPoint(x: 0.0, y: 0.0)
         self.addChild(backgroundNode!)
         
         
-        buttonNodeLeft = RTButton(imageNamed: "btnArrowEsq")
+        buttonNodeLeft = RTButton(imageNamed: "btnArrowEsq", actionOnTouchBegan: true)
         buttonNodeLeft!.position = CGPoint(x: 0.0, y: 0.0)
         buttonNodeLeft!.alpha = 0.3
         
@@ -37,7 +37,7 @@ class RTHeroSelectionScene: SKScene {
         })
         self.addChild(buttonNodeLeft!)
         
-        buttonNodeRight = RTButton(imageNamed: "btnArrowDir")
+        buttonNodeRight = RTButton(imageNamed: "btnArrowDir", actionOnTouchBegan: true)
         buttonNodeRight!.position = CGPoint(x: size.width - buttonNodeRight!.size.width, y: size.height - buttonNodeRight!.size.height)
         buttonNodeRight!.alpha = 0.3
         

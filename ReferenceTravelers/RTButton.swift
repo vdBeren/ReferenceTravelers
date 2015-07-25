@@ -11,6 +11,7 @@ import SpriteKit
 
 
 // Classe de um botão comum, que está pressionado ou não. Troca de imagem ao ser pressionado, e troca de volta ao ser solto.
+// Pode ativar sua ação ao ser tocado ou quando for solto.
 // Sua ação é definida por bloco, por quem instanciou, atraves do metodo ' setRTButtonAction '.
 // Necessário que um botão seja iniciado com o nome de sua imagem, e que a imagem pressionado tenha o mesmo nome junto do sufixo ' -t '
 
@@ -18,15 +19,18 @@ class RTButton: RTHideRequired {
     
     var buttonAction: (Void) -> (Void) = {}
     var buttonPressed: Bool = false
+    var actionOnTouchBegan: Bool //Se a ação do botão é realizada ao soltar ou ao tocar o botão
     var buttonImageName: String
     
-    init (imageNamed imageName:String){
+    
+    init (imageNamed imageName:String, actionOnTouchBegan: Bool){
         
         let color = UIColor.clearColor()
         let texture = SKTexture(imageNamed: imageName)
         let size = texture.size()
         
-        buttonImageName = imageName
+        self.buttonImageName = imageName
+        self.actionOnTouchBegan = actionOnTouchBegan
         
         super.init(texture: texture, color: color, size: size)
         
@@ -38,7 +42,7 @@ class RTButton: RTHideRequired {
     }
     
     //Função que troca a imagem do botão para sua imagem de tocado.
-    func setButtonTexture(){
+    func setButtonPressed(){
         if buttonPressed{
             self.texture = SKTexture(imageNamed: buttonImageName)
         }
@@ -55,17 +59,24 @@ class RTButton: RTHideRequired {
     
     //Recebe toques no Node.
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-        setButtonTexture()
-        self.buttonAction()
+        setButtonPressed()
+        
+        if actionOnTouchBegan{
+            self.buttonAction()
+        }
     }
     
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
-        setButtonTexture()
+        setButtonPressed()
+        
+        if !actionOnTouchBegan{
+            self.buttonAction()
+        }
         
     }
     
     override func touchesCancelled(touches: Set<NSObject>!, withEvent event: UIEvent!) {
-        setButtonTexture()
+        self.touchesEnded(touches, withEvent: event)
     }
     
     required init?(coder aDecoder: NSCoder) {

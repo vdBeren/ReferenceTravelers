@@ -20,11 +20,11 @@ class RTStageSelectionScene: SKScene {
         
         
         //Background da Scene
-        backgroundNode = RTBackground(imageNamed: "bg2")
+        backgroundNode = RTBackground(imageNamed: "background2")
         backgroundNode!.position = CGPoint(x: 0.0, y: 0.0)
         self.addChild(backgroundNode!)
 
-        buttonNodeLeft = RTButton(imageNamed: "btnArrowEsq")
+        buttonNodeLeft = RTButton(imageNamed: "btnArrowEsq", actionOnTouchBegan: true)
         buttonNodeLeft!.position = CGPoint(x: 0.0, y: 0.0)
         buttonNodeLeft!.alpha = 0.3
         

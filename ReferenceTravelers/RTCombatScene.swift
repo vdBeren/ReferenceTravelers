@@ -12,6 +12,8 @@ import SpriteKit
 
 class RTCombatScene: SKScene{
     
+    var gamePad: RTGamePad?
+    
     override init(size: CGSize) {
         
         super.init(size: size)
@@ -21,6 +23,9 @@ class RTCombatScene: SKScene{
         backgroundNode = RTBackground(imageNamed: "bg0")
         backgroundNode!.position = CGPoint(x: 0.0, y: 0.0)
         addChild(backgroundNode!)
+        
+        gamePad = RTGamePad()
+        self.addChild(gamePad!)
         
         //Gravidade
         physicsWorld.gravity = CGVectorMake(0.0, 0.1)

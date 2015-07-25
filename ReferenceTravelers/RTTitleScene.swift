@@ -14,23 +14,19 @@ var backgroundNode: RTBackground?
 class RTTitleScene: SKScene {
     
     var buttonNodeRight: RTButton?
-    var gamePad: RTGamePad?
     
     override init(size: CGSize) {
         
         super.init(size: size)
         
-        //Node de Audio
-        //        addChild(audioNode!)
-        //        audioNode!.playMusic(RTAudio.MusicsEnum.Title)
         
         //Background da Scene
-        backgroundNode = RTBackground(imageNamed: "bg0")
+        backgroundNode = RTBackground(imageNamed: "background0")
         backgroundNode!.position = CGPoint(x: 0.0, y: 0.0)
         self.addChild(backgroundNode!)
         
         
-        buttonNodeRight = RTButton(imageNamed: "btnArrowDir")
+        buttonNodeRight = RTButton(imageNamed: "btnArrowDir", actionOnTouchBegan: false)
         buttonNodeRight!.position = CGPoint(x: size.width - buttonNodeRight!.size.width, y: size.height - buttonNodeRight!.size.height)
         buttonNodeRight!.alpha = 0.3
         
@@ -42,8 +38,7 @@ class RTTitleScene: SKScene {
         })
         self.addChild(buttonNodeRight!)
         
-        gamePad = RTGamePad()
-        self.addChild(gamePad!)
+
         
         self.userInteractionEnabled = false
         

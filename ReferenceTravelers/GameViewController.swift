@@ -13,6 +13,7 @@ var GAudioNode: RTAudio? = RTAudio()
 var GTitleScene: RTTitleScene?
 var GHeroSelectionScene: RTHeroSelectionScene?
 var GStageSelectionScene: RTStageSelectionScene?
+var GGold: Int = 0
 
 class GameViewController: UIViewController {
     
@@ -29,6 +30,8 @@ class GameViewController: UIViewController {
         skView.ignoresSiblingOrder = true
         
         var size = skView.bounds.size
+        
+        var gold = NSUserDefaults.standardUserDefaults().integerForKey("gold")
         
         //INICIALIZA TODAS AS SCENES DE MENUS
         GTitleScene = RTTitleScene(size: size)

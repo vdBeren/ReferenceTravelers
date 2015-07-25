@@ -39,12 +39,12 @@ class RTGamePad: RTHideRequired {
         btnRight!.position = CGPoint(x: btnRight!.size.width + 150.0, y: 100.0)
         self.addChild(btnRight!)
         
-        btnRight!.setButtonSelected()
+        btnRight!.setButtonSelected() // IMPORTANTE. É necessário definir qual botão começa selecionado!
         
-        btnAction = RTButton(imageNamed: "btnAction")
+        btnAction = RTButton(imageNamed: "btnAction", actionOnTouchBegan: true)
         btnAction!.position = CGPoint(x: self.size.width - btnAction!.size.width - 100, y: 100.0)
         
-        //BLOCO DE AÇÃO DO BOTÃO
+        //BLOCO DE AÇÃO DO BOTÃO DE AÇÃO hehe
         btnAction?.setRTButtonAction({ () -> () in
             
         })

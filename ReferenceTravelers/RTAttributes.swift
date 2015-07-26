@@ -28,4 +28,9 @@ class RTAttributes: NSObject {
         stamina = 100
         level = 1
     }
+    
+    func formulaObtainGold(randomBase: Int) -> Int{
+        return randomBase + greed/4
+    }
+    
 }

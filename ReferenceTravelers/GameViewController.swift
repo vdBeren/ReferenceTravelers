@@ -9,11 +9,18 @@
 import UIKit
 import SpriteKit
 
+//VARIAVEIS GLOBAIS
+
 var GAudioNode: RTAudio? = RTAudio()
 var GTitleScene: RTTitleScene?
 var GHeroSelectionScene: RTHeroSelectionScene?
 var GStageSelectionScene: RTStageSelectionScene?
-var GGold: Int = 0
+var GBoardScene: RTBoardScene?
+var GCombatScene: RTCombatScene?
+var GSettingsScene: RTSettingsScene?
+
+var GCurrentHeroAttributes: RTAttributes = RTAttributes()
+var GGold: Int = NSUserDefaults.standardUserDefaults().integerForKey("playergold")
 
 class GameViewController: UIViewController {
     
@@ -31,17 +38,19 @@ class GameViewController: UIViewController {
         
         var size = skView.bounds.size
         
-        var gold = NSUserDefaults.standardUserDefaults().integerForKey("gold")
-        
-        //INICIALIZA TODAS AS SCENES DE MENUS
+        //INICIALIZA TODAS AS SCENES
         GTitleScene = RTTitleScene(size: size)
         GHeroSelectionScene = RTHeroSelectionScene(size: size)
         GStageSelectionScene = RTStageSelectionScene(size: size)
         
-        /* Set the scale mode to scale to fit the window */
-        GTitleScene!.scaleMode = .AspectFill
+        GBoardScene = RTBoardScene(size: size)
+        GCombatScene = RTCombatScene(size: size)
+        GSettingsScene = RTSettingsScene(size: size)
         
-        skView.presentScene(GTitleScene)
+        /* Set the scale mode to scale to fit the window */
+        GBoardScene!.scaleMode = .AspectFill
+        
+        skView.presentScene(GBoardScene!)
     }
     
     

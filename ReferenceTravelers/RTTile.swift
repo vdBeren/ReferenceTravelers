@@ -15,7 +15,6 @@ class RTTile: RTHideRequired {
     var tileType: String = ""
     var tileLevel: Int = 1
     var tileEvent: (Void) -> (Void) = {}
-    //var tileHeroStats: RTAttributes = RTAttributes()
     
     
     init(imageNamed imageName:String){
@@ -46,8 +45,9 @@ class RTTile: RTHideRequired {
     }
 
     
-    private func treasureEvent() -> Int{
-        
+    private func treasureEvent(randomBase: Int){
+        var gold = GCurrentHeroAttributes.formulaObtainGold(randomBase)
+        // CHAMAR RTNoticeWindow
     }
     
     required init?(coder aDecoder: NSCoder) {

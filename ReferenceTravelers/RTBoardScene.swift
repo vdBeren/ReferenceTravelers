@@ -9,23 +9,25 @@
 import UIKit
 import SpriteKit
 
-var GHeroAttributes: RTAttributes = RTAttributes()
 
 class RTBoardScene: SKScene {
     
     var boardTiles: [RTTile] = []
+    var eventWindow: RTEventWindow?
     
     override init(size: CGSize) {
         
         super.init(size: size)
         
+        self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
         //Background da Scene
         backgroundNode = RTBackground(imageNamed: "bg0")
-        backgroundNode!.position = CGPoint(x: 0.0, y: 0.0)
+        backgroundNode!.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         addChild(backgroundNode!)
         
-        
+        eventWindow = RTEventWindow(imageNamed: "EventWindow")
+        addChild(eventWindow!)
         
         
     }

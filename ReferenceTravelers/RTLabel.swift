@@ -35,7 +35,6 @@ class RTLabel: SKLabelNode {
         let wait = SKAction.waitForDuration(0.05, withRange: 0.10)
         var sequence = SKAction.sequence([actionBlock, wait])
         
-        
         let repeat = SKAction.repeatAction(sequence, count: 18)
         let finalTextBlock = SKAction.runBlock({self.text = self.finalText as String})
         let sequenceFinal = SKAction.sequence([repeat, finalTextBlock])
@@ -46,7 +45,7 @@ class RTLabel: SKLabelNode {
     
     func randomStringWithLength (len: Int) -> NSString {
         
-        let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%ˆ&*()-_=+<>?/"
         
         var randomString : NSMutableString = NSMutableString(capacity: len)
         

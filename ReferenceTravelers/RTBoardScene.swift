@@ -26,8 +26,6 @@ class RTBoardScene: SKScene {
         backgroundNode!.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         addChild(backgroundNode!)
         
-        eventWindow = RTEventWindow(imageNamed: "EventWindow")
-        addChild(eventWindow!)
         
         
     }
@@ -43,9 +41,7 @@ class RTBoardScene: SKScene {
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         
     }
-    
-    
-    
+        
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

@@ -39,6 +39,7 @@ class RTButton: RTHideRequired {
         self.zPosition = 0
         self.userInteractionEnabled = true
         
+        
     }
     
     //Função que troca a imagem do botão para sua imagem de tocado.
@@ -62,6 +63,7 @@ class RTButton: RTHideRequired {
         setButtonPressed()
         
         if actionOnTouchBegan{
+            GAudioNode!.playSound(RTAudio.SoundsEnum.Dano)
             self.buttonAction()
         }
     }
@@ -70,6 +72,7 @@ class RTButton: RTHideRequired {
         setButtonPressed()
         
         if !actionOnTouchBegan{
+            GAudioNode!.playSound(RTAudio.SoundsEnum.Dano)
             self.buttonAction()
         }
         

@@ -24,13 +24,13 @@ class RTTileCave: RTTile {
             
             switch random{
             case 0:
-                // TESOURO
+                // TREASURE
                 break
             case 1:
-                // COMBATE
+                // COMBAT
                 break
             case 2:
-                // ARMADILHA
+                // TRAP
                 break
             default:
                 break

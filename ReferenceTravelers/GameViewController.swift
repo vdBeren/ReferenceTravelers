@@ -47,16 +47,21 @@ class GameViewController: UIViewController {
         GCombatScene = RTCombatScene(size: size)
         GSettingsScene = RTSettingsScene(size: size)
         
+        
         /* Set the scale mode to scale to fit the window */
         GBoardScene!.scaleMode = .AspectFill
         
-        skView.presentScene(GBoardScene!)
+        GTitleScene!.scaleMode = .AspectFill
+        
+        skView.presentScene(GTitleScene!)
     }
     
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Release any cached data, images, etc that aren't in use.
+        
+        GAudioNode!.freeBoxing()
     }
     
     override func prefersStatusBarHidden() -> Bool {

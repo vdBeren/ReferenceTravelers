@@ -47,7 +47,7 @@ class RTStageSelectionScene: SKScene {
     
     //Recebe toques na Scene.
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-        
+
     }
     
     

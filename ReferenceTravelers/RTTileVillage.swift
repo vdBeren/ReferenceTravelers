@@ -19,7 +19,7 @@ class RTTileVillage: RTTile {
         
         //Ação do Tile
         self.setRTTileEvent { () -> () in
-            // CURA
+            // HEAL
         }
         
     }

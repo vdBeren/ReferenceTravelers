@@ -22,13 +22,13 @@ class RTTileLair: RTTile {
             
             switch random{
             case 0:
-                // TESOURO
+                // TREASURE
                 break
             case 1:
-                // COMBATE
+                // COMBAT
                 break
             case 2:
-                // CATASTROFE
+                // DISASTER
                 break
             default:
                 break

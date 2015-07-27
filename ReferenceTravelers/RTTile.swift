@@ -44,10 +44,22 @@ class RTTile: RTHideRequired {
         self.tileEvent()
     }
 
+    private func openEventWindow(windowName: String, description: String){
+        let eventWindow = RTEventWindow(imageNamed: windowName, description: description)
+        (self.parent as? RTBoardScene)?.addChild(eventWindow)
+    }
     
-    private func treasureEvent(randomBase: Int){
-        var gold = GCurrentHeroAttributes.formulaObtainGold(randomBase)
-        // CHAMAR RTNoticeWindow
+    private func eventTreasure(randomBase: Int, description: String){
+        //var gold: Int = GCurrentHeroAttributes.obtainGold(randomBase)
+        self.openEventWindow("TREASURE", description: description)
+    }
+    
+    private func eventCombat(descritpion: String){
+        self.openEventWindow("COMBAT", description: description)
+    }
+    
+    private func eventHeal(description: String){
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

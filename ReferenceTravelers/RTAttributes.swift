@@ -12,7 +12,7 @@ import UIKit
 // Classe que tem todos os atributos de um personagem. Formulas usadas são feitas aqui.
 class RTAttributes: NSObject {
     
-    var primary, agility, luck, greed, health, stamina, level: Int
+    var primary, agility, luck, greed, health, stamina, level, maxHealth, maxStamina: Int
     var primaryType: String
     
     override init(){
@@ -26,11 +26,71 @@ class RTAttributes: NSObject {
         
         health = 100
         stamina = 100
+        maxHealth = 100
+        maxStamina = 100
+        
         level = 1
     }
     
-    func formulaObtainGold(randomBase: Int) -> Int{
-        return randomBase + greed/4
+    // ========================================================================
+    // GOLD
+    func obtainGold(base: Int){
+        GGold += formulaLoseGold(base)
     }
     
+    func loseGold(base: Int){
+        GGold -= checkForNegative(formulaLoseGold(base))
+    }
+    
+    private func formulaObtainGold(base: Int) -> Int{
+        return base + greed/4 + luck/6
+    }
+    
+    private func formulaLoseGold(base: Int) -> Int{
+        return base - greed/4 - luck/6
+    }
+    // ========================================================================
+    // HEALTH
+    func gainHealth(base: Int){
+        health += formulaRecoverHealth(base)
+    }
+    
+    func loseHealth(base: Int){
+        health -= checkForNegative(formulaLoseHealth(base))
+    }
+    
+    private func formulaRecoverHealth(base: Int) -> Int{
+        return base + maxHealth/3
+    }
+    
+    private func formulaLoseHealth(base: Int) -> Int{
+        return base
+    }
+    // ========================================================================
+    // STAMINA
+    func gainStamina(base: Int){
+        stamina += formulaRecoverStamina(base)
+    }
+    
+    func loseStamina(base: Int){
+        stamina -= checkForNegative(formulaLoseStamina(base))
+    }
+    
+    private func formulaRecoverStamina(base: Int) -> Int{
+        return base + maxStamina/2
+    }
+    
+    private func formulaLoseStamina(base: Int) -> Int{
+        return base
+    }
+    // ========================================================================
+    
+    private func checkForNegative(value: Int) -> Int{
+        if value < 0{
+            return 0
+        }
+        
+        return value
+    }
+
 }

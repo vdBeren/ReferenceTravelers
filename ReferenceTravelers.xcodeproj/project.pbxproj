@@ -25,6 +25,8 @@
 		5407120D1B572ABE00252EF9 /* RTSettingsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5407120C1B572ABE00252EF9 /* RTSettingsScene.swift */; };
 		5407120F1B57709300252EF9 /* RTButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5407120E1B57709300252EF9 /* RTButton.swift */; };
 		543A0F701B64784400B4C77A /* RTLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543A0F6F1B64784400B4C77A /* RTLabel.swift */; };
+		543A0F721B659E5E00B4C77A /* TITLE.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 543A0F711B659E5E00B4C77A /* TITLE.mp3 */; };
+		543A0F741B65A9B300B4C77A /* DANO.wav in Resources */ = {isa = PBXBuildFile; fileRef = 543A0F731B65A9B300B4C77A /* DANO.wav */; };
 		545F85DD1B579B20003ABC76 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 545F85DC1B579B20003ABC76 /* Images.xcassets */; };
 		5489501E1B584B3800032B67 /* RTGamePad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5489501D1B584B3800032B67 /* RTGamePad.swift */; };
 		548950211B58C03100032B67 /* RTSelectorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548950201B58C03100032B67 /* RTSelectorButton.swift */; };
@@ -68,6 +70,8 @@
 		5407120C1B572ABE00252EF9 /* RTSettingsScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTSettingsScene.swift; sourceTree = "<group>"; };
 		5407120E1B57709300252EF9 /* RTButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTButton.swift; sourceTree = "<group>"; };
 		543A0F6F1B64784400B4C77A /* RTLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTLabel.swift; sourceTree = "<group>"; };
+		543A0F711B659E5E00B4C77A /* TITLE.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TITLE.mp3; sourceTree = "<group>"; };
+		543A0F731B65A9B300B4C77A /* DANO.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = DANO.wav; sourceTree = "<group>"; };
 		545F85DC1B579B20003ABC76 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5489501D1B584B3800032B67 /* RTGamePad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTGamePad.swift; sourceTree = "<group>"; };
 		548950201B58C03100032B67 /* RTSelectorButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTSelectorButton.swift; sourceTree = "<group>"; };
@@ -117,6 +121,8 @@
 		540711BF1B54159E00252EF9 /* ReferenceTravelers */ = {
 			isa = PBXGroup;
 			children = (
+				543A0F711B659E5E00B4C77A /* TITLE.mp3 */,
+				543A0F731B65A9B300B4C77A /* DANO.wav */,
 				540711C21B54159E00252EF9 /* AppDelegate.swift */,
 				540711C81B54159E00252EF9 /* GameViewController.swift */,
 				540711EA1B5426D800252EF9 /* Scenes */,
@@ -301,8 +307,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				545F85DD1B579B20003ABC76 /* Images.xcassets in Resources */,
+				543A0F741B65A9B300B4C77A /* DANO.wav in Resources */,
 				540711D11B54159E00252EF9 /* LaunchScreen.xib in Resources */,
 				540711CC1B54159E00252EF9 /* Main.storyboard in Resources */,
+				543A0F721B659E5E00B4C77A /* TITLE.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -19,6 +19,8 @@ class RTTitleScene: SKScene {
         
         super.init(size: size)
         
+        //Inicia node de Sons e Musica
+        GAudioNode!.playMusic(RTAudio.MusicsEnum.Title)
         
         //Background da Scene
         backgroundNode = RTBackground(imageNamed: "background0")
@@ -37,10 +39,9 @@ class RTTitleScene: SKScene {
             self.scene?.view?.presentScene(GHeroSelectionScene, transition: transition)
         })
         self.addChild(buttonNodeRight!)
+    
         
-
-        
-        self.userInteractionEnabled = false
+        self.userInteractionEnabled = true
         
         
         
@@ -55,7 +56,7 @@ class RTTitleScene: SKScene {
     
     //Recebe toques na Scene.
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-
+        GAudioNode!.playSound(RTAudio.SoundsEnum.Dano)
     }
     
     

@@ -13,6 +13,7 @@ import SpriteKit
 class RTCombatScene: SKScene{
     
     var gamePad: RTGamePad?
+    var backgroundNode: RTBackground?
     
     override init(size: CGSize) {
         

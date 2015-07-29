@@ -9,11 +9,10 @@
 import UIKit
 import SpriteKit
 
-var backgroundNode: RTBackground?
-
 class RTTitleScene: SKScene {
     
     var buttonNodeRight: RTButton?
+    var backgroundNode: RTBackground?
     
     override init(size: CGSize) {
         

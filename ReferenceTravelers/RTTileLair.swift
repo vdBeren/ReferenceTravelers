@@ -13,25 +13,25 @@ class RTTileLair: RTTile {
         super.init(imageNamed: "TILELAIR")
         
         tileDescription = "Some ancient creature lair. Great treasures, great dangers."
-        tileType = "ARCANE"
+        tileType = TileType.Arcane
         tileLevel = 1
         
         //Ação do Tile
         self.setRTTileEvent { () -> () in
-            var random = arc4random_uniform(3)
+            var random = arc4random_uniform(10)
             
-            switch random{
-            case 0:
-                // TREASURE
-                break
-            case 1:
-                // COMBAT
-                break
-            case 2:
-                // DISASTER
-                break
-            default:
-                break
+            //(Combat 60% - Treasure 20% - Disaster 20%)
+            
+            if random >= 5{
+                //COMBAT
+                
+            }
+            else if random >= 3{
+                //TREASURE
+                
+            }
+            else if random >= 0{
+                //DISASTER
                 
             }
         }
@@ -41,5 +41,5 @@ class RTTileLair: RTTile {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
 }

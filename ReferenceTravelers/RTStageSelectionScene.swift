@@ -13,6 +13,7 @@ import SpriteKit
 class RTStageSelectionScene: SKScene {
     
     var buttonNodeLeft: RTButton?
+    var backgroundNode: RTBackground?
     
     override init(size: CGSize) {
         

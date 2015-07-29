@@ -13,6 +13,7 @@ import SpriteKit
 class RTHeroSelectionScene: SKScene {
     
     var buttonNodeRight, buttonNodeLeft: RTButton?
+    var backgroundNode: RTBackground?
     
     override init(size: CGSize) {
         

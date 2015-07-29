@@ -12,6 +12,7 @@ import SpriteKit
 class RTHero: RTHideRequired {
 
     var properties: RTAttributes = RTAttributes()
+    var moneyCost: Float = 0.99
     var information: String = ""
     
     init(imageNamed imageName:String){

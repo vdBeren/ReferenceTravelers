@@ -14,12 +14,14 @@ class RTTileVillage: RTTile {
         super.init(imageNamed: "TILEVILLAGE")
         
         tileDescription = "A peacefull village, with an Inn for adventurers."
-        tileType = "URBAN"
+        tileType = TileType.Urban
         tileLevel = 1
         
         //Ação do Tile
         self.setRTTileEvent { () -> () in
             // HEAL
+            var base = arc4random_uniform(10)
+            self.eventHeal(Int(base), event: GEventManager!.pickEvent(RTEvent.EventType.Heal))
         }
         
     }

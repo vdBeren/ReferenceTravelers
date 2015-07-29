@@ -9,15 +9,23 @@
 import UIKit
 import SpriteKit
 
+
+// Classe da janela de evento. É chamada para realizar notificar o jogador do evento.
+// Ao jogador é dado, seguindo um limite, a opção de pular esse evento usando Gold ou Vendo um Video.
+// Uma janela tem sua imagem chamada a partir do tipo de evento. O arquivo da imagem tem que ter a formatação: "TipoDoEvento-eWindowBG"
+// Ex: TREASURE-eWindowBG
+
+
 class RTEventWindow: RTHideRequired {
     
     var buttonClose: RTButton?
     var labelEvent: RTLabel?
     
-    init(imageNamed imageName: String, description: String){
+    init(imageNamed imageName: RTEvent.EventType, event: RTEvent, value: Int){
         
         let color = UIColor.clearColor()
-        let texture = SKTexture(imageNamed: imageName)
+        //let texture = SKTexture(imageNamed: imageName.rawValue + "-eWindowBG")
+        let texture = SKTexture(imageNamed: "EventWindow")
         let size = texture.size()
         
         super.init(texture: texture, color: color, size: size)
@@ -39,7 +47,7 @@ class RTEventWindow: RTHideRequired {
         
         self.addChild(self.buttonClose!)
         
-        self.setContents(imageName, description: description)
+        self.setContents(imageName, description: event.eventDescription)
         
         
         self.introAnimation()
@@ -48,7 +56,7 @@ class RTEventWindow: RTHideRequired {
         
     }
     
-    func setContents(name: String, description: String){
+    func setContents(name: RTEvent.EventType, description: String){
         self.labelEvent = RTLabel(text: description)
         // self.labelEvent!.position = CGPoint(x: 320.0, y: 140.0)
         self.addChild(labelEvent!)
@@ -88,7 +96,22 @@ class RTEventWindow: RTHideRequired {
     
     
     func closeEventWindow(){
-        self.removeFromParent()
+        // EFEITO DE ANIMAÇÃO AO DESAPARECER :O
+        
+        var scale: CGFloat = 1.3
+        var duration: NSTimeInterval = 0.1
+        let scaleActionBegin = SKAction.scaleTo(scale, duration: duration)
+        
+        scale = 0.1
+        duration = 0.2
+        let scaleActionFinish = SKAction.scaleTo(scale, duration: duration)
+        
+        let block = SKAction.runBlock ({self.removeFromParent()})
+        
+        let sequenceArray = SKAction.sequence([scaleActionBegin, scaleActionFinish, block])
+        self.runAction(sequenceArray)
+
+        
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {

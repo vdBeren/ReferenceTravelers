@@ -15,22 +15,30 @@ class RTTileCave: RTTile {
         super.init(imageNamed: "TILECAVE")
         
         tileDescription = "A misterious cave. What surprises it hides?"
-        tileType = "EXPLORER"
+        tileType = TileType.Explorer
         tileLevel = 1
         
         //Ação do Tile
         self.setRTTileEvent { () -> () in
             var random = arc4random_uniform(3)
+            var base: UInt32
+            
+            // (Treasure 33% - Combat 33% - Trap 33%)
             
             switch random{
             case 0:
                 // TREASURE
+                base = arc4random_uniform(15)
+                self.eventTreasure(Int(base), event: GEventManager!.pickEvent(RTEvent.EventType.Treasure))
                 break
             case 1:
                 // COMBAT
+                self.eventCombat(GEventManager!.pickEvent(RTEvent.EventType.Combat))
                 break
             case 2:
                 // TRAP
+                base = arc4random_uniform(15)
+                self.eventTrap(Int(base), event: GEventManager!.pickEvent(RTEvent.EventType.Trap))
                 break
             default:
                 break
@@ -39,6 +47,7 @@ class RTTileCave: RTTile {
         }
         
     }
+    
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

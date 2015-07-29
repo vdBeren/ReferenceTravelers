@@ -8,17 +8,30 @@
 
 import UIKit
 
-
 // Classe que tem todos os atributos de um personagem. Formulas usadas são feitas aqui.
+
 class RTAttributes: NSObject {
     
     var primary, agility, luck, greed, health, stamina, level, maxHealth, maxStamina: Int
-    var primaryType: String
+    var primaryType: RTAttributes.PrimariesEnum
+    var minimalStatValue: Int = 5
+    
+    enum PrimariesEnum : String{
+        case Strength = "STRENGTH"
+        case Dexterity = "DEXTERITY"
+        case Intelligence = "INTELLIGENCE"
+    }
+    enum AttributesEnum : String{
+        case Primary = "PRIMARY"
+        case Agility = "AGILITY"
+        case Luck = "LUCK"
+        case Greed = "GREED"
+    }
     
     override init(){
         
         //Inicialização obrigatoria das variaveis de classe do Swift
-        primaryType = ""
+        primaryType = RTAttributes.PrimariesEnum.Strength
         primary = 0
         agility = 0
         luck = 0
@@ -34,12 +47,16 @@ class RTAttributes: NSObject {
     
     // ========================================================================
     // GOLD
-    func obtainGold(base: Int){
-        GGold += formulaLoseGold(base)
+    func obtainGold(base: Int) -> Int{
+        var result = formulaObtainGold(base)
+        GGold += result
+        return result
     }
     
-    func loseGold(base: Int){
-        GGold -= checkForNegative(formulaLoseGold(base))
+    func loseGold(base: Int) -> Int{
+        var result = checkForNegative(formulaLoseGold(base))
+        GGold -= result
+        return result
     }
     
     private func formulaObtainGold(base: Int) -> Int{
@@ -51,12 +68,16 @@ class RTAttributes: NSObject {
     }
     // ========================================================================
     // HEALTH
-    func gainHealth(base: Int){
-        health += formulaRecoverHealth(base)
+    func recoverHealth(base: Int) -> Int{
+        var result = checkForMax(formulaRecoverHealth(base), max: self.maxHealth)
+        health += result
+        return result
     }
     
-    func loseHealth(base: Int){
-        health -= checkForNegative(formulaLoseHealth(base))
+    func loseHealth(base: Int) -> Int{
+        var result = checkForNegative(formulaLoseHealth(base))
+        health -= result
+        return result
     }
     
     private func formulaRecoverHealth(base: Int) -> Int{
@@ -68,12 +89,16 @@ class RTAttributes: NSObject {
     }
     // ========================================================================
     // STAMINA
-    func gainStamina(base: Int){
-        stamina += formulaRecoverStamina(base)
+    func recoverStamina(base: Int) -> Int{
+        var result = checkForMax(formulaRecoverStamina(base), max: self.maxStamina)
+        stamina += result
+        return result
     }
     
-    func loseStamina(base: Int){
-        stamina -= checkForNegative(formulaLoseStamina(base))
+    func loseStamina(base: Int) -> Int{
+        var result = checkForNegative(formulaLoseStamina(base))
+        stamina -= result
+        return result
     }
     
     private func formulaRecoverStamina(base: Int) -> Int{
@@ -84,10 +109,58 @@ class RTAttributes: NSObject {
         return base
     }
     // ========================================================================
+    // PRIMARY - AGILITY - LUCK - GREED
+    func gainOrLoseStat(statType: RTAttributes.AttributesEnum, base: Int, gain: Bool) -> Int{
+        
+        var statValue = formulaStat(base)
+        
+        if !gain{
+            statValue *= -1
+        }
+        
+        switch statType{
+        case RTAttributes.AttributesEnum.Primary:
+            return checkForMin(self.primary + statValue)
+            
+        case RTAttributes.AttributesEnum.Agility:
+            return checkForMin(self.agility + statValue)
+            
+        case RTAttributes.AttributesEnum.Luck:
+            return checkForMin(self.luck + statValue)
+            
+        case RTAttributes.AttributesEnum.Greed:
+            return checkForMin(self.greed + statValue)
+            
+        default:
+            break
+        }
+        
+    }
+    
+    private func formulaStat(base: Int) -> Int{
+        return base
+    }
+    // ========================================================================
     
     private func checkForNegative(value: Int) -> Int{
         if value < 0{
             return 0
+        }
+        
+        return value
+    }
+    
+    private func checkForMax(value: Int, max: Int) -> Int{
+        if value > max{
+            return max
+        }
+        
+        return value
+    }
+    
+    private func checkForMin(value: Int) -> Int{
+        if value < minimalStatValue{
+            return minimalStatValue
         }
         
         return value

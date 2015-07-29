@@ -31,11 +31,16 @@ class RTLabel: SKLabelNode {
     func introAnimation(){
         
         
-        let actionBlock = SKAction.runBlock({self.text = self.randomStringWithLength(self.finalText.length) as String})
+        let actionBlock = SKAction.runBlock({
+            let textLen = self.checkMinimum(self.finalText.length - 15)
+            
+            self.text = self.randomStringWithLength(textLen) as String
+        
+        })
         let wait = SKAction.waitForDuration(0.05, withRange: 0.10)
         var sequence = SKAction.sequence([actionBlock, wait])
         
-        let repeat = SKAction.repeatAction(sequence, count: 18)
+        let repeat = SKAction.repeatAction(sequence, count: 16)
         let finalTextBlock = SKAction.runBlock({self.text = self.finalText as String})
         let sequenceFinal = SKAction.sequence([repeat, finalTextBlock])
         
@@ -45,9 +50,9 @@ class RTLabel: SKLabelNode {
     
     func randomStringWithLength (len: Int) -> NSString {
         
-        let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%ˆ&*()-_=+<>?/"
+        let letters: NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%ˆ&*()-_=+<>?/"
         
-        var randomString : NSMutableString = NSMutableString(capacity: len)
+        var randomString: NSMutableString = NSMutableString(capacity: len)
         
         for (var i=0; i < len; i++){
             var length = UInt32 (letters.length)
@@ -56,6 +61,15 @@ class RTLabel: SKLabelNode {
         }
         
         return randomString
+    }
+    
+    func checkMinimum(value: Int) -> Int{
+        let min = 10
+        if value < min{
+            return min
+        }
+        
+        return value
     }
     
     required init?(coder aDecoder: NSCoder) {

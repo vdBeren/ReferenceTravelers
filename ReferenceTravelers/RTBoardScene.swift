@@ -14,6 +14,8 @@ class RTBoardScene: SKScene {
     
     var boardTiles: [RTTile] = []
     var eventWindow: RTEventWindow?
+    var backgroundNode: RTBackground?
+    
     
     override init(size: CGSize) {
         
@@ -26,6 +28,9 @@ class RTBoardScene: SKScene {
         backgroundNode!.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         addChild(backgroundNode!)
         
+        let tileNode = RTTileCave()
+        tileNode.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        addChild(tileNode)
         
         
     }

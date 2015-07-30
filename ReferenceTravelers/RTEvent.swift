@@ -24,6 +24,7 @@ class RTEvent: NSObject {
         case Miracle = "MIRACLE"
         case Disaster = "DISASTER"
         case Combat = "COMBAT"
+        case Blank = "BLANK"
         
     }
     

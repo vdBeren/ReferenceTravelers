@@ -12,11 +12,12 @@ import UIKit
 // TODO: Ler os eventos a partir de um arquivo, de forma a ficar mais simples de adicionar eventos.
 
 class RTEventManager: NSObject {
+
+    var eventType: RTEvent.EventType
+    var name, desc, imgName: String
+    var value: Int
     
-    var event: RTEvent = RTEvent()
-    
-    // Arrays de Tipos de eventos.
-    
+    // Arrays dos Tipos de Eventos.
     var eventTreasure: [RTEvent] = []
     var eventTheft: [RTEvent] = []
     var eventHeal: [RTEvent] = []
@@ -24,8 +25,15 @@ class RTEventManager: NSObject {
     var eventMiracle: [RTEvent] = []
     var eventDisaster: [RTEvent] = []
     var eventCombat: [RTEvent] = []
+    var eventBlank: [RTEvent] = []
     
     override init(){
+        
+        self.eventType = RTEvent.EventType.Treasure
+        self.name = ""
+        self.desc = ""
+        self.imgName = ""
+        self.value = 0
         
         super.init()
         
@@ -36,6 +44,7 @@ class RTEventManager: NSObject {
         self.eventMiracles()
         self.eventDisasters()
         self.eventCombats()
+        self.eventBlanks()
     }
     
     func pickEvent(eventType: RTEvent.EventType) -> RTEvent{
@@ -62,6 +71,9 @@ class RTEventManager: NSObject {
         case RTEvent.EventType.Combat:
             return eventCombat.pickRandomItem()
             
+        case RTEvent.EventType.Blank:
+            return eventBlank.pickRandomItem()
+            
         default:
             break
         }
@@ -69,102 +81,226 @@ class RTEventManager: NSObject {
     
     private func eventTreasures(){
         
-        // ========================================================================
-        event = RTEvent()
-        event.type = RTEvent.EventType.Treasure
+        self.eventType = RTEvent.EventType.Treasure
         
-        event.name = "Secret Stash"
-        event.eventDescription = "You found a secret stash, maybe it 'belong' to some pirates?"
-        event.imageName = ""
-        event.value = 1
-        self.eventTreasure.append(event)
+        // ========================================================================
+        self.name = "Secret Stash"
+        self.desc = "You found a secret stash, maybe it 'belong' to some pirates?"
+        self.imgName = ""
+        self.value = 1
+        
+        self.addEvent(eventType, name: name, desc: desc, imgName: imgName, value: value)
         // ========================================================================
         
     }
     
     private func eventThefts(){
         
-        // ========================================================================
-        event = RTEvent()
-        event.type = RTEvent.EventType.Theft
+        self.eventType = RTEvent.EventType.Theft
         
-        event.name = "Pickpocket"
-        event.eventDescription = "As you walk, you bump into someone. Some of the gold in your pocket is *PUFF* gone."
-        event.imageName = ""
-        event.value = 1
-        self.eventTheft.append(event)
+        // ========================================================================
+        self.name = "Pickpocket"
+        self.desc = "As you walk, you bump into someone. Some of the gold in your pocket is *PUFF* gone."
+        self.imgName = ""
+        self.value = 1
+        
+        self.addEvent(eventType, name: name, desc: desc, imgName: imgName, value: value)
         // ========================================================================
     }
     
     private func eventHeals(){
         
-        // ========================================================================
-        event = RTEvent()
-        event.type = RTEvent.EventType.Heal
+        self.eventType = RTEvent.EventType.Heal
         
-        event.name = "The Inn"
-        event.eventDescription = "You rest at the Inn. Nothing better to heal ills and wounds!"
-        event.imageName = ""
-        event.value = 1
-        self.eventHeal.append(event)
+        // ========================================================================
+        self.name = "The Inn"
+        self.desc = "You rest at the Inn. Nothing better to heal ills and wounds!"
+        self.imgName = ""
+        self.value = 1
+        
+        self.addEvent(eventType, name: name, desc: desc, imgName: imgName, value: value)
         // ========================================================================
     }
     
     private func eventTraps(){
         
+        self.eventType = RTEvent.EventType.Trap
+        
         // ========================================================================
-        event = RTEvent()
-        event.type = RTEvent.EventType.Trap
-    
-        event.name = "The Pit"
-        event.eventDescription = "You fell into the pit. *I fell into the pit, we all fell into that pit*" // Referencia Parks and Rec :P
-        event.imageName = ""
-        event.value = 1
-        self.eventTrap.append(event)
+        self.name = "The Pit"
+        self.desc = "You fell into the pit. *I fell into the pit, we all fell into that pit*" // Referencia Parks and Rec :P
+        self.imgName = ""
+        self.value = 1
+        
+        self.addEvent(eventType, name: name, desc: desc, imgName: imgName, value: value)
         // ========================================================================
     }
     
     private func eventMiracles(){
         
-        // ========================================================================
-        event = RTEvent()
-        event.type = RTEvent.EventType.Miracle
+        self.eventType = RTEvent.EventType.Miracle
         
-        event.name = "Blessing"
-        event.eventDescription = "You sneeze. Someone says 'Bless you!'. You are now blessed."
-        event.imageName = ""
-        event.value = 1
-        self.eventMiracle.append(event)
+        // ========================================================================
+        self.name = "Blessing"
+        self.desc = "You sneeze. Someone says 'Bless you!'. You are now blessed."
+        self.imgName = ""
+        self.value = 1
+        
+        self.addEvent(eventType, name: name, desc: desc, imgName: imgName, value: value)
         // ========================================================================
     }
     
     private func eventDisasters(){
         
-        // ========================================================================
-        event = RTEvent()
-        event.type = RTEvent.EventType.Disaster
+        self.eventType = RTEvent.EventType.Disaster
         
-        event.name = "Earthquake"
-        event.eventDescription = "Wow, that was unexpected. You hurt yourself, pretty bad."
-        event.imageName = ""
-        event.value = 1
-        self.eventDisaster.append(event)
+        // ========================================================================
+        self.name = "Earthquake"
+        self.desc = "Wow, that was unexpected. You hurt yourself, pretty bad."
+        self.imgName = ""
+        self.value = 1
+        
+        self.addEvent(eventType, name: name, desc: desc, imgName: imgName, value: value)
         // ========================================================================
     }
     
     private func eventCombats(){
         
-        // ========================================================================
-        event = RTEvent()
-        event.type = RTEvent.EventType.Combat
+        self.eventType = RTEvent.EventType.Combat
         
-        event.name = "Some enemies"
-        event.eventDescription = "You know, just some enemies, nothing remarkable."
-        event.imageName = ""
-        event.value = 1
-        self.eventCombat.append(event)
+        // ========================================================================
+        self.name = "Some enemies"
+        self.desc = "You know, just some enemies, nothing remarkable."
+        self.imgName = ""
+        self.value = 1
+        
+        self.addEvent(eventType, name: name, desc: desc, imgName: imgName, value: value)
         // ========================================================================
     }
+    
+    private func eventBlanks(){
+        self.eventType = RTEvent.EventType.Blank
+        
+        // ========================================================================
+        self.name = "Nothing"
+        self.desc = "You stumble into nothing at all."
+        self.imgName = ""
+        self.value = 1
+        
+        self.addEvent(eventType, name: name, desc: desc, imgName: imgName, value: value)
+        // ========================================================================
+
+    }
+    
+    private func addEvent(eventType: RTEvent.EventType, name: String, desc: String, imgName: String, value: Int){
+        let event = RTEvent()
+        event.type = eventType
+        event.name = name
+        event.eventDescription = desc
+        event.imageName = imgName
+        event.value = value
+        
+        switch eventType{
+        case RTEvent.EventType.Treasure:
+            self.eventTreasure.append(event)
+            
+        case RTEvent.EventType.Theft:
+            self.eventTheft.append(event)
+            
+        case RTEvent.EventType.Heal:
+            self.eventHeal.append(event)
+            
+        case RTEvent.EventType.Trap:
+            self.eventTrap.append(event)
+            
+        case RTEvent.EventType.Miracle:
+            self.eventMiracle.append(event)
+            
+        case RTEvent.EventType.Disaster:
+            self.eventDisaster.append(event)
+            
+        case RTEvent.EventType.Combat:
+            self.eventCombat.append(event)
+            
+        case RTEvent.EventType.Blank:
+            self.eventBlank.append(event)
+            
+        default:
+            break
+        }
+
+    }
+    
+    //MARK: Event Calls
+    private func openEventWindow(windowName: RTEvent.EventType, event: RTEvent, value: Int){
+        let eventWindow = RTEventWindow(imageNamed: windowName, event: event, value: value)
+        GBoardScene!.addChild(eventWindow)
+    }
+    
+    // ========================================================================
+    // GOLD
+    func callEventTreasure(randomBase: Int){
+        let event = GEventManager!.pickEvent(RTEvent.EventType.Treasure)
+        
+        let gold = GCurrentHeroAttributes.obtainGold(randomBase)
+        self.openEventWindow(RTEvent.EventType.Treasure, event: event, value: gold)
+    }
+    
+    func callEventTheft(randomBase: Int){
+        let event = GEventManager!.pickEvent(RTEvent.EventType.Theft)
+        
+        let gold = GCurrentHeroAttributes.loseGold(randomBase)
+        self.openEventWindow(RTEvent.EventType.Theft, event: event, value: gold)
+    }
+    
+    // ========================================================================
+    // HEALTH
+    func callEventHeal(randomBase: Int){
+        let event = GEventManager!.pickEvent(RTEvent.EventType.Heal)
+        
+        let heal = GCurrentHeroAttributes.recoverHealth(randomBase)
+        self.openEventWindow(RTEvent.EventType.Heal, event: event, value: heal)
+    }
+    
+    func callEventTrap(randomBase: Int){
+        let event = GEventManager!.pickEvent(RTEvent.EventType.Trap)
+        
+        let damage = GCurrentHeroAttributes.loseHealth(randomBase)
+        self.openEventWindow(RTEvent.EventType.Trap, event: event, value: damage)
+    }
+    
+    // ========================================================================
+    // STATS
+    func callEventMiracle(attribute: RTAttributes.AttributesEnum, randomBase: Int){
+        let event = GEventManager!.pickEvent(RTEvent.EventType.Miracle)
+        
+        let statGain = GCurrentHeroAttributes.gainOrLoseStat(attribute, base: randomBase, gain: true)
+        self.openEventWindow(RTEvent.EventType.Miracle, event: event, value: statGain)
+    }
+    
+    func callEventDisaster(attribute: RTAttributes.AttributesEnum, randomBase: Int){
+        let event = GEventManager!.pickEvent(RTEvent.EventType.Disaster)
+        
+        let statLoss = GCurrentHeroAttributes.gainOrLoseStat(attribute, base: randomBase, gain: false)
+        self.openEventWindow(RTEvent.EventType.Disaster, event: event, value: statLoss)
+    }
+    
+    // ========================================================================
+    // COMBAT
+    func callEventCombat(){
+        let event = GEventManager!.pickEvent(RTEvent.EventType.Combat)
+        
+        self.openEventWindow(RTEvent.EventType.Combat, event: event, value: -1)
+    }
+    
+    // ========================================================================
+    // BLANK
+    func callEventBlank(){
+        let event = GEventManager!.pickEvent(RTEvent.EventType.Blank)
+        
+        self.openEventWindow(RTEvent.EventType.Blank, event: event, value: -1)
+    }
+
     
 }
 

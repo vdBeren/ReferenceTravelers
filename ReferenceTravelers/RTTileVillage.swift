@@ -21,7 +21,7 @@ class RTTileVillage: RTTile {
         self.setRTTileEvent { () -> () in
             // HEAL
             var base = arc4random_uniform(10)
-            self.eventHeal(Int(base), event: GEventManager!.pickEvent(RTEvent.EventType.Heal))
+            GEventManager!.callEventHeal(Int(base))
         }
         
     }

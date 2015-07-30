@@ -18,21 +18,25 @@ class RTTileLair: RTTile {
         
         //Ação do Tile
         self.setRTTileEvent { () -> () in
-            var random = arc4random_uniform(10)
+            var random = arc4random_uniform(100) + 1
+            var base: UInt32
             
             //(Combat 60% - Treasure 20% - Disaster 20%)
             
-            if random >= 5{
+            if random > 40{
                 //COMBAT
-                
+                GEventManager!.callEventCombat()
             }
-            else if random >= 3{
+            else if random > 20{
                 //TREASURE
-                
+                base = arc4random_uniform(30)
+                GEventManager!.callEventTreasure(Int(base))
             }
-            else if random >= 0{
+            else if random >= 1{
                 //DISASTER
-                
+                let attribute = GCurrentHeroAttributes.pickRandomAttribute()
+                base = arc4random_uniform(3)
+                GEventManager!.callEventDisaster(attribute, randomBase: Int(base))
             }
         }
         

@@ -14,13 +14,14 @@ class RTAttributes: NSObject {
     
     var primary, agility, luck, greed, health, stamina, level, maxHealth, maxStamina: Int
     var primaryType: RTAttributes.PrimariesEnum
-    var minimalStatValue: Int = 5
+    var minimumStatValue: Int = 5
     
     enum PrimariesEnum : String{
         case Strength = "STRENGTH"
         case Dexterity = "DEXTERITY"
         case Intelligence = "INTELLIGENCE"
     }
+    
     enum AttributesEnum : String{
         case Primary = "PRIMARY"
         case Agility = "AGILITY"
@@ -142,6 +143,22 @@ class RTAttributes: NSObject {
     }
     // ========================================================================
     
+    func pickRandomAttribute() -> RTAttributes.AttributesEnum{
+        let random = arc4random_uniform(4)
+        switch random{
+        case 0:
+            return AttributesEnum.Primary
+        case 1:
+            return AttributesEnum.Agility
+        case 2:
+            return AttributesEnum.Luck
+        case 3:
+            return AttributesEnum.Greed
+        default:
+            return AttributesEnum.Primary
+        }
+    }
+    
     private func checkForNegative(value: Int) -> Int{
         if value < 0{
             return 0
@@ -159,11 +176,11 @@ class RTAttributes: NSObject {
     }
     
     private func checkForMin(value: Int) -> Int{
-        if value < minimalStatValue{
-            return minimalStatValue
+        if value < minimumStatValue{
+            return minimumStatValue
         }
         
         return value
     }
-
+    
 }

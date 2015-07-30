@@ -1,44 +1,38 @@
 //
-//  RTTileCave.swift
+//  RTTileJungle.swift
 //  ReferenceTravelers
 //
-//  Created by Victor D. Savariego on 25/7/15.
+//  Created by Victor D. Savariego on 30/7/15.
 //  Copyright (c) 2015 RTTeam. All rights reserved.
 //
 
 import UIKit
-import SpriteKit
 
-class RTTileCave: RTTile {
-   
+class RTTileJungle: RTTile {
+    
     init(){
-        super.init(imageNamed: "TILECAVE")
+        super.init(imageNamed: "TILEJUNGLE")
         
-        tileDescription = "A misterious cave. What surprises it hides?"
+        tileDescription = "A damp and beautifully dangerous place."
         tileType = TileType.Explorer
         tileLevel = 1
         
         //Ação do Tile
         self.setRTTileEvent { () -> () in
-            var random = arc4random_uniform(3)
+            var random = arc4random_uniform(2)
             var base: UInt32
             
-            // (Treasure 33% - Combat 33% - Trap 33%)
+            // (Combat 60% - Treasure 40%)
             
             switch random{
             case 0:
                 // TREASURE
-                base = arc4random_uniform(15) + 1
+                base = arc4random_uniform(12) + 1
                 GEventManager!.callEventTreasure(Int(base))
                 
             case 1:
                 // COMBAT
                 GEventManager!.callEventCombat()
-                
-            case 2:
-                // TRAP
-                base = arc4random_uniform(15) + 1
-                GEventManager!.callEventTrap(Int(base))
                 
             default:
                 break
@@ -48,9 +42,9 @@ class RTTileCave: RTTile {
         
     }
     
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
 }

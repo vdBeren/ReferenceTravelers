@@ -29,8 +29,14 @@ class RTBoardScene: SKScene {
         addChild(backgroundNode!)
         
         let tileNode = RTTileCave()
-        tileNode.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        addChild(tileNode)
+        boardTiles.append(tileNode)
+       // tileNode.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        self.addChild(boardTiles[0])
+        
+        
+    }
+    
+    func addTile(tileType: RTTile.TileType){
         
         
     }

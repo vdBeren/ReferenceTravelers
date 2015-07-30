@@ -37,10 +37,10 @@ class RTLabel: SKLabelNode {
             self.text = self.randomStringWithLength(textLen) as String
         
         })
-        let wait = SKAction.waitForDuration(0.05, withRange: 0.10)
+        let wait = SKAction.waitForDuration(0.05, withRange: 0.12)
         var sequence = SKAction.sequence([actionBlock, wait])
         
-        let repeat = SKAction.repeatAction(sequence, count: 16)
+        let repeat = SKAction.repeatAction(sequence, count: 14)
         let finalTextBlock = SKAction.runBlock({self.text = self.finalText as String})
         let sequenceFinal = SKAction.sequence([repeat, finalTextBlock])
         

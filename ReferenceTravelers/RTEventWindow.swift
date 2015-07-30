@@ -19,7 +19,9 @@ import SpriteKit
 class RTEventWindow: RTHideRequired {
     
     var buttonClose: RTButton?
-    var labelEvent: RTLabel?
+    var labelEventDescription, labelEventName, labelEventValue: RTLabel?
+    var event: RTEvent?
+    var value: Int = 0
     
     init(imageNamed imageName: RTEvent.EventType, event: RTEvent, value: Int){
         
@@ -37,6 +39,10 @@ class RTEventWindow: RTHideRequired {
         self.zPosition = 5
         self.userInteractionEnabled = true
         
+        self.event = event
+        self.value = value
+        
+        
         self.buttonClose = RTButton(imageNamed: "btnEventWindow", actionOnTouchBegan: false)
         self.buttonClose!.anchorPoint = CGPoint(x: 0.5, y: 2.0)
         
@@ -47,8 +53,7 @@ class RTEventWindow: RTHideRequired {
         
         self.addChild(self.buttonClose!)
         
-        self.setContents(imageName, description: event.eventDescription)
-        
+        self.setContents()
         
         self.introAnimation()
         self.floatingAnimation()
@@ -56,10 +61,20 @@ class RTEventWindow: RTHideRequired {
         
     }
     
-    func setContents(name: RTEvent.EventType, description: String){
-        self.labelEvent = RTLabel(text: description)
-        // self.labelEvent!.position = CGPoint(x: 320.0, y: 140.0)
-        self.addChild(labelEvent!)
+    func setContents(){
+        self.labelEventDescription = RTLabel(text: self.event!.eventDescription)
+        //self.labelEventDescription!.position = CGPoint(x: self.size.width*2, y: self.size.height*2)
+        self.addChild(labelEventDescription!)
+        
+        self.labelEventName = RTLabel(text: self.event!.name)
+        self.labelEventName!.fontSize += 10
+        self.labelEventName!.position.y += self.size.height/4
+        self.addChild(labelEventName!)
+        
+        self.labelEventValue = RTLabel(text: String(value))
+        self.labelEventValue!.fontSize += 16
+        self.labelEventValue!.position.y += self.size.height/6
+        self.addChild(labelEventValue!)
     }
     
     func introAnimation(){
@@ -74,9 +89,16 @@ class RTEventWindow: RTHideRequired {
         duration = 0.2
         let scaleActionFinish = SKAction.scaleTo(scale, duration: duration)
         
-        let sequenceArray = SKAction.sequence([scaleActionBegin, scaleActionFinish])
+        let labelName = SKAction.runBlock({self.labelEventName!.introAnimation()})
+        let labelValue = SKAction.runBlock({self.labelEventValue!.introAnimation()})
+        let labelDesc = SKAction.runBlock({self.labelEventDescription!.introAnimation()})
+        let wait = SKAction.waitForDuration(0.5)
+        
+        let sequenceLabels = SKAction.sequence([labelName, wait, labelValue, wait, labelDesc])
+        
+        let sequenceArray = SKAction.sequence([scaleActionBegin, scaleActionFinish, sequenceLabels])
         self.runAction(sequenceArray)
-        self.labelEvent!.introAnimation()
+        
     }
     
     func floatingAnimation(){

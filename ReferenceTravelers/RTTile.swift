@@ -52,52 +52,6 @@ class RTTile: RTHideRequired {
         self.tileEvent()
     }
 
-    private func openEventWindow(windowName: RTEvent.EventType, event: RTEvent, value: Int){
-        let eventWindow = RTEventWindow(imageNamed: windowName, event: event, value: value)
-        (self.parent as? RTBoardScene)?.addChild(eventWindow)
-    }
-    
-    // ========================================================================
-    // GOLD
-    func eventTreasure(randomBase: Int, event: RTEvent){
-        var gold = GCurrentHeroAttributes.obtainGold(randomBase)
-        self.openEventWindow(RTEvent.EventType.Treasure, event: event, value: gold)
-    }
-    
-    func eventTheft(randomBase: Int, event: RTEvent){
-        var gold = GCurrentHeroAttributes.loseGold(randomBase)
-        self.openEventWindow(RTEvent.EventType.Theft, event: event, value: gold)
-    }
-    
-    // ========================================================================
-    // HEALTH
-    func eventHeal(randomBase: Int, event: RTEvent){
-        var heal = GCurrentHeroAttributes.recoverHealth(randomBase)
-        self.openEventWindow(RTEvent.EventType.Heal, event: event, value: heal)
-    }
-    
-    func eventTrap(randomBase: Int, event: RTEvent){
-        var damage = GCurrentHeroAttributes.loseHealth(randomBase)
-        self.openEventWindow(RTEvent.EventType.Trap, event: event, value: damage)
-    }
-    
-    // ========================================================================
-    // STATS
-    func eventMiracle(attribute: RTAttributes.AttributesEnum, randomBase: Int, event: RTEvent){
-        var statGain = GCurrentHeroAttributes.gainOrLoseStat(attribute, base: randomBase, gain: true)
-        self.openEventWindow(RTEvent.EventType.Miracle, event: event, value: statGain)
-    }
-    
-    func eventDisaster(attribute: RTAttributes.AttributesEnum, randomBase: Int, event: RTEvent){
-        var statLoss = GCurrentHeroAttributes.gainOrLoseStat(attribute, base: randomBase, gain: false)
-        self.openEventWindow(RTEvent.EventType.Disaster, event: event, value: statLoss)
-    }
-    // ========================================================================
-    // COMBAT
-    func eventCombat(event: RTEvent){
-        self.openEventWindow(RTEvent.EventType.Combat, event: event, value: -1)
-    }
-
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

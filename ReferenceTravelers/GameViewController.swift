@@ -13,6 +13,7 @@ import SpriteKit
 
 var GAudioNode: RTAudio? = RTAudio()
 var GEventManager: RTEventManager? = RTEventManager()
+var GTileManager: RTTileManager? = RTTileManager()
 
 var GTitleScene: RTTitleScene?
 var GHeroSelectionScene: RTHeroSelectionScene?
@@ -20,7 +21,6 @@ var GStageSelectionScene: RTStageSelectionScene?
 var GBoardScene: RTBoardScene?
 var GCombatScene: RTCombatScene?
 var GSettingsScene: RTSettingsScene?
-
 
 var GCurrentHeroAttributes: RTAttributes = RTAttributes()
 var GGold: Int = NSUserDefaults.standardUserDefaults().integerForKey("playergold")

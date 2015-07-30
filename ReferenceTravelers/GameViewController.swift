@@ -13,6 +13,7 @@ var GAudioNode: RTAudio? = RTAudio()
 var GTitleScene: RTTitleScene?
 var GHeroSelectionScene: RTHeroSelectionScene?
 var GStageSelectionScene: RTStageSelectionScene?
+var GCombatScene: RTCombatScene?
 
 class GameViewController: UIViewController {
     
@@ -33,11 +34,12 @@ class GameViewController: UIViewController {
         GTitleScene = RTTitleScene(size: size)
         GHeroSelectionScene = RTHeroSelectionScene(size: size)
         GStageSelectionScene = RTStageSelectionScene(size: size)
+        GCombatScene = RTCombatScene(size: size)
         
         /* Set the scale mode to scale to fit the window */
         GTitleScene!.scaleMode = .AspectFill
         
-        skView.presentScene(GTitleScene)
+        skView.presentScene(GHeroSelectionScene)
     }
     
     

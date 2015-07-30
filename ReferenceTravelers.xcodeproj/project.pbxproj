@@ -25,6 +25,7 @@
 		5407120D1B572ABE00252EF9 /* RTSettingsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5407120C1B572ABE00252EF9 /* RTSettingsScene.swift */; };
 		5407120F1B57709300252EF9 /* RTButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5407120E1B57709300252EF9 /* RTButton.swift */; };
 		545F85DD1B579B20003ABC76 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 545F85DC1B579B20003ABC76 /* Images.xcassets */; };
+		C74B36991B6AAF020039E2D6 /* Troca.wav in Resources */ = {isa = PBXBuildFile; fileRef = C74B36981B6AAF020039E2D6 /* Troca.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		5407120C1B572ABE00252EF9 /* RTSettingsScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTSettingsScene.swift; sourceTree = "<group>"; };
 		5407120E1B57709300252EF9 /* RTButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTButton.swift; sourceTree = "<group>"; };
 		545F85DC1B579B20003ABC76 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		C74B36981B6AAF020039E2D6 /* Troca.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Troca.wav; path = ../../../Downloads/Troca.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 		540711C01B54159E00252EF9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C74B36981B6AAF020039E2D6 /* Troca.wav */,
 				540711C11B54159E00252EF9 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -262,6 +265,7 @@
 			files = (
 				545F85DD1B579B20003ABC76 /* Images.xcassets in Resources */,
 				540711D11B54159E00252EF9 /* LaunchScreen.xib in Resources */,
+				C74B36991B6AAF020039E2D6 /* Troca.wav in Resources */,
 				540711CC1B54159E00252EF9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

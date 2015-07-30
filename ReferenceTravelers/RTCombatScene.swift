@@ -13,6 +13,7 @@ import SpriteKit
 class RTCombatScene: SKScene{
     var player : SKSpriteNode!
     var lado : Int = 1
+    var colisao : Int = 0
     var chao : SKSpriteNode!
     
     override init(size: CGSize) {
@@ -56,10 +57,23 @@ class RTCombatScene: SKScene{
     override func update(currentTime: NSTimeInterval) {
         super.update(currentTime)
         
+        println(player.position.x)
+        println(scene!.size.width)
+        
+        if(player.position.x > scene!.size.width - player.size.width / 2){
+            lado = 0
+            colisao = 1
+        } else if(player.position.x < 0 + player.size.width / 2){
+            lado = 0
+            colisao = 2
+        }
+    
         if(lado == 1){
-            player.physicsBody!.velocity=CGVectorMake(200, 0);
+            player.physicsBody!.velocity = CGVectorMake(200, 0)
+        } else if(lado == 2) {
+            player.physicsBody!.velocity = CGVectorMake(-200, 0)
         } else {
-            player.physicsBody!.velocity=CGVectorMake(-200, 0);
+            player.physicsBody!.velocity = CGVectorMake(0, 0)
         }
     }
     
@@ -71,13 +85,13 @@ class RTCombatScene: SKScene{
         for touch in (touches as! Set<UITouch>) {
             let location = touch.locationInNode(self)
             
-            if(location.x > scene!.size.width / 2 && lado == 0){
+            if(location.x > scene!.size.width / 2 && lado == 2 ){
                 player.getMirror()
                 lado = 1
                 
             } else if(location.x <= scene!.size.width / 2 && lado == 1) {
                 player.getMirror()
-                lado = 0
+                lado = 2
             }
         }
     }

@@ -39,7 +39,7 @@ class GameViewController: UIViewController {
         /* Set the scale mode to scale to fit the window */
         GTitleScene!.scaleMode = .AspectFill
         
-        skView.presentScene(GHeroSelectionScene)
+        skView.presentScene(GStageSelectionScene)
     }
     
     

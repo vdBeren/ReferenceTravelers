@@ -35,6 +35,8 @@ class RTHeroSelectionScene: SKScene {
     var meio : CGFloat!
     var meioY : CGFloat!
     var audioPlayer = AVAudioPlayer()
+    let buttonLeft = RTButton(imageNamed: "btnArrowEsq")
+    let buttonRight = RTButton(imageNamed: "btnArrowDir")
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -46,7 +48,7 @@ class RTHeroSelectionScene: SKScene {
         meio = CGRectGetMidX(frame)
         meioY = CGRectGetMidY(frame)
         
-        backgroundColor = SKColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+        backgroundColor = SKColor(red: 256.0, green: 0.0, blue: 0.0, alpha: 1.0)
         
         let hpStar1 = SKSpriteNode(imageNamed: "Star")
         addChild(hpStar1)
@@ -223,9 +225,29 @@ class RTHeroSelectionScene: SKScene {
         addChild(ganLabel)
         addChild(agiLabel)
         addChild(staLabel)
+        
+        buttonLeft.position = CGPoint(x: meio - 210 , y: frame.maxY - 250)
+        buttonLeft.alpha = 0.3
+        buttonLeft.size.height = 200
+        buttonLeft.size.width = 60
+        
+        buttonRight.position = CGPoint(x: meio + 150 , y: frame.maxY - 250)
+        buttonRight.alpha = 0.3
+        buttonRight.size.height = 200
+        buttonRight.size.width = 60
+        
+        buttonLeft.setRTButtonAction({ () -> () in
+            self.buttonPress(false)
+        })
+        self.addChild(buttonLeft)
+        
+        buttonRight.setRTButtonAction({ () -> () in
+            self.buttonPress(true)
+        })
+        self.addChild(buttonRight)
     }
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    func buttonPress(lado: Bool) {
         let fadeIn : SKAction = SKAction.fadeInWithDuration(0.5)
         let fadeOut : SKAction = SKAction.fadeOutWithDuration(0.5)
         
@@ -260,111 +282,107 @@ class RTHeroSelectionScene: SKScene {
         AVAudioPlayer(contentsOfURL: url, error: &error)
         
         if(liberar){
+            liberar = false
+            starsPos()
+        
+            if(lado == true){
+                roupasArray[posEntrada].runAction(moverEntrada)
+                roupasArray[posEntrada].runAction(roupaEntrada)
+                roupasArray[posEntrada].runAction(fadeIn)
+                roupasArray[posAnterior].zPosition = 2
+                roupasArray[posAnterior].runAction(moverIn)
+                roupasArray[posAnterior].runAction(roupaCrescer)
+                roupasArray[posPosterior].zPosition = 0
+                roupasArray[posPosterior].runAction(moverSaida)
+                roupasArray[posPosterior].runAction(roupaSaida)
+                roupasArray[posPosterior].runAction(fadeOut)
+                roupasArray[posSaida].hidden = true
+                roupasArray[pos].zPosition = 1
+                roupasArray[pos].runAction(moverOut, completion: ({
+                    self.posFinais()
+                    self.liberar = true
+                }))
+                roupasArray[pos].runAction(roupaDiminuir)
+                
+                posEntrada--
+                posAnterior--
+                pos--
+                posPosterior--
+                posSaida--
             
-            for touch in (touches as! Set<UITouch>) {
-                liberar = false
-                starsPos()
-                let location = touch.locationInNode(self)
-                
-                if(location.x > scene!.size.width / 2){
-                    roupasArray[posEntrada].runAction(moverEntrada)
-                    roupasArray[posEntrada].runAction(roupaEntrada)
-                    roupasArray[posEntrada].runAction(fadeIn)
-                    roupasArray[posAnterior].zPosition = 2
-                    roupasArray[posAnterior].runAction(moverIn)
-                    roupasArray[posAnterior].runAction(roupaCrescer)
-                    roupasArray[posPosterior].zPosition = 0
-                    roupasArray[posPosterior].runAction(moverSaida)
-                    roupasArray[posPosterior].runAction(roupaSaida)
-                    roupasArray[posPosterior].runAction(fadeOut)
-                    roupasArray[posSaida].hidden = true
-                    roupasArray[pos].zPosition = 1
-                    roupasArray[pos].runAction(moverOut, completion: ({
-                        self.posFinais()
-                        self.liberar = true
-                    }))
-                    roupasArray[pos].runAction(roupaDiminuir)
-                    
-                    posEntrada--
-                    posAnterior--
-                    pos--
-                    posPosterior--
-                    posSaida--
-                    
-                }
-                else if(location.x <= scene!.size.width / 2) {
-                    roupasArray[posSaida].runAction(moverEntradaE)
-                    roupasArray[posSaida].runAction(roupaEntrada)
-                    roupasArray[posSaida].runAction(fadeIn)
-                    roupasArray[posAnterior].zPosition = 0
-                    roupasArray[posAnterior].runAction(moverSaidaE)
-                    roupasArray[posAnterior].runAction(roupaSaida)
-                    roupasArray[posAnterior].runAction(fadeOut)
-                    roupasArray[posPosterior].zPosition = 2
-                    roupasArray[posPosterior].runAction(moverInE)
-                    roupasArray[posPosterior].runAction(roupaCrescer)
-                    roupasArray[posEntrada].hidden = true
-                    roupasArray[pos].zPosition = 1
-                    roupasArray[pos].runAction(moverOutE, completion: ({
-                        self.posFinais()
-                        self.liberar = true
-                    }))
-                    roupasArray[pos].runAction(roupaDiminuir)
-                    
-                    posEntrada++
-                    posAnterior++
-                    pos++
-                    posPosterior++
-                    posSaida++
-                }
-                
-                
-                
-                if(posEntrada == -1){
-                    posEntrada = roupasArray.count - 1
-                }
-                else if(posEntrada == roupasArray.count){
-                    posEntrada = 0
-                }
-                
-                if(posAnterior == -1){
-                    posAnterior = roupasArray.count - 1
-                }
-                else if(posAnterior == roupasArray.count){
-                    posAnterior = 0
-                }
-                
-                if(pos == -1){
-                    pos = roupasArray.count - 1
-                }
-                else if(pos == roupasArray.count){
-                    pos = 0
-                }
-                
-                if(posPosterior == -1){
-                    posPosterior = roupasArray.count - 1
-                }
-                else if(posPosterior == roupasArray.count){
-                    posPosterior = 0
-                }
-                
-                if(posSaida == -1){
-                    posSaida = roupasArray.count - 1
-                }
-                else if(posSaida == roupasArray.count){
-                    posSaida = 0
-                }
-                
-                textNome.text = roupasArray[pos].name!
-                textDescricao.text = roupasArray[pos].information
-                
-                audioPlayer = AVAudioPlayer(contentsOfURL: url, error: &error)
-                audioPlayer.volume = 0.2
-                audioPlayer.prepareToPlay()
-                audioPlayer.play()
-                stars()
-                mainLabel.text = roupasArray[pos].properties.primaryType
             }
+            else if(lado == false) {
+                roupasArray[posSaida].runAction(moverEntradaE)
+                roupasArray[posSaida].runAction(roupaEntrada)
+                roupasArray[posSaida].runAction(fadeIn)
+                roupasArray[posAnterior].zPosition = 0
+                roupasArray[posAnterior].runAction(moverSaidaE)
+                roupasArray[posAnterior].runAction(roupaSaida)
+                roupasArray[posAnterior].runAction(fadeOut)
+                roupasArray[posPosterior].zPosition = 2
+                roupasArray[posPosterior].runAction(moverInE)
+                roupasArray[posPosterior].runAction(roupaCrescer)
+                roupasArray[posEntrada].hidden = true
+                roupasArray[pos].zPosition = 1
+                roupasArray[pos].runAction(moverOutE, completion: ({
+                    self.posFinais()
+                    self.liberar = true
+                }))
+                roupasArray[pos].runAction(roupaDiminuir)
+                
+                posEntrada++
+                posAnterior++
+                pos++
+                posPosterior++
+                posSaida++
+            }
+            
+            
+            
+            if(posEntrada == -1){
+                posEntrada = roupasArray.count - 1
+            }
+            else if(posEntrada == roupasArray.count){
+                posEntrada = 0
+            }
+            
+            if(posAnterior == -1){
+                posAnterior = roupasArray.count - 1
+            }
+            else if(posAnterior == roupasArray.count){
+                posAnterior = 0
+            }
+            
+            if(pos == -1){
+                pos = roupasArray.count - 1
+            }
+            else if(pos == roupasArray.count){
+                pos = 0
+            }
+            
+            if(posPosterior == -1){
+                posPosterior = roupasArray.count - 1
+            }
+            else if(posPosterior == roupasArray.count){
+                posPosterior = 0
+            }
+            
+            if(posSaida == -1){
+                posSaida = roupasArray.count - 1
+            }
+            else if(posSaida == roupasArray.count){
+                posSaida = 0
+            }
+            
+            textNome.text = roupasArray[pos].name!
+            textDescricao.text = roupasArray[pos].information
+            
+            audioPlayer = AVAudioPlayer(contentsOfURL: url, error: &error)
+            audioPlayer.volume = 0.2
+            audioPlayer.prepareToPlay()
+            audioPlayer.play()
+            stars()
+            mainLabel.text = roupasArray[pos].properties.primaryType
         }
     }
     

@@ -16,14 +16,14 @@ import SpriteKit
 // Ex: TREASURE-eWindowBG
 
 
-class RTEventWindow: RTHideRequired {
+class RTEventWindow: RTWindow {
     
     var buttonClose: RTButton?
     var labelEventDescription, labelEventName, labelEventValue: RTLabel?
     var event: RTEvent?
     var value: Int = 0
     
-    init(imageNamed imageName: RTEvent.EventType, event: RTEvent, value: Int){
+    init(event: RTEvent, value: Int){
         
         let color = UIColor.clearColor()
         //let texture = SKTexture(imageNamed: imageName.rawValue + "-eWindowBG")
@@ -48,7 +48,7 @@ class RTEventWindow: RTHideRequired {
         
         // BLOCO DE AÇÃO DO BOTAO DA EVENT WINDOW
         self.buttonClose?.setRTButtonAction({ () -> () in
-            self.closeEventWindow()
+            self.closeWindow()
         })
         
         self.addChild(self.buttonClose!)
@@ -77,10 +77,10 @@ class RTEventWindow: RTHideRequired {
         self.addChild(labelEventValue!)
     }
     
-    func introAnimation(){
+     override func introAnimation(){
         
         // EFEITO DE ANIMAÇÃO AO APARECER :D
-        
+    
         var scale: CGFloat = 0.1
         var duration: NSTimeInterval = 0.0
         let scaleActionBegin = SKAction.scaleTo(scale, duration: duration)
@@ -101,41 +101,7 @@ class RTEventWindow: RTHideRequired {
         
     }
     
-    func floatingAnimation(){
         
-        // EFEITO DE ANIMAÇÃO AO FICAR NA TELA :)
-        
-        var waitTime: NSTimeInterval = 1.2
-        var move: CGFloat = 10.0
-        
-        let moveUp = SKAction.moveByX(-move/2, y: move, duration: waitTime)
-        let moveDown = SKAction.moveByX(move/2, y: -move, duration: waitTime)
-        let wait = SKAction.waitForDuration(0.01)
-        let sequence = SKAction.sequence([moveUp, wait, moveDown])
-        
-        self.runAction(SKAction.repeatActionForever(sequence))
-    }
-    
-    
-    func closeEventWindow(){
-        // EFEITO DE ANIMAÇÃO AO DESAPARECER :O
-        
-        var scale: CGFloat = 1.3
-        var duration: NSTimeInterval = 0.1
-        let scaleActionBegin = SKAction.scaleTo(scale, duration: duration)
-        
-        scale = 0.1
-        duration = 0.2
-        let scaleActionFinish = SKAction.scaleTo(scale, duration: duration)
-        
-        let block = SKAction.runBlock ({self.removeFromParent()})
-        
-        let sequenceArray = SKAction.sequence([scaleActionBegin, scaleActionFinish, block])
-        self.runAction(sequenceArray)
-
-        
-    }
-    
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         self.introAnimation()
     }

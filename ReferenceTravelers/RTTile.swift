@@ -46,12 +46,52 @@ class RTTile: RTHideRequired {
         self.tileEvent = block
     }
     
-    
     //Recebe toques no Node.
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         self.tileEvent()
     }
 
+    
+    func introAnimation(){
+        var scale: CGFloat = 0.1
+        var duration: NSTimeInterval = 0.0
+        let scaleActionBegin = SKAction.scaleTo(scale, duration: duration)
+        
+        scale = 0.5
+        duration = 0.2
+        let scaleActionEnd = SKAction.scaleTo(scale, duration: duration)
+        
+        let sequenceArray = SKAction.sequence([scaleActionBegin, scaleActionEnd])
+        self.runAction(sequenceArray)
+    }
+    
+    func changeTileSizeAnimation(#shrink: Bool){
+        
+        let sequenceAction: SKAction
+        let scaleActionShrink: SKAction
+        let scaleActionEnlarge: SKAction
+        
+        if shrink {
+            scaleActionEnlarge = SKAction.scaleTo(0.5, duration: 0.2)
+            scaleActionShrink = SKAction.scaleTo(0.5, duration: 0.2)
+        }
+        else{
+            scaleActionEnlarge = SKAction.scaleTo(1.3, duration: 0.2)
+            scaleActionShrink = SKAction.scaleTo(1.0, duration: 0.2)
+        }
+
+        sequenceAction = SKAction.sequence([scaleActionEnlarge, scaleActionShrink])
+        
+        self.runAction(sequenceAction)
+        
+    }
+    
+    func moveTileToPosition(x: CGFloat){
+        
+        let move = SKAction.moveToX(x, duration: 0.5)
+        self.runAction(move)
+    }
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

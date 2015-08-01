@@ -100,7 +100,7 @@ class RTEventManager: NSObject {
         
         // ========================================================================
         self.name = "Pickpocket"
-        self.desc = "As you walk, you bump into someone. Some of the gold in your pocket is *PUFF* gone."
+        self.desc = "You bump into someone. Some of the gold in your pocket is *PUFF* gone."
         self.imgName = ""
         self.value = 1
         
@@ -232,8 +232,8 @@ class RTEventManager: NSObject {
     }
     
     //MARK: Event Calls
-    private func openEventWindow(windowName: RTEvent.EventType, event: RTEvent, value: Int){
-        let eventWindow = RTEventWindow(imageNamed: windowName, event: event, value: value)
+    private func openEventWindow(event: RTEvent, value: Int){
+        let eventWindow = RTEventWindow(event: event, value: value)
         GBoardScene!.addChild(eventWindow)
     }
     
@@ -243,14 +243,14 @@ class RTEventManager: NSObject {
         let event = GEventManager!.pickEvent(RTEvent.EventType.Treasure)
         
         let gold = GCurrentHeroAttributes.obtainGold(randomBase)
-        self.openEventWindow(RTEvent.EventType.Treasure, event: event, value: gold)
+        self.openEventWindow(event, value: gold)
     }
     
     func callEventTheft(randomBase: Int){
         let event = GEventManager!.pickEvent(RTEvent.EventType.Theft)
         
         let gold = GCurrentHeroAttributes.loseGold(randomBase)
-        self.openEventWindow(RTEvent.EventType.Theft, event: event, value: gold)
+        self.openEventWindow(event, value: gold)
     }
     
     // ========================================================================
@@ -259,14 +259,14 @@ class RTEventManager: NSObject {
         let event = GEventManager!.pickEvent(RTEvent.EventType.Heal)
         
         let heal = GCurrentHeroAttributes.recoverHealth(randomBase)
-        self.openEventWindow(RTEvent.EventType.Heal, event: event, value: heal)
+        self.openEventWindow(event, value: heal)
     }
     
     func callEventTrap(randomBase: Int){
         let event = GEventManager!.pickEvent(RTEvent.EventType.Trap)
         
         let damage = GCurrentHeroAttributes.loseHealth(randomBase)
-        self.openEventWindow(RTEvent.EventType.Trap, event: event, value: damage)
+        self.openEventWindow(event, value: damage)
     }
     
     // ========================================================================
@@ -275,14 +275,14 @@ class RTEventManager: NSObject {
         let event = GEventManager!.pickEvent(RTEvent.EventType.Miracle)
         
         let statGain = GCurrentHeroAttributes.gainOrLoseStat(attribute, base: randomBase, gain: true)
-        self.openEventWindow(RTEvent.EventType.Miracle, event: event, value: statGain)
+        self.openEventWindow(event, value: statGain)
     }
     
     func callEventDisaster(attribute: RTAttributes.AttributesEnum, randomBase: Int){
         let event = GEventManager!.pickEvent(RTEvent.EventType.Disaster)
         
         let statLoss = GCurrentHeroAttributes.gainOrLoseStat(attribute, base: randomBase, gain: false)
-        self.openEventWindow(RTEvent.EventType.Disaster, event: event, value: statLoss)
+        self.openEventWindow(event, value: statLoss)
     }
     
     // ========================================================================
@@ -290,7 +290,7 @@ class RTEventManager: NSObject {
     func callEventCombat(){
         let event = GEventManager!.pickEvent(RTEvent.EventType.Combat)
         
-        self.openEventWindow(RTEvent.EventType.Combat, event: event, value: -1)
+        self.openEventWindow(event, value: -1)
     }
     
     // ========================================================================
@@ -298,7 +298,7 @@ class RTEventManager: NSObject {
     func callEventBlank(){
         let event = GEventManager!.pickEvent(RTEvent.EventType.Blank)
         
-        self.openEventWindow(RTEvent.EventType.Blank, event: event, value: -1)
+        self.openEventWindow(event, value: -1)
     }
 
     

@@ -12,10 +12,9 @@ import SpriteKit
 
 class RTBoardScene: SKScene {
     
-    var boardTiles: [RTTile] = []
-    var eventWindow: RTEventWindow?
     var backgroundNode: RTBackground?
-    
+    var boardPath: [RTTile] = []
+    var boardPathIndex: Int = 0
     
     override init(size: CGSize) {
         
@@ -28,18 +27,91 @@ class RTBoardScene: SKScene {
         backgroundNode!.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         addChild(backgroundNode!)
         
-        let tileNode = RTTileCave()
-        boardTiles.append(tileNode)
-       // tileNode.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        self.addChild(boardTiles[0])
+        let tile = RTTileCave()
+        self.addTile(tile, count: -1)
         
+        self.changeTilesSize()
+        
+        let tileWindow = RTTileWindow()
+        self.addChild(tileWindow)
+        
+        let button: RTButton = RTButton(imageNamed: "btnAction", actionOnTouchBegan: true)
+        self.position.y -= 300
+        button.setRTButtonAction { () -> () in
+            let tileWindow = RTTileWindow()
+            self.addChild(tileWindow)
+        }
+        self.addChild(button)
+        
+        self.userInteractionEnabled = true
         
     }
     
-    func addTile(tileType: RTTile.TileType){
+    func setPackPicked(tileType: RTTile.TileType){
         
+        let newPath = GTileManager!.pickTileSet(tileType)
+        var posX, sizeX: CGFloat
+        
+        for (index, tile) in enumerate(newPath){
+            self.addTile(tile, count: index)
+            
+            posX = tile.position.x
+            sizeX = 128
+            
+            tile.moveTileToPosition(posX + (sizeX * CGFloat(index + 1)) + sizeX/2)
+        }
+        
+        self.changeTilesSize()
+    }
+    
+    private func addTile(tile: RTTile, count: Int){
+        boardPath.append(tile)
+        tile.introAnimation()
+        tile.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        self.addChild(tile)
+    }
+    
+    private func updateBoard(){
+        self.boardPathIndex++
+        self.moveTiles()
+        self.changeTilesSize()
+    }
+    
+    private func moveTiles(){
+        var posX, sizeX: CGFloat
+        
+        for (index, tile) in enumerate(boardPath){
+            
+            var moveIndex: Int = index
+            
+            posX = tile.position.x
+            sizeX = 128
+            if index == boardPathIndex || index == boardPathIndex-1{
+                sizeX = 192
+            }
+            tile.moveTileToPosition((posX - sizeX))
+            
+            
+        }
+    }
+    
+    private func changeTilesSize(){
+        for (index, tile) in enumerate(boardPath){
+            
+            if index == boardPathIndex{
+                tile.changeTileSizeAnimation(shrink: false)
+                tile.userInteractionEnabled = true
+            }
+            else{
+                tile.changeTileSizeAnimation(shrink: true)
+                tile.userInteractionEnabled = false
+            }
+            
+        }
         
     }
+    
+    
     
     //Chamado a todo frame. Usado para realizar o update dos nodes da Scene, em cascata.
     override func update(currentTime: NSTimeInterval) {
@@ -50,9 +122,11 @@ class RTBoardScene: SKScene {
     
     //Recebe toques na Scene.
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+
+        self.updateBoard()
         
     }
-        
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

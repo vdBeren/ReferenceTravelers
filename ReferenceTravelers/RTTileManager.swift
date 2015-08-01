@@ -31,25 +31,51 @@ class RTTileManager: NSObject {
     
     func pickTile(tileType: RTTile.TileType) -> RTTile{
         
+        var tile: RTTile
+        
         switch tileType{
         case RTTile.TileType.Explorer:
-            return arrayExplorer.pickRandomItem()
+            tile = arrayExplorer.pickRandomItem()
+            tile = tile.copy() as! RTTile
             
         case RTTile.TileType.Urban:
-            return arrayUrban.pickRandomItem()
+            tile = arrayUrban.pickRandomItem()
+            tile = tile.copy() as! RTTile
             
         case RTTile.TileType.Arcane:
-            return arrayArcane.pickRandomItem()
+            tile = arrayArcane.pickRandomItem()
+            tile = tile.copy() as! RTTile
             
         case RTTile.TileType.Neutral:
-            return arrayNeutral.pickRandomItem()
+            tile = arrayNeutral.pickRandomItem()
+            tile = tile.copy() as! RTTile
             
         default:
             break
         }
+        
+        return tile
     }
     
-    func packExplorer(){
+    func pickTileSet(tileType: RTTile.TileType) -> [RTTile]{
+        
+        var tileArray: [RTTile] = []
+        var tile: RTTile
+        
+        for i in 0...1{
+            
+            tile = self.pickTile(tileType)
+            tileArray.append(tile)
+            
+        }
+        
+        tileArray.append(self.pickTile(RTTile.TileType.Neutral))
+        tileArray.shuffle()
+        
+        return tileArray
+    }
+    
+    private func packExplorer(){
         
         let tileCave = RTTileCave()
         let tileTribe = RTTileTribe()
@@ -63,7 +89,7 @@ class RTTileManager: NSObject {
         
     }
     
-    func packUrban(){
+    private func packUrban(){
         
         let tileVillage = RTTileVillage()
         let tileCitadel = RTTileCitadel()
@@ -77,11 +103,13 @@ class RTTileManager: NSObject {
         
     }
     
-    func packArcane(){
+    private func packArcane(){
         
         let tileLair = RTTileLair()
+        let tileLair2 = RTTileLair()
+        let tileLair3 = RTTileLair()
         
-        let arrayTiles = [tileLair]
+        let arrayTiles = [tileLair, tileLair2, tileLair3]
         
         for tile in arrayTiles{
             arrayArcane.append(tile)
@@ -89,7 +117,7 @@ class RTTileManager: NSObject {
         
     }
 
-    func packNeutral(){
+    private func packNeutral(){
        
         let tileRandom = RTTileRandom()
         let tileJudgement = RTTileJudgement()
@@ -105,3 +133,22 @@ class RTTileManager: NSObject {
     }
 
 }
+
+//MARK: Shuffle Array
+extension Array {
+    mutating func shuffle() {
+        if count < 2 { return }
+        for i in 0..<(count - 1) {
+            let j = Int(arc4random_uniform(UInt32(count - i))) + i
+            swap(&self[i], &self[j])
+        }
+    }
+}
+
+//MARK: Contains in Array
+extension Array {
+    func contains<T where T : Equatable>(obj: T) -> Bool {
+        return self.filter({$0 as? T == obj}).count > 0
+    }
+}
+

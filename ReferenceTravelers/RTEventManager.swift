@@ -242,14 +242,14 @@ class RTEventManager: NSObject {
     func callEventTreasure(randomBase: Int){
         let event = GEventManager!.pickEvent(RTEvent.EventType.Treasure)
         
-        let gold = GCurrentHeroAttributes.obtainGold(randomBase)
+        let gold = GCurrentHero.attributes.obtainGold(randomBase)
         self.openEventWindow(event, value: gold)
     }
     
     func callEventTheft(randomBase: Int){
         let event = GEventManager!.pickEvent(RTEvent.EventType.Theft)
         
-        let gold = GCurrentHeroAttributes.loseGold(randomBase)
+        let gold = GCurrentHero.attributes.loseGold(randomBase)
         self.openEventWindow(event, value: gold)
     }
     
@@ -258,14 +258,14 @@ class RTEventManager: NSObject {
     func callEventHeal(randomBase: Int){
         let event = GEventManager!.pickEvent(RTEvent.EventType.Heal)
         
-        let heal = GCurrentHeroAttributes.recoverHealth(randomBase)
+        let heal = GCurrentHero.attributes.recoverHealth(randomBase)
         self.openEventWindow(event, value: heal)
     }
     
     func callEventTrap(randomBase: Int){
         let event = GEventManager!.pickEvent(RTEvent.EventType.Trap)
         
-        let damage = GCurrentHeroAttributes.loseHealth(randomBase)
+        let damage = GCurrentHero.attributes.loseHealth(randomBase)
         self.openEventWindow(event, value: damage)
     }
     
@@ -274,14 +274,14 @@ class RTEventManager: NSObject {
     func callEventMiracle(attribute: RTAttributes.AttributesEnum, randomBase: Int){
         let event = GEventManager!.pickEvent(RTEvent.EventType.Miracle)
         
-        let statGain = GCurrentHeroAttributes.gainOrLoseStat(attribute, base: randomBase, gain: true)
+        let statGain = GCurrentHero.attributes.gainOrLoseStat(attribute, base: randomBase, gain: true)
         self.openEventWindow(event, value: statGain)
     }
     
     func callEventDisaster(attribute: RTAttributes.AttributesEnum, randomBase: Int){
         let event = GEventManager!.pickEvent(RTEvent.EventType.Disaster)
         
-        let statLoss = GCurrentHeroAttributes.gainOrLoseStat(attribute, base: randomBase, gain: false)
+        let statLoss = GCurrentHero.attributes.gainOrLoseStat(attribute, base: randomBase, gain: false)
         self.openEventWindow(event, value: statLoss)
     }
     

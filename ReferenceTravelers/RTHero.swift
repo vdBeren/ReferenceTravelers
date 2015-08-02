@@ -9,19 +9,17 @@
 import UIKit
 import SpriteKit
 
-class RTHero: RTHideRequired {
+class RTHero: RTSelectable {
 
-    var properties: RTAttributes = RTAttributes()
-    var moneyCost: Float = 0.99
-    var information: String = ""
+    var attributes: RTAttributes = RTAttributes()
+    var quote: String = ""
+    var nameShown = ""
     
-    init(imageNamed imageName:String){
+    override init(imageNamed imageName:String){
         
-        let color = UIColor.clearColor()
-        let texture = SKTexture(imageNamed: imageName)
-        let size = texture.size()
+        super.init(imageNamed: imageName)
         
-        super.init(texture: texture, color: color, size: size)
+        self.imageName = imageName
         
         self.name = "HERO"
         self.userInteractionEnabled = false
@@ -33,12 +31,6 @@ class RTHero: RTHideRequired {
         self.physicsBody?.mass = 0.01
         
         self.physicsBody!.collisionBitMask = 0
-    }
-    
-    
-    //Recebe toques no Node.
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-        
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -47,13 +47,13 @@ class RTTileRandom: RTTile {
               
             case 4:
                 // MIRACLE
-                let attribute = GCurrentHeroAttributes.pickRandomAttribute()
+                let attribute = GCurrentHero.attributes.pickRandomAttribute()
                 base = arc4random_uniform(3)
                 GEventManager!.callEventMiracle(attribute, randomBase: Int(base))
                 
             case 5:
                 // DISASTER
-                let attribute = GCurrentHeroAttributes.pickRandomAttribute()
+                let attribute = GCurrentHero.attributes.pickRandomAttribute()
                 base = arc4random_uniform(3)
                 GEventManager!.callEventDisaster(attribute, randomBase: Int(base))
 

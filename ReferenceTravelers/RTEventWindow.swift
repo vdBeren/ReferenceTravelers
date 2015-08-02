@@ -62,16 +62,16 @@ class RTEventWindow: RTWindow {
     }
     
     func setContents(){
-        self.labelEventDescription = RTLabel(text: self.event!.eventDescription)
+        self.labelEventDescription = RTLabelText(text: self.event!.eventDescription, fontSize: 22, minimum: 8)
         //self.labelEventDescription!.position = CGPoint(x: self.size.width*2, y: self.size.height*2)
         self.addChild(labelEventDescription!)
         
-        self.labelEventName = RTLabel(text: self.event!.name)
+        self.labelEventName = RTLabelText(text: self.event!.name, fontSize: 22, minimum: 6)
         self.labelEventName!.fontSize += 10
         self.labelEventName!.position.y += self.size.height/4
         self.addChild(labelEventName!)
         
-        self.labelEventValue = RTLabel(text: String(value))
+        self.labelEventValue = RTLabelText(text: String(value), fontSize: 22, minimum: 3)
         self.labelEventValue!.fontSize += 16
         self.labelEventValue!.position.y += self.size.height/6
         self.addChild(labelEventValue!)

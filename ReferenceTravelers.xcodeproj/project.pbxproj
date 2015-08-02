@@ -25,8 +25,6 @@
 		5407120D1B572ABE00252EF9 /* RTSettingsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5407120C1B572ABE00252EF9 /* RTSettingsScene.swift */; };
 		5407120F1B57709300252EF9 /* RTButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5407120E1B57709300252EF9 /* RTButton.swift */; };
 		543A0F701B64784400B4C77A /* RTLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543A0F6F1B64784400B4C77A /* RTLabel.swift */; };
-		543A0F721B659E5E00B4C77A /* TITLE.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 543A0F711B659E5E00B4C77A /* TITLE.mp3 */; };
-		543A0F741B65A9B300B4C77A /* DANO.wav in Resources */ = {isa = PBXBuildFile; fileRef = 543A0F731B65A9B300B4C77A /* DANO.wav */; };
 		543A0F761B6727E000B4C77A /* RTEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543A0F751B6727E000B4C77A /* RTEvent.swift */; };
 		543A0F7E1B682C8200B4C77A /* RTEventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543A0F7D1B682C8200B4C77A /* RTEventManager.swift */; };
 		543A0F841B69B19C00B4C77A /* RTTileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543A0F831B69B19C00B4C77A /* RTTileManager.swift */; };
@@ -40,7 +38,20 @@
 		543A0F981B6AC1DF00B4C77A /* RTTileWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543A0F971B6AC1DF00B4C77A /* RTTileWindow.swift */; };
 		543A0F9A1B6AC82B00B4C77A /* RTTilePackCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543A0F991B6AC82B00B4C77A /* RTTilePackCard.swift */; };
 		543A0F9C1B6AEA7100B4C77A /* RTWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543A0F9B1B6AEA7100B4C77A /* RTWindow.swift */; };
+		543A0FA01B6D72F800B4C77A /* RTHeroWarrior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543A0F9F1B6D72F800B4C77A /* RTHeroWarrior.swift */; };
+		543A0FA21B6D75DE00B4C77A /* RTHeroRogue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543A0FA11B6D75DE00B4C77A /* RTHeroRogue.swift */; };
+		543A0FA41B6D775B00B4C77A /* RTHeroMage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543A0FA31B6D775B00B4C77A /* RTHeroMage.swift */; };
+		543A0FA61B6D790D00B4C77A /* MedievalTheme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 543A0FA51B6D790D00B4C77A /* MedievalTheme.mp3 */; };
+		543A0FA91B6D793600B4C77A /* TitleTheme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 543A0FA71B6D793600B4C77A /* TitleTheme.mp3 */; };
+		543A0FAA1B6D793600B4C77A /* TitleThemeShort.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 543A0FA81B6D793600B4C77A /* TitleThemeShort.mp3 */; };
+		543A0FAC1B6D7A9600B4C77A /* Square.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 543A0FAB1B6D799400B4C77A /* Square.ttf */; };
 		545F85DD1B579B20003ABC76 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 545F85DC1B579B20003ABC76 /* Images.xcassets */; };
+		5475B9551B6D84F0004877C2 /* RTTextWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5475B9541B6D84F0004877C2 /* RTTextWindow.swift */; };
+		5475B9571B6D88D5004877C2 /* RTLabelValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5475B9561B6D88D5004877C2 /* RTLabelValue.swift */; };
+		5475B95A1B6DD92E004877C2 /* RTSelectionMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5475B9591B6DD92E004877C2 /* RTSelectionMenu.swift */; };
+		5475B95D1B6DE1A1004877C2 /* RTSelectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5475B95C1B6DE1A1004877C2 /* RTSelectable.swift */; };
+		5475B95F1B6DED9D004877C2 /* RTLabelText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5475B95E1B6DED9D004877C2 /* RTLabelText.swift */; };
+		5475B9611B6DFE04004877C2 /* RTHeroManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5475B9601B6DFE04004877C2 /* RTHeroManager.swift */; };
 		5489501E1B584B3800032B67 /* RTGamePad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5489501D1B584B3800032B67 /* RTGamePad.swift */; };
 		548950211B58C03100032B67 /* RTSelectorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548950201B58C03100032B67 /* RTSelectorButton.swift */; };
 		548950251B633CA800032B67 /* RTTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548950241B633CA800032B67 /* RTTile.swift */; };
@@ -83,8 +94,6 @@
 		5407120C1B572ABE00252EF9 /* RTSettingsScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTSettingsScene.swift; sourceTree = "<group>"; };
 		5407120E1B57709300252EF9 /* RTButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTButton.swift; sourceTree = "<group>"; };
 		543A0F6F1B64784400B4C77A /* RTLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTLabel.swift; sourceTree = "<group>"; };
-		543A0F711B659E5E00B4C77A /* TITLE.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TITLE.mp3; sourceTree = "<group>"; };
-		543A0F731B65A9B300B4C77A /* DANO.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = DANO.wav; sourceTree = "<group>"; };
 		543A0F751B6727E000B4C77A /* RTEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTEvent.swift; sourceTree = "<group>"; };
 		543A0F7D1B682C8200B4C77A /* RTEventManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTEventManager.swift; sourceTree = "<group>"; };
 		543A0F831B69B19C00B4C77A /* RTTileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTTileManager.swift; sourceTree = "<group>"; };
@@ -98,7 +107,20 @@
 		543A0F971B6AC1DF00B4C77A /* RTTileWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTTileWindow.swift; sourceTree = "<group>"; };
 		543A0F991B6AC82B00B4C77A /* RTTilePackCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTTilePackCard.swift; sourceTree = "<group>"; };
 		543A0F9B1B6AEA7100B4C77A /* RTWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTWindow.swift; sourceTree = "<group>"; };
+		543A0F9F1B6D72F800B4C77A /* RTHeroWarrior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTHeroWarrior.swift; sourceTree = "<group>"; };
+		543A0FA11B6D75DE00B4C77A /* RTHeroRogue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTHeroRogue.swift; sourceTree = "<group>"; };
+		543A0FA31B6D775B00B4C77A /* RTHeroMage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTHeroMage.swift; sourceTree = "<group>"; };
+		543A0FA51B6D790D00B4C77A /* MedievalTheme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = MedievalTheme.mp3; sourceTree = "<group>"; };
+		543A0FA71B6D793600B4C77A /* TitleTheme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TitleTheme.mp3; sourceTree = "<group>"; };
+		543A0FA81B6D793600B4C77A /* TitleThemeShort.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TitleThemeShort.mp3; sourceTree = "<group>"; };
+		543A0FAB1B6D799400B4C77A /* Square.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Square.ttf; sourceTree = "<group>"; };
 		545F85DC1B579B20003ABC76 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		5475B9541B6D84F0004877C2 /* RTTextWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTTextWindow.swift; sourceTree = "<group>"; };
+		5475B9561B6D88D5004877C2 /* RTLabelValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTLabelValue.swift; sourceTree = "<group>"; };
+		5475B9591B6DD92E004877C2 /* RTSelectionMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTSelectionMenu.swift; sourceTree = "<group>"; };
+		5475B95C1B6DE1A1004877C2 /* RTSelectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTSelectable.swift; sourceTree = "<group>"; };
+		5475B95E1B6DED9D004877C2 /* RTLabelText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTLabelText.swift; sourceTree = "<group>"; };
+		5475B9601B6DFE04004877C2 /* RTHeroManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTHeroManager.swift; sourceTree = "<group>"; };
 		5489501D1B584B3800032B67 /* RTGamePad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTGamePad.swift; sourceTree = "<group>"; };
 		548950201B58C03100032B67 /* RTSelectorButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTSelectorButton.swift; sourceTree = "<group>"; };
 		548950241B633CA800032B67 /* RTTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTTile.swift; sourceTree = "<group>"; };
@@ -147,12 +169,11 @@
 		540711BF1B54159E00252EF9 /* ReferenceTravelers */ = {
 			isa = PBXGroup;
 			children = (
-				543A0F711B659E5E00B4C77A /* TITLE.mp3 */,
-				543A0F731B65A9B300B4C77A /* DANO.wav */,
 				540711C21B54159E00252EF9 /* AppDelegate.swift */,
 				540711C81B54159E00252EF9 /* GameViewController.swift */,
 				540711EA1B5426D800252EF9 /* Scenes */,
 				540711FA1B542BA200252EF9 /* Classes */,
+				5475B9521B6D7D5D004877C2 /* Resources */,
 				540711CA1B54159E00252EF9 /* Main.storyboard */,
 				540711CF1B54159E00252EF9 /* LaunchScreen.xib */,
 				545F85DC1B579B20003ABC76 /* Images.xcassets */,
@@ -202,11 +223,11 @@
 		540711F91B542A6E00252EF9 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				5475B9581B6D89DE004877C2 /* Text */,
 				540711F31B54297B00252EF9 /* RTHideRequired.swift */,
 				543A0F9B1B6AEA7100B4C77A /* RTWindow.swift */,
 				540712061B56F95C00252EF9 /* RTAudio.swift */,
 				5407120A1B571F8D00252EF9 /* RTBackground.swift */,
-				543A0F6F1B64784400B4C77A /* RTLabel.swift */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -217,18 +238,22 @@
 				5489501F1B58BF5900032B67 /* Control */,
 				540711F91B542A6E00252EF9 /* Base */,
 				548950261B63405000032B67 /* Board */,
-				540711FD1B544B5000252EF9 /* Character */,
+				540711FD1B544B5000252EF9 /* Hero */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
 		};
-		540711FD1B544B5000252EF9 /* Character */ = {
+		540711FD1B544B5000252EF9 /* Hero */ = {
 			isa = PBXGroup;
 			children = (
 				540712041B56F1AE00252EF9 /* RTAttributes.swift */,
 				540711F51B542A0700252EF9 /* RTHero.swift */,
+				5475B9601B6DFE04004877C2 /* RTHeroManager.swift */,
+				543A0F9F1B6D72F800B4C77A /* RTHeroWarrior.swift */,
+				543A0FA11B6D75DE00B4C77A /* RTHeroRogue.swift */,
+				543A0FA31B6D775B00B4C77A /* RTHeroMage.swift */,
 			);
-			name = Character;
+			name = Hero;
 			sourceTree = "<group>";
 		};
 		543A0F771B6727F300B4C77A /* Tiles */ = {
@@ -294,9 +319,65 @@
 			name = "Neutral Pack";
 			sourceTree = "<group>";
 		};
+		5475B9501B6D7D4C004877C2 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				5475B9511B6D7D54004877C2 /* Music */,
+			);
+			name = Audio;
+			sourceTree = "<group>";
+		};
+		5475B9511B6D7D54004877C2 /* Music */ = {
+			isa = PBXGroup;
+			children = (
+				543A0FA51B6D790D00B4C77A /* MedievalTheme.mp3 */,
+				543A0FA71B6D793600B4C77A /* TitleTheme.mp3 */,
+				543A0FA81B6D793600B4C77A /* TitleThemeShort.mp3 */,
+			);
+			name = Music;
+			sourceTree = "<group>";
+		};
+		5475B9521B6D7D5D004877C2 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5475B9531B6D7D67004877C2 /* Fonts */,
+				5475B9501B6D7D4C004877C2 /* Audio */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		5475B9531B6D7D67004877C2 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				543A0FAB1B6D799400B4C77A /* Square.ttf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
+		5475B9581B6D89DE004877C2 /* Text */ = {
+			isa = PBXGroup;
+			children = (
+				543A0F6F1B64784400B4C77A /* RTLabel.swift */,
+				5475B95E1B6DED9D004877C2 /* RTLabelText.swift */,
+				5475B9561B6D88D5004877C2 /* RTLabelValue.swift */,
+				5475B9541B6D84F0004877C2 /* RTTextWindow.swift */,
+			);
+			name = Text;
+			sourceTree = "<group>";
+		};
+		5475B95B1B6DE175004877C2 /* Selection Menu */ = {
+			isa = PBXGroup;
+			children = (
+				5475B9591B6DD92E004877C2 /* RTSelectionMenu.swift */,
+				5475B95C1B6DE1A1004877C2 /* RTSelectable.swift */,
+			);
+			name = "Selection Menu";
+			sourceTree = "<group>";
+		};
 		5489501F1B58BF5900032B67 /* Control */ = {
 			isa = PBXGroup;
 			children = (
+				5475B95B1B6DE175004877C2 /* Selection Menu */,
 				5407120E1B57709300252EF9 /* RTButton.swift */,
 				548950201B58C03100032B67 /* RTSelectorButton.swift */,
 				5489501D1B584B3800032B67 /* RTGamePad.swift */,
@@ -393,11 +474,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				543A0FA61B6D790D00B4C77A /* MedievalTheme.mp3 in Resources */,
 				545F85DD1B579B20003ABC76 /* Images.xcassets in Resources */,
-				543A0F741B65A9B300B4C77A /* DANO.wav in Resources */,
+				543A0FA91B6D793600B4C77A /* TitleTheme.mp3 in Resources */,
+				543A0FAA1B6D793600B4C77A /* TitleThemeShort.mp3 in Resources */,
 				540711D11B54159E00252EF9 /* LaunchScreen.xib in Resources */,
 				540711CC1B54159E00252EF9 /* Main.storyboard in Resources */,
-				543A0F721B659E5E00B4C77A /* TITLE.mp3 in Resources */,
+				543A0FAC1B6D7A9600B4C77A /* Square.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,14 +498,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5475B9571B6D88D5004877C2 /* RTLabelValue.swift in Sources */,
 				540711F41B54297B00252EF9 /* RTHideRequired.swift in Sources */,
 				5407120B1B571F8D00252EF9 /* RTBackground.swift in Sources */,
 				5407120D1B572ABE00252EF9 /* RTSettingsScene.swift in Sources */,
 				540711F61B542A0700252EF9 /* RTHero.swift in Sources */,
+				543A0FA21B6D75DE00B4C77A /* RTHeroRogue.swift in Sources */,
 				543A0F8E1B69D15700B4C77A /* RTTileBlank.swift in Sources */,
 				5489502A1B64267E00032B67 /* RTTileVillage.swift in Sources */,
 				548950211B58C03100032B67 /* RTSelectorButton.swift in Sources */,
 				543A0F841B69B19C00B4C77A /* RTTileManager.swift in Sources */,
+				543A0FA01B6D72F800B4C77A /* RTHeroWarrior.swift in Sources */,
+				5475B95A1B6DD92E004877C2 /* RTSelectionMenu.swift in Sources */,
 				540711E71B5419F800252EF9 /* RTCombatScene.swift in Sources */,
 				543A0F9C1B6AEA7100B4C77A /* RTWindow.swift in Sources */,
 				543A0F961B69E92800B4C77A /* RTTileGraveyard.swift in Sources */,
@@ -431,19 +518,24 @@
 				543A0F981B6AC1DF00B4C77A /* RTTileWindow.swift in Sources */,
 				540711C91B54159E00252EF9 /* GameViewController.swift in Sources */,
 				548950251B633CA800032B67 /* RTTile.swift in Sources */,
+				5475B95F1B6DED9D004877C2 /* RTLabelText.swift in Sources */,
 				543A0F891B69C5BA00B4C77A /* RTTileRandom.swift in Sources */,
 				543A0F941B69E47C00B4C77A /* RTTileCitadel.swift in Sources */,
 				540711C31B54159E00252EF9 /* AppDelegate.swift in Sources */,
+				543A0FA41B6D775B00B4C77A /* RTHeroMage.swift in Sources */,
 				5489502C1B64274E00032B67 /* RTTileLair.swift in Sources */,
 				540711F21B5428AA00252EF9 /* RTBoardScene.swift in Sources */,
 				540712071B56F95C00252EF9 /* RTAudio.swift in Sources */,
+				5475B95D1B6DE1A1004877C2 /* RTSelectable.swift in Sources */,
 				543A0F701B64784400B4C77A /* RTLabel.swift in Sources */,
 				543A0F761B6727E000B4C77A /* RTEvent.swift in Sources */,
 				543A0F901B69DFA500B4C77A /* RTTileTribe.swift in Sources */,
 				548950281B641D7000032B67 /* RTTileCave.swift in Sources */,
 				5489501E1B584B3800032B67 /* RTGamePad.swift in Sources */,
+				5475B9551B6D84F0004877C2 /* RTTextWindow.swift in Sources */,
 				540711F01B54287000252EF9 /* RTStageSelectionScene.swift in Sources */,
 				543A0F8C1B69CEB300B4C77A /* RTTileJudgement.swift in Sources */,
+				5475B9611B6DFE04004877C2 /* RTHeroManager.swift in Sources */,
 				5489502E1B643F2600032B67 /* RTEventWindow.swift in Sources */,
 				543A0F921B69E0FB00B4C77A /* RTTileJungle.swift in Sources */,
 				543A0F9A1B6AC82B00B4C77A /* RTTilePackCard.swift in Sources */,

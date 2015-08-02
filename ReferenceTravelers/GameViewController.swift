@@ -14,6 +14,7 @@ import SpriteKit
 var GAudioNode: RTAudio? = RTAudio()
 var GEventManager: RTEventManager? = RTEventManager()
 var GTileManager: RTTileManager? = RTTileManager()
+var GHeroesManager: RTHeroManager? = RTHeroManager()
 
 var GTitleScene: RTTitleScene?
 var GHeroSelectionScene: RTHeroSelectionScene?
@@ -22,7 +23,7 @@ var GBoardScene: RTBoardScene?
 var GCombatScene: RTCombatScene?
 var GSettingsScene: RTSettingsScene?
 
-var GCurrentHeroAttributes: RTAttributes = RTAttributes()
+var GCurrentHero: RTHero = RTHeroWarrior()
 var GGold: Int = NSUserDefaults.standardUserDefaults().integerForKey("playergold")
 
 class GameViewController: UIViewController {
@@ -53,9 +54,9 @@ class GameViewController: UIViewController {
         /* Set the scale mode to scale to fit the window */
         GBoardScene!.scaleMode = .AspectFill
         
-        GTitleScene!.scaleMode = .AspectFill
+        GHeroSelectionScene!.scaleMode = .AspectFill
         
-        skView.presentScene(GBoardScene!)
+        skView.presentScene(GHeroSelectionScene!)
     }
     
     

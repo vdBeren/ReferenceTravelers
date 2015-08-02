@@ -27,6 +27,8 @@ class RTAttributes: NSObject {
         case Agility = "AGILITY"
         case Luck = "LUCK"
         case Greed = "GREED"
+        case MaxHealth = "HEALTH"
+        case MaxStamina = "STAMINA"
     }
     
     override init(){
@@ -131,6 +133,12 @@ class RTAttributes: NSObject {
             
         case RTAttributes.AttributesEnum.Greed:
             return checkForMin(self.greed + statValue)
+            
+        case RTAttributes.AttributesEnum.MaxHealth:
+            return checkForMin(self.maxHealth + statValue)
+            
+        case RTAttributes.AttributesEnum.MaxStamina:
+            return checkForMin(self.maxStamina + statValue)
             
         default:
             break

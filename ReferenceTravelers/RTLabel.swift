@@ -12,19 +12,21 @@ import SpriteKit
 class RTLabel: SKLabelNode {
     
     var finalText: NSString = ""
+    var minimum: Int = 2 // Minimo de caracteres para a animaçao de intro
     
-    init(text: String){
+    init(fontSize: CGFloat){
         super.init()
         
         self.name = "LABEL"
-        self.fontName = "Arial"
         
-        self.fontSize = 22
+        self.fontName = "SquareFont"
+        self.fontSize = fontSize
+        
         self.fontColor = SKColor.whiteColor()
+        
         self.verticalAlignmentMode = SKLabelVerticalAlignmentMode.Center
         self.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Center
-        
-        self.finalText = text
+
         
     }
     
@@ -37,10 +39,10 @@ class RTLabel: SKLabelNode {
             self.text = self.randomStringWithLength(textLen) as String
         
         })
-        let wait = SKAction.waitForDuration(0.05, withRange: 0.12)
+        let wait = SKAction.waitForDuration(0.08, withRange: 0.14)
         var sequence = SKAction.sequence([actionBlock, wait])
         
-        let repeat = SKAction.repeatAction(sequence, count: 14)
+        let repeat = SKAction.repeatAction(sequence, count: 10)
         let finalTextBlock = SKAction.runBlock({self.text = self.finalText as String})
         let sequenceFinal = SKAction.sequence([repeat, finalTextBlock])
         
@@ -64,13 +66,15 @@ class RTLabel: SKLabelNode {
     }
     
     func checkMinimum(value: Int) -> Int{
-        let min = 10
+        let min = self.minimum
         if value < min{
             return min
         }
         
         return value
     }
+    
+
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

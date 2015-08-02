@@ -36,11 +36,11 @@ class RTWindow: RTHideRequired {
         
         // EFEITO DE ANIMAÇÃO AO FICAR NA TELA :)
         
-        var waitTime: NSTimeInterval = 1.2
-        var move: CGFloat = 10.0
+        var waitTime: NSTimeInterval = 1.8
+        var move: CGFloat = 5.0
         
-        let moveUp = SKAction.moveByX(-move/2, y: move, duration: waitTime)
-        let moveDown = SKAction.moveByX(move/2, y: -move, duration: waitTime)
+        let moveUp = SKAction.moveByX(0.0, y: move, duration: waitTime)
+        let moveDown = SKAction.moveByX(0.0, y: -move, duration: waitTime)
         let wait = SKAction.waitForDuration(0.01)
         let sequence = SKAction.sequence([moveUp, wait, moveDown])
         

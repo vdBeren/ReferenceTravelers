@@ -24,15 +24,15 @@ class RTAudio: SKNode {
         self.setSessionPlayer()
     }
     
-    // Enumerators de Sons e Musicas. Valor dos Enums tem o nome do arquivo, sem o formato!
+    // Enumerators de Sons e Musicas. Valor dos Enums tem o nome do arquivo, sem o formato! (Formato .wav para sons e .mp3 para músicas)
     enum SoundsEnum : String{
         case Golpe = "GOLPE"
         case Dano = "DANO"
     }
     
     enum MusicsEnum : String{
-        case Title = "TITLE"
-        case Combate = "COMBATE"
+        case Title = "TitleTheme"
+        case Board = "MedievalTheme"
         
     }
     

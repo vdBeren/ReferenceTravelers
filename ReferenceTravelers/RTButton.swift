@@ -63,7 +63,7 @@ class RTButton: RTHideRequired {
         setButtonPressed()
         
         if actionOnTouchBegan{
-            GAudioNode!.playSound(RTAudio.SoundsEnum.Dano)
+            //GAudioNode!.playSound(RTAudio.SoundsEnum.Dano)
             self.buttonAction()
         }
     }
@@ -72,7 +72,7 @@ class RTButton: RTHideRequired {
         setButtonPressed()
         
         if !actionOnTouchBegan{
-            GAudioNode!.playSound(RTAudio.SoundsEnum.Dano)
+            //GAudioNode!.playSound(RTAudio.SoundsEnum.Dano)
             self.buttonAction()
         }
         

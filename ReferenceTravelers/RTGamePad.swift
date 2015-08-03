@@ -28,7 +28,6 @@ class RTGamePad: RTHideRequired {
         self.name = "GAMEPAD"
         self.anchorPoint = CGPoint(x: 0.0, y: 0.0)
         self.position = CGPoint(x: 0.0, y: 0.0)
-        self.zPosition = 0
         self.userInteractionEnabled = true
         
         btnLeft = RTSelectorButton(imageNamed: "btnLeft")

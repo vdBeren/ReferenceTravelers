@@ -26,6 +26,9 @@ class RTHeroWarrior: RTHero {
         self.attributes.agility = 4
         self.attributes.luck = 3
         self.attributes.greed = 2
+        
+        self.attributes.maxHealth = 150
+        self.attributes.maxStamina = 80
     }
 
     required init?(coder aDecoder: NSCoder) {

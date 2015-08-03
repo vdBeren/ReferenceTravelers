@@ -14,18 +14,21 @@ import SpriteKit
 class RTHeroRogue: RTHero {
     
     init(){
-        super.init(imageNamed: "SNEAKYROGUE")
+        super.init(imageNamed: "heroBraveWarrior")
         
         self.locked = true
         
         self.nameShown = "SNEAKY ROGUE"
-        self.quote = "Look over there! Puff, your wallet is gone."
+        self.quote = "Look over there! (Your wallet is gone)"
         
         self.attributes.primaryType = RTAttributes.PrimariesEnum.Dexterity
         self.attributes.primary = 3
         self.attributes.agility = 5
         self.attributes.luck = 2
         self.attributes.greed = 4
+        
+        self.attributes.maxHealth = 80
+        self.attributes.maxStamina = 140
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -11,6 +11,7 @@ import UIKit
 class RTHeroManager: NSObject {
     
     var heroArray: [RTHero] = []
+    var currentHero: RTHero = RTHeroWarrior()
     
     override init(){
         

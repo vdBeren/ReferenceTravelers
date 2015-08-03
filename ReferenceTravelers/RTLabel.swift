@@ -30,6 +30,10 @@ class RTLabel: SKLabelNode {
         
     }
     
+    func setLabelText(text: String){
+        self.finalText = text
+    }
+    
     func introAnimation(){
         
         
@@ -52,7 +56,7 @@ class RTLabel: SKLabelNode {
     
     func randomStringWithLength (len: Int) -> NSString {
         
-        let letters: NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%ˆ&*()-_=+<>?/"
+        let letters: NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%&*()-_=+<>?/"
         
         var randomString: NSMutableString = NSMutableString(capacity: len)
         

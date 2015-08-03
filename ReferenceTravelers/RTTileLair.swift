@@ -34,7 +34,7 @@ class RTTileLair: RTTile {
             }
             else if random >= 1{
                 //DISASTER
-                let attribute = GCurrentHero.attributes.pickRandomAttribute()
+                let attribute = GHeroesManager!.currentHero.attributes.pickRandomAttribute()
                 base = arc4random_uniform(3)
                 GEventManager!.callEventDisaster(attribute, randomBase: Int(base))
             }

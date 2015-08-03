@@ -30,7 +30,6 @@ class RTSelectorButton: RTHideRequired {
         
         self.name = "SELECTORBUTTON"
         self.anchorPoint = CGPoint(x: 0.0, y: 0.0)
-        self.zPosition = 0
         self.userInteractionEnabled = true
         
     }

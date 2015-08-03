@@ -19,10 +19,10 @@ class RTTileRandom: RTTile {
         
         //Ação do Tile
         self.setRTTileEvent { () -> () in
-            var random = arc4random_uniform(7)
+            var random = arc4random_uniform(8)
             var base: UInt32
             
-            // 1/7 de chance pra cada Evento
+            // 1/8 de chance pra cada Evento
             
             switch random{
             case 0:
@@ -47,19 +47,23 @@ class RTTileRandom: RTTile {
               
             case 4:
                 // MIRACLE
-                let attribute = GCurrentHero.attributes.pickRandomAttribute()
+                let attribute = GHeroesManager!.currentHero.attributes.pickRandomAttribute()
                 base = arc4random_uniform(3)
                 GEventManager!.callEventMiracle(attribute, randomBase: Int(base))
                 
             case 5:
                 // DISASTER
-                let attribute = GCurrentHero.attributes.pickRandomAttribute()
+                let attribute = GHeroesManager!.currentHero.attributes.pickRandomAttribute()
                 base = arc4random_uniform(3)
                 GEventManager!.callEventDisaster(attribute, randomBase: Int(base))
 
             case 6:
                 // COMBAT
                 GEventManager!.callEventCombat()
+                
+            case 7:
+                // NADA
+                GEventManager!.callEventBlank()
                 
             default:
                 break

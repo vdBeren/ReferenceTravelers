@@ -14,18 +14,21 @@ import SpriteKit
 class RTHeroMage: RTHero {
     
     init(){
-        super.init(imageNamed: "MADMAGE")
+        super.init(imageNamed: "heroBraveWarrior")
         
         self.locked = true
         
         self.nameShown = "MAD MAGE"
-        self.quote = "BLAARGH WAAAARHGH BLARRGHH!!"
+        self.quote = "BLAARGH WAARHGH BLARRGH! @_@"
         
         self.attributes.primaryType = RTAttributes.PrimariesEnum.Intelligence
         self.attributes.primary = 6
         self.attributes.agility = 3
         self.attributes.luck = 4
         self.attributes.greed = 1
+        
+        self.attributes.maxHealth = 100
+        self.attributes.maxStamina = 100
     }
     
     required init?(coder aDecoder: NSCoder) {

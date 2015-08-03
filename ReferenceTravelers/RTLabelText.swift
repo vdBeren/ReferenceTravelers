@@ -10,6 +10,7 @@ import UIKit
 
 class RTLabelText: RTLabel {
    
+    
     init(text: String, fontSize: CGFloat, minimum: Int){
         
         super.init(fontSize: fontSize)

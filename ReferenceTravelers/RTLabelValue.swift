@@ -36,7 +36,7 @@ class RTLabelValue: RTLabel {
     }
     
     func setValue(value: Int){
-        self.labelValue!.text = String(value)
+        self.labelValue!.finalText = String(value)
     }
 
     required init?(coder aDecoder: NSCoder) {

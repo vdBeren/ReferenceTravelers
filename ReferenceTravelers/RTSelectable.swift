@@ -13,10 +13,9 @@ import SpriteKit
 
 class RTSelectable: RTHideRequired {
     
-    var selected: Bool = false
     var locked: Bool = true
     var imageName: String = ""
-    var moneyCost: Float = 0.99
+    var moneyCost: CGFloat = 0.99
     
     
     init(imageNamed imageName:String){
@@ -31,11 +30,6 @@ class RTSelectable: RTHideRequired {
         self.userInteractionEnabled = false
         
     }
-    
-    func isSelected() -> Bool{
-        return selected
-    }
-
     
     
     required init?(coder aDecoder: NSCoder) {

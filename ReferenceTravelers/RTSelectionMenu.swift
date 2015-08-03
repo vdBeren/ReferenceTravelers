@@ -10,90 +10,135 @@ import UIKit
 import SpriteKit
 
 // Classe que controla visualmente um array, permitindo percorre-lo e selecionar itens a partir de botões.
-// As posições de seus objetos devem ser definidas na classe pai.
+// As posições de seus componentes devem ser definidas na classe pai.
+// OBJETOS: [btnLeft, btnRight, btnSelect, labelObjectName, selectableDisplay]
 
-class RTSelectionMenu: RTHideRequired {
+class RTSelectionMenu: SKNode {
    
-    var btnLeft, btnRight, btnSelect: RTButton?
+    var btnLeft, btnRight: RTBoingButton?
+    var btnSelect, labelObjectName: RTTextButton?
+    var selectableDisplay: RTSelectable?
+
     var objectArray: [RTSelectable] = []
     var selectionIndex: Int = 0
-    var labelObjectName: RTLabel?
-    var selectableDisplay: RTSelectable?
     
-    init(objectArray: [RTSelectable]){
+    var changeSelectionAction: (Void) -> (Void) = {}
+    var selectButtonAction: (Void) -> (Void) = {}
+    
+    var buttonsImageNames: [String] = []
+    var selectButtonTexts: [String] = []
+    
+    var colors: [SKColor] = []
+    
+    var fontSize: CGFloat = 26.0
+    
+    init(objectArray: [RTSelectable], buttonsImageNames: [String], selectButtonTexts: [String], colors: [SKColor]){
         
-        let color = UIColor.clearColor()
-        let texture = SKTexture(imageNamed: "NOTHING")
-        let size = texture.size()
-        
-        super.init(texture: texture, color: color, size: size)
+        super.init()
         
         self.name = "SELECTIONMENU"
         self.userInteractionEnabled = true
         
         self.objectArray = objectArray
         
-        self.btnLeft = RTButton(imageNamed: "btnSelectionLeft", actionOnTouchBegan: false)
-        self.btnLeft?.setRTButtonAction({ () -> () in
-            self.buttonLeftAction()
-        })
-        self.addChild(self.btnLeft!)
+        self.buttonsImageNames = buttonsImageNames
+        self.selectButtonTexts = selectButtonTexts
         
-        self.btnRight = RTButton(imageNamed: "btnSelectionRight", actionOnTouchBegan: false)
-        self.btnRight?.setRTButtonAction({ () -> () in
-            self.buttonRightAction()
-        })
-        self.addChild(self.btnRight!)
+        self.colors = colors
         
-        self.btnSelect = RTButton(imageNamed: "", actionOnTouchBegan: false)
-        self.btnSelect?.setRTButtonAction({ () -> () in
-            self.buttonSelectAction()
-        })
-        self.addChild(self.btnSelect!)
-        
-        self.labelObjectName = RTLabelText(text: "NAME", fontSize: 22, minimum: 5)
-        self.labelObjectName?.fontColor = SKColor.orangeColor()
-        self.addChild(self.labelObjectName!)
-        
-        self.selectableDisplay = RTSelectable(imageNamed: objectArray[0].imageName)
-        self.addChild(self.selectableDisplay!)
+        self.initSelectionMenu()
     
     }
     
+    func setRTChangeSelectionAction(block: (Void)->(Void)) {
+        self.changeSelectionAction = block
+    }
+    
+    func setRTSelectButton(block: (Void) -> (Void)){
+        self.selectButtonAction = block
+    }
+    
+    
+    func refreshLabelName(){
+        self.labelObjectName!.labelText!.setLabelText(GHeroesManager!.currentHero.nameShown)
+        self.labelObjectName?.labelText!.introAnimation()
+    }
+    
+    private func initSelectionMenu(){
+        
+        // [0] Left, [1] Right, [2] Select, [3] ObjectName
+        
+        self.selectableDisplay = RTSelectable(imageNamed: objectArray[0].imageName)
+        self.addChild(self.selectableDisplay!)
+        
+        self.btnLeft = RTBoingButton(imageNamed: self.buttonsImageNames[0], actionOnTouchBegan: true)
+        self.btnLeft?.setRTButtonAction({ () -> () in
+            self.buttonLeftAction()
+        })
+        self.btnLeft?.idleAnimation(10.0, moveY: 0.0, waitTime: 0.8, reverse: false)
+        self.btnLeft?.zPosition += 1
+        self.addChild(self.btnLeft!)
+        
+        self.btnRight = RTBoingButton(imageNamed: self.buttonsImageNames[1], actionOnTouchBegan: true)
+        self.btnRight?.setRTButtonAction({ () -> () in
+            self.buttonRightAction()
+        })
+        self.btnRight?.idleAnimation(10.0, moveY: 0.0, waitTime: 0.8, reverse: true)
+        self.btnRight?.zPosition += 1
+        self.addChild(self.btnRight!)
+        
+        self.btnSelect = RTTextButton(imageNamed: self.buttonsImageNames[2], actionOnTouchBegan: false, text: selectButtonTexts[1], fontSize: fontSize, minimum: 5, colors: colors)
+        self.btnSelect?.setRTButtonAction({ () -> () in
+            self.buttonSelectAction()
+        })
+        self.btnSelect?.blinkAnimation()
+        self.addChild(self.btnSelect!)
+        
+        
+        self.labelObjectName = RTTextButton(imageNamed: self.buttonsImageNames[3], actionOnTouchBegan: false, text: "NAME", fontSize: fontSize, minimum: 7, colors: colors)
+        self.labelObjectName!.userInteractionEnabled = false
+        self.refreshLabelName()
+        self.addChild(self.labelObjectName!)
+        
+
+    }
+    
     private func buttonSelectAction(){
-        if self.objectArray[self.selectionIndex].locked{
+        if checkLocked(){
             // POP UP COMPRAR / SOM DE DENIED
         }
         else{
-            self.objectArray[self.selectionIndex].selected = true
+            // SELECIONA OBJETO
+            self.selectButtonAction()
             
         }
         
     }
     
     private func buttonRightAction(){
-        println("RIGHT")
         self.chanceSelection(1)
     }
     
     private func buttonLeftAction(){
-        println("LEFT")
         self.chanceSelection(-1)
     }
 
     private func chanceSelection(value: Int){
         
+        var direction: Bool
+        
         if value <= 1{
             self.selectionIndex += value
             if value == 1{
-                self.changeSelectionAnimation(true)
+                direction = true
             }
             else{
-                self.changeSelectionAnimation(false)
+                direction = false
             }
         }
         else{
             self.selectionIndex = value
+            direction = true
         }
         
         
@@ -105,9 +150,16 @@ class RTSelectionMenu: RTHideRequired {
             selectionIndex = objectArray.count-1
         }
         
+        self.changeSelectionAnimation(left: direction)
+        self.changeSelectionAction()
+        self.refreshLabelName()
+        
     }
     
-    private func changeSelectionAnimation(left: Bool){
+    // Animação de troca entre Objetos
+    private func changeSelectionAnimation(#left: Bool){
+        
+        self.changeSelectButton()
         
         var moveX: CGFloat = 150.0
         var blinkX: CGFloat = moveX * 2
@@ -125,7 +177,10 @@ class RTSelectionMenu: RTHideRequired {
         let fadeOut = SKAction.fadeAlphaTo(0.0, duration: 0.4)
         let fadeIn = SKAction.fadeAlphaTo(1.0, duration: 0.4)
         
-        let changeTexture = SKAction.runBlock({self.changeSelectableDisplayTexture()})
+        let changeTexture = SKAction.runBlock({
+            self.changeSelectableDisplayTexture()
+            self.changeSelectButton()
+        })
         
         let sequence = SKAction.sequence([move, blink, move])
         let sequenceFade = SKAction.sequence([fadeOut, changeTexture, fadeIn])
@@ -135,25 +190,41 @@ class RTSelectionMenu: RTHideRequired {
         
     }
     
-    
+    // Muda a texture do Objeto Selecionado
     private func changeSelectableDisplayTexture(){
         
         var locked: SKAction
-        var alpha: SKAction
-        var sequence: SKAction
         
-        if self.objectArray[self.selectionIndex].locked{
+        if checkLocked(){
             locked = SKAction.colorizeWithColor(SKColor.blackColor(), colorBlendFactor: 1.0, duration: 0.0)
-            alpha = SKAction.fadeAlphaTo(0.3, duration: 0.0)
-            sequence = SKAction.sequence([locked, alpha])
         }
         else{
             locked = SKAction.colorizeWithColor(SKColor.clearColor(), colorBlendFactor: 0.0, duration: 0.0)
-            alpha = SKAction.fadeAlphaTo(1.0, duration: 0.0)
-            sequence = SKAction.sequence([locked, alpha])
         }
-        selectableDisplay!.runAction(sequence)
+        
+        selectableDisplay!.runAction(locked)
         selectableDisplay?.texture = self.objectArray[self.selectionIndex].texture!
+    }
+    
+    
+    // Muda o botão de seleção
+    private func changeSelectButton(){
+        
+        var select: String
+        
+        if checkLocked(){
+            select = self.selectButtonTexts[0]
+        }
+        else{
+            select = self.selectButtonTexts[1]
+        }
+        
+        self.btnSelect!.labelText?.setLabelText(select)
+        self.btnSelect!.labelText?.introAnimation()
+    }
+    
+    private func checkLocked() -> Bool{
+        return self.objectArray[self.selectionIndex].locked
     }
     
     required init?(coder aDecoder: NSCoder) {

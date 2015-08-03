@@ -242,14 +242,14 @@ class RTEventManager: NSObject {
     func callEventTreasure(randomBase: Int){
         let event = GEventManager!.pickEvent(RTEvent.EventType.Treasure)
         
-        let gold = GCurrentHero.attributes.obtainGold(randomBase)
+        let gold = GHeroesManager!.currentHero.attributes.obtainGold(randomBase)
         self.openEventWindow(event, value: gold)
     }
     
     func callEventTheft(randomBase: Int){
         let event = GEventManager!.pickEvent(RTEvent.EventType.Theft)
         
-        let gold = GCurrentHero.attributes.loseGold(randomBase)
+        let gold = GHeroesManager!.currentHero.attributes.loseGold(randomBase)
         self.openEventWindow(event, value: gold)
     }
     
@@ -258,14 +258,14 @@ class RTEventManager: NSObject {
     func callEventHeal(randomBase: Int){
         let event = GEventManager!.pickEvent(RTEvent.EventType.Heal)
         
-        let heal = GCurrentHero.attributes.recoverHealth(randomBase)
+        let heal = GHeroesManager!.currentHero.attributes.recoverHealth(randomBase)
         self.openEventWindow(event, value: heal)
     }
     
     func callEventTrap(randomBase: Int){
         let event = GEventManager!.pickEvent(RTEvent.EventType.Trap)
         
-        let damage = GCurrentHero.attributes.loseHealth(randomBase)
+        let damage = GHeroesManager!.currentHero.attributes.loseHealth(randomBase)
         self.openEventWindow(event, value: damage)
     }
     
@@ -274,14 +274,14 @@ class RTEventManager: NSObject {
     func callEventMiracle(attribute: RTAttributes.AttributesEnum, randomBase: Int){
         let event = GEventManager!.pickEvent(RTEvent.EventType.Miracle)
         
-        let statGain = GCurrentHero.attributes.gainOrLoseStat(attribute, base: randomBase, gain: true)
+        let statGain = GHeroesManager!.currentHero.attributes.gainOrLoseStat(attribute, base: randomBase, gain: true)
         self.openEventWindow(event, value: statGain)
     }
     
     func callEventDisaster(attribute: RTAttributes.AttributesEnum, randomBase: Int){
         let event = GEventManager!.pickEvent(RTEvent.EventType.Disaster)
         
-        let statLoss = GCurrentHero.attributes.gainOrLoseStat(attribute, base: randomBase, gain: false)
+        let statLoss = GHeroesManager!.currentHero.attributes.gainOrLoseStat(attribute, base: randomBase, gain: false)
         self.openEventWindow(event, value: statLoss)
     }
     

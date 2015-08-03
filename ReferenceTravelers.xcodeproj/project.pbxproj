@@ -24,6 +24,8 @@
 		5407120B1B571F8D00252EF9 /* RTBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5407120A1B571F8D00252EF9 /* RTBackground.swift */; };
 		5407120D1B572ABE00252EF9 /* RTSettingsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5407120C1B572ABE00252EF9 /* RTSettingsScene.swift */; };
 		5407120F1B57709300252EF9 /* RTButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5407120E1B57709300252EF9 /* RTButton.swift */; };
+		54305D401B6E9DA6008A85D0 /* RTTextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54305D3F1B6E9DA6008A85D0 /* RTTextButton.swift */; };
+		54305D441B6EA88E008A85D0 /* RTBoingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54305D431B6EA88E008A85D0 /* RTBoingButton.swift */; };
 		543A0F701B64784400B4C77A /* RTLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543A0F6F1B64784400B4C77A /* RTLabel.swift */; };
 		543A0F761B6727E000B4C77A /* RTEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543A0F751B6727E000B4C77A /* RTEvent.swift */; };
 		543A0F7E1B682C8200B4C77A /* RTEventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543A0F7D1B682C8200B4C77A /* RTEventManager.swift */; };
@@ -46,7 +48,7 @@
 		543A0FAA1B6D793600B4C77A /* TitleThemeShort.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 543A0FA81B6D793600B4C77A /* TitleThemeShort.mp3 */; };
 		543A0FAC1B6D7A9600B4C77A /* Square.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 543A0FAB1B6D799400B4C77A /* Square.ttf */; };
 		545F85DD1B579B20003ABC76 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 545F85DC1B579B20003ABC76 /* Images.xcassets */; };
-		5475B9551B6D84F0004877C2 /* RTTextWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5475B9541B6D84F0004877C2 /* RTTextWindow.swift */; };
+		5475B9551B6D84F0004877C2 /* RTHeroTextWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5475B9541B6D84F0004877C2 /* RTHeroTextWindow.swift */; };
 		5475B9571B6D88D5004877C2 /* RTLabelValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5475B9561B6D88D5004877C2 /* RTLabelValue.swift */; };
 		5475B95A1B6DD92E004877C2 /* RTSelectionMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5475B9591B6DD92E004877C2 /* RTSelectionMenu.swift */; };
 		5475B95D1B6DE1A1004877C2 /* RTSelectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5475B95C1B6DE1A1004877C2 /* RTSelectable.swift */; };
@@ -59,6 +61,14 @@
 		5489502A1B64267E00032B67 /* RTTileVillage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548950291B64267E00032B67 /* RTTileVillage.swift */; };
 		5489502C1B64274E00032B67 /* RTTileLair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5489502B1B64274E00032B67 /* RTTileLair.swift */; };
 		5489502E1B643F2600032B67 /* RTEventWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5489502D1B643F2600032B67 /* RTEventWindow.swift */; };
+		549FBDB31B6EDB5F00A4F00A /* RTStage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549FBDB21B6EDB5F00A4F00A /* RTStage.swift */; };
+		549FBDB61B6EEA1600A4F00A /* RTStageTextWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549FBDB51B6EEA1600A4F00A /* RTStageTextWindow.swift */; };
+		549FBDB81B6EF65100A4F00A /* RTStageMedieval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549FBDB71B6EF65100A4F00A /* RTStageMedieval.swift */; };
+		549FBDBA1B6EF71800A4F00A /* RTStageSciFi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549FBDB91B6EF71800A4F00A /* RTStageSciFi.swift */; };
+		549FBDBC1B6EF89900A4F00A /* RTStageAngelGrove.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549FBDBB1B6EF89900A4F00A /* RTStageAngelGrove.swift */; };
+		549FBDBE1B6EF97C00A4F00A /* RTStageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549FBDBD1B6EF97C00A4F00A /* RTStageManager.swift */; };
+		549FBDC01B6F35BD00A4F00A /* RTTitleStart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549FBDBF1B6F35BD00A4F00A /* RTTitleStart.swift */; };
+		549FBDC31B6F39D000A4F00A /* RTTitleLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549FBDC21B6F39CF00A4F00A /* RTTitleLogo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +103,8 @@
 		5407120A1B571F8D00252EF9 /* RTBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTBackground.swift; sourceTree = "<group>"; };
 		5407120C1B572ABE00252EF9 /* RTSettingsScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTSettingsScene.swift; sourceTree = "<group>"; };
 		5407120E1B57709300252EF9 /* RTButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTButton.swift; sourceTree = "<group>"; };
+		54305D3F1B6E9DA6008A85D0 /* RTTextButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTTextButton.swift; sourceTree = "<group>"; };
+		54305D431B6EA88E008A85D0 /* RTBoingButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTBoingButton.swift; sourceTree = "<group>"; };
 		543A0F6F1B64784400B4C77A /* RTLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTLabel.swift; sourceTree = "<group>"; };
 		543A0F751B6727E000B4C77A /* RTEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTEvent.swift; sourceTree = "<group>"; };
 		543A0F7D1B682C8200B4C77A /* RTEventManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTEventManager.swift; sourceTree = "<group>"; };
@@ -115,7 +127,7 @@
 		543A0FA81B6D793600B4C77A /* TitleThemeShort.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TitleThemeShort.mp3; sourceTree = "<group>"; };
 		543A0FAB1B6D799400B4C77A /* Square.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Square.ttf; sourceTree = "<group>"; };
 		545F85DC1B579B20003ABC76 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		5475B9541B6D84F0004877C2 /* RTTextWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTTextWindow.swift; sourceTree = "<group>"; };
+		5475B9541B6D84F0004877C2 /* RTHeroTextWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTHeroTextWindow.swift; sourceTree = "<group>"; };
 		5475B9561B6D88D5004877C2 /* RTLabelValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTLabelValue.swift; sourceTree = "<group>"; };
 		5475B9591B6DD92E004877C2 /* RTSelectionMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTSelectionMenu.swift; sourceTree = "<group>"; };
 		5475B95C1B6DE1A1004877C2 /* RTSelectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTSelectable.swift; sourceTree = "<group>"; };
@@ -128,6 +140,14 @@
 		548950291B64267E00032B67 /* RTTileVillage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTTileVillage.swift; sourceTree = "<group>"; };
 		5489502B1B64274E00032B67 /* RTTileLair.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTTileLair.swift; sourceTree = "<group>"; };
 		5489502D1B643F2600032B67 /* RTEventWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTEventWindow.swift; sourceTree = "<group>"; };
+		549FBDB21B6EDB5F00A4F00A /* RTStage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTStage.swift; sourceTree = "<group>"; };
+		549FBDB51B6EEA1600A4F00A /* RTStageTextWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTStageTextWindow.swift; sourceTree = "<group>"; };
+		549FBDB71B6EF65100A4F00A /* RTStageMedieval.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTStageMedieval.swift; sourceTree = "<group>"; };
+		549FBDB91B6EF71800A4F00A /* RTStageSciFi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTStageSciFi.swift; sourceTree = "<group>"; };
+		549FBDBB1B6EF89900A4F00A /* RTStageAngelGrove.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTStageAngelGrove.swift; sourceTree = "<group>"; };
+		549FBDBD1B6EF97C00A4F00A /* RTStageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTStageManager.swift; sourceTree = "<group>"; };
+		549FBDBF1B6F35BD00A4F00A /* RTTitleStart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTTitleStart.swift; sourceTree = "<group>"; };
+		549FBDC21B6F39CF00A4F00A /* RTTitleLogo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTTitleLogo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -235,9 +255,11 @@
 		540711FA1B542BA200252EF9 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				5489501F1B58BF5900032B67 /* Control */,
+				549FBDC11B6F361F00A4F00A /* Title */,
 				540711F91B542A6E00252EF9 /* Base */,
+				5489501F1B58BF5900032B67 /* Control */,
 				548950261B63405000032B67 /* Board */,
+				549FBDB41B6EDB6A00A4F00A /* Stage */,
 				540711FD1B544B5000252EF9 /* Hero */,
 			);
 			name = Classes;
@@ -254,6 +276,17 @@
 				543A0FA31B6D775B00B4C77A /* RTHeroMage.swift */,
 			);
 			name = Hero;
+			sourceTree = "<group>";
+		};
+		54305D451B6EB1C7008A85D0 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				5407120E1B57709300252EF9 /* RTButton.swift */,
+				54305D3F1B6E9DA6008A85D0 /* RTTextButton.swift */,
+				54305D431B6EA88E008A85D0 /* RTBoingButton.swift */,
+				548950201B58C03100032B67 /* RTSelectorButton.swift */,
+			);
+			name = Buttons;
 			sourceTree = "<group>";
 		};
 		543A0F771B6727F300B4C77A /* Tiles */ = {
@@ -360,7 +393,8 @@
 				543A0F6F1B64784400B4C77A /* RTLabel.swift */,
 				5475B95E1B6DED9D004877C2 /* RTLabelText.swift */,
 				5475B9561B6D88D5004877C2 /* RTLabelValue.swift */,
-				5475B9541B6D84F0004877C2 /* RTTextWindow.swift */,
+				5475B9541B6D84F0004877C2 /* RTHeroTextWindow.swift */,
+				549FBDB51B6EEA1600A4F00A /* RTStageTextWindow.swift */,
 			);
 			name = Text;
 			sourceTree = "<group>";
@@ -378,8 +412,7 @@
 			isa = PBXGroup;
 			children = (
 				5475B95B1B6DE175004877C2 /* Selection Menu */,
-				5407120E1B57709300252EF9 /* RTButton.swift */,
-				548950201B58C03100032B67 /* RTSelectorButton.swift */,
+				54305D451B6EB1C7008A85D0 /* Buttons */,
 				5489501D1B584B3800032B67 /* RTGamePad.swift */,
 			);
 			name = Control;
@@ -392,6 +425,27 @@
 				543A0F771B6727F300B4C77A /* Tiles */,
 			);
 			name = Board;
+			sourceTree = "<group>";
+		};
+		549FBDB41B6EDB6A00A4F00A /* Stage */ = {
+			isa = PBXGroup;
+			children = (
+				549FBDB21B6EDB5F00A4F00A /* RTStage.swift */,
+				549FBDBD1B6EF97C00A4F00A /* RTStageManager.swift */,
+				549FBDB71B6EF65100A4F00A /* RTStageMedieval.swift */,
+				549FBDB91B6EF71800A4F00A /* RTStageSciFi.swift */,
+				549FBDBB1B6EF89900A4F00A /* RTStageAngelGrove.swift */,
+			);
+			name = Stage;
+			sourceTree = "<group>";
+		};
+		549FBDC11B6F361F00A4F00A /* Title */ = {
+			isa = PBXGroup;
+			children = (
+				549FBDBF1B6F35BD00A4F00A /* RTTitleStart.swift */,
+				549FBDC21B6F39CF00A4F00A /* RTTitleLogo.swift */,
+			);
+			name = Title;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -501,6 +555,7 @@
 				5475B9571B6D88D5004877C2 /* RTLabelValue.swift in Sources */,
 				540711F41B54297B00252EF9 /* RTHideRequired.swift in Sources */,
 				5407120B1B571F8D00252EF9 /* RTBackground.swift in Sources */,
+				54305D401B6E9DA6008A85D0 /* RTTextButton.swift in Sources */,
 				5407120D1B572ABE00252EF9 /* RTSettingsScene.swift in Sources */,
 				540711F61B542A0700252EF9 /* RTHero.swift in Sources */,
 				543A0FA21B6D75DE00B4C77A /* RTHeroRogue.swift in Sources */,
@@ -512,6 +567,7 @@
 				5475B95A1B6DD92E004877C2 /* RTSelectionMenu.swift in Sources */,
 				540711E71B5419F800252EF9 /* RTCombatScene.swift in Sources */,
 				543A0F9C1B6AEA7100B4C77A /* RTWindow.swift in Sources */,
+				549FBDBA1B6EF71800A4F00A /* RTStageSciFi.swift in Sources */,
 				543A0F961B69E92800B4C77A /* RTTileGraveyard.swift in Sources */,
 				543A0F7E1B682C8200B4C77A /* RTEventManager.swift in Sources */,
 				540711EE1B54283700252EF9 /* RTHeroSelectionScene.swift in Sources */,
@@ -520,19 +576,23 @@
 				548950251B633CA800032B67 /* RTTile.swift in Sources */,
 				5475B95F1B6DED9D004877C2 /* RTLabelText.swift in Sources */,
 				543A0F891B69C5BA00B4C77A /* RTTileRandom.swift in Sources */,
+				549FBDBE1B6EF97C00A4F00A /* RTStageManager.swift in Sources */,
 				543A0F941B69E47C00B4C77A /* RTTileCitadel.swift in Sources */,
 				540711C31B54159E00252EF9 /* AppDelegate.swift in Sources */,
+				549FBDB61B6EEA1600A4F00A /* RTStageTextWindow.swift in Sources */,
 				543A0FA41B6D775B00B4C77A /* RTHeroMage.swift in Sources */,
 				5489502C1B64274E00032B67 /* RTTileLair.swift in Sources */,
 				540711F21B5428AA00252EF9 /* RTBoardScene.swift in Sources */,
 				540712071B56F95C00252EF9 /* RTAudio.swift in Sources */,
+				549FBDC01B6F35BD00A4F00A /* RTTitleStart.swift in Sources */,
 				5475B95D1B6DE1A1004877C2 /* RTSelectable.swift in Sources */,
 				543A0F701B64784400B4C77A /* RTLabel.swift in Sources */,
 				543A0F761B6727E000B4C77A /* RTEvent.swift in Sources */,
 				543A0F901B69DFA500B4C77A /* RTTileTribe.swift in Sources */,
 				548950281B641D7000032B67 /* RTTileCave.swift in Sources */,
+				549FBDB31B6EDB5F00A4F00A /* RTStage.swift in Sources */,
 				5489501E1B584B3800032B67 /* RTGamePad.swift in Sources */,
-				5475B9551B6D84F0004877C2 /* RTTextWindow.swift in Sources */,
+				5475B9551B6D84F0004877C2 /* RTHeroTextWindow.swift in Sources */,
 				540711F01B54287000252EF9 /* RTStageSelectionScene.swift in Sources */,
 				543A0F8C1B69CEB300B4C77A /* RTTileJudgement.swift in Sources */,
 				5475B9611B6DFE04004877C2 /* RTHeroManager.swift in Sources */,
@@ -541,7 +601,11 @@
 				543A0F9A1B6AC82B00B4C77A /* RTTilePackCard.swift in Sources */,
 				5407120F1B57709300252EF9 /* RTButton.swift in Sources */,
 				540711EC1B5426EF00252EF9 /* RTTitleScene.swift in Sources */,
+				549FBDC31B6F39D000A4F00A /* RTTitleLogo.swift in Sources */,
+				549FBDB81B6EF65100A4F00A /* RTStageMedieval.swift in Sources */,
+				549FBDBC1B6EF89900A4F00A /* RTStageAngelGrove.swift in Sources */,
 				540712051B56F1AE00252EF9 /* RTAttributes.swift in Sources */,
+				54305D441B6EA88E008A85D0 /* RTBoingButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -683,6 +747,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ReferenceTravelers/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
 			};

@@ -10,9 +10,10 @@ import UIKit
 import SpriteKit
 
 class RTTitleScene: SKScene {
-    
-    var buttonNodeRight: RTButton?
+
     var backgroundNode: RTBackground?
+    var logo: RTTitleLogo?
+    var screen: RTTitleStart?
     
     override init(size: CGSize) {
         
@@ -21,28 +22,67 @@ class RTTitleScene: SKScene {
         //Inicia node de Sons e Musica
         GAudioNode!.playMusic(RTAudio.MusicsEnum.Title)
         
+        self.backgroundColor = UIColor.blackColor()
+        
         //Background da Scene
-        backgroundNode = RTBackground(imageNamed: "background0")
+        backgroundNode = RTBackground(imageNamed: "bgTitle")
         backgroundNode!.position = CGPoint(x: 0.0, y: 0.0)
+        backgroundNode!.alpha = 0.2
         self.addChild(backgroundNode!)
         
+        screen = RTTitleStart()
+        screen!.position = CGPoint(x: self.size.width/2.05, y: self.size.height/3.85)
+        self.addChild(screen!)
         
-        buttonNodeRight = RTButton(imageNamed: "btnArrowDir", actionOnTouchBegan: false)
-        buttonNodeRight!.position = CGPoint(x: size.width - buttonNodeRight!.size.width, y: size.height - buttonNodeRight!.size.height)
-        buttonNodeRight!.alpha = 0.3
-        
-        //BLOCO DE AÇÃO DO BOTÃO
-        buttonNodeRight?.setRTButtonAction({ () -> () in
-            self.runAction(SKAction.waitForDuration(0.2))
-            let transition = SKTransition.pushWithDirection(SKTransitionDirection.Left, duration: 1.5)
-            self.scene?.view?.presentScene(GHeroSelectionScene, transition: transition)
-        })
-        self.addChild(buttonNodeRight!)
+        logo = RTTitleLogo()
+        logo!.position = CGPoint(x: self.size.width/2, y: self.size.height/1.6)
+        self.addChild(logo!)
     
         
         self.userInteractionEnabled = true
         
+    }
+    
+    func outroAnimation(){
         
+        // ANIMAÇÃO DE ACESSO E LUZES
+        
+        self.screen!.acceptedAnimation()
+        
+        let blockLogo = SKAction.runBlock({self.logo!.outroAnimation()})
+        
+        let waitLogo = SKAction.waitForDuration(0.8)
+        let waitOutros = SKAction.waitForDuration(1.4)
+        
+        let alpha = SKAction.fadeAlphaTo(1.0, duration: 0.1)
+        let alphaBack = SKAction.fadeAlphaTo(0.2, duration: 0.3)
+        let wait = SKAction.waitForDuration(0.3)
+        
+        let sequence = SKAction.sequence([waitOutros, blockLogo, waitLogo, alpha, alphaBack, wait, alpha, alphaBack, waitLogo, alpha, wait])
+        
+        let zoom = SKAction.scaleTo(1.15, duration: 1.0)
+        let move = SKAction.moveByX(-70, y: -70, duration: 1.0)
+        
+        
+        let blockScreen = SKAction.runBlock({
+            self.screen!.removeAllActions()
+            let alphaScreen = SKAction.fadeAlphaTo(0.0, duration: 0.2)
+            self.screen!.runAction(alphaScreen)
+            
+        })
+        
+        let group = SKAction.group([blockScreen, zoom, move])
+        
+        let blockHero = SKAction.runBlock({
+            let transition = SKTransition.crossFadeWithDuration(0.8)
+            self.scene?.view?.presentScene(GHeroSelectionScene, transition: transition)
+        })
+        
+        let sequenceHero = SKAction.sequence([group, blockHero])
+        
+        let sequenceFinal = SKAction.sequence([sequence, waitLogo, sequenceHero])
+        
+        self.backgroundNode!.runAction(sequenceFinal)
         
     }
     
@@ -55,7 +95,7 @@ class RTTitleScene: SKScene {
     
     //Recebe toques na Scene.
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-        GAudioNode!.playSound(RTAudio.SoundsEnum.Dano)
+        self.outroAnimation()
     }
     
     

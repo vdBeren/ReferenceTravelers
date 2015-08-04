@@ -12,7 +12,7 @@ import SpriteKit
 class RTTileCave: RTTile {
    
     init(){
-        super.init(imageNamed: "TILECAVE")
+        super.init(imageNamed: "tileExplorer")
         
         tileDescription = "A misterious cave. What surprises it hides?"
         tileType = TileType.Explorer

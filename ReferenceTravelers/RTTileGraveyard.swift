@@ -11,7 +11,7 @@ import UIKit
 class RTTileGraveyard: RTTile {
    
     init(){
-        super.init(imageNamed: "TILEGRAVEYARD")
+        super.init(imageNamed: "tileUrban")
         
         tileDescription = "Graves and tombs. Not friendly at night. Nor day."
         tileType = TileType.Urban

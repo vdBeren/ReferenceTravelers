@@ -9,6 +9,7 @@
 import UIKit
 import SpriteKit
 
+// Classe da cena de Combate.
 
 class RTCombatScene: SKScene{
     

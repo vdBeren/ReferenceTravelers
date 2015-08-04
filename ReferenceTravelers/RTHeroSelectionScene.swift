@@ -9,6 +9,7 @@
 import UIKit
 import SpriteKit
 
+// Classe da cena de seleção de Heroi. Possui um Selection Menu e uma Text Window.
 
 class RTHeroSelectionScene: SKScene {
     
@@ -78,6 +79,8 @@ class RTHeroSelectionScene: SKScene {
             
             GHeroesManager!.currentHero = (selectionHero as? RTHero)!
             self.textWindow!.refreshContents()
+            
+            GAudioNode!.playSound(RTAudio.SoundsEnum.Blop)
             
         })
         

@@ -46,6 +46,8 @@ class RTHeroTextWindow: RTWindow {
         heroSelected = GHeroesManager!.currentHero
         heroAttributes = GHeroesManager!.currentHero.attributes
         
+        self.labelPrimary?.setLabelText(heroAttributes.primaryType.rawValue)
+        
         var attributeArray: [Int] = [heroAttributes.maxHealth, heroAttributes.maxStamina, heroAttributes.primary, heroAttributes.agility, heroAttributes.luck, heroAttributes.greed]
         
         for (index, label) in enumerate(contentsArray){
@@ -53,6 +55,7 @@ class RTHeroTextWindow: RTWindow {
             label.introAnimation()
             label.labelValue?.introAnimation()
         }
+        
         
         self.labelQuote?.introAnimation()
         self.labelQuoteText!.finalText = heroSelected.quote

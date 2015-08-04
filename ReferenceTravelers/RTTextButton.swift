@@ -16,9 +16,9 @@ class RTTextButton: RTButton {
     var labelText: RTLabelText?
     var mainColor, secondaryColor: SKColor?
     
-    init(imageNamed imageName: String, actionOnTouchBegan: Bool, text: String, fontSize: CGFloat, minimum: Int, colors: [SKColor]) {
+    init(imageNamed imageName: String, actionOnTouchBegan: Bool, text: String, fontSize: CGFloat, minimum: Int, colors: [SKColor], actionTime: NSTimeInterval) {
         
-        super.init(imageNamed: imageName, actionOnTouchBegan: actionOnTouchBegan)
+        super.init(imageNamed: imageName, actionOnTouchBegan: actionOnTouchBegan, actionTime: actionTime)
         
         self.mainColor = colors[0]
         self.secondaryColor = colors[1]

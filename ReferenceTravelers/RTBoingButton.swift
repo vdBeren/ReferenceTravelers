@@ -14,9 +14,9 @@ import SpriteKit
 
 class RTBoingButton: RTButton {
     
-    override init(imageNamed imageName: String, actionOnTouchBegan: Bool) {
+    override init(imageNamed imageName: String, actionOnTouchBegan: Bool, actionTime: NSTimeInterval) {
         
-        super.init(imageNamed: imageName, actionOnTouchBegan: actionOnTouchBegan)
+        super.init(imageNamed: imageName, actionOnTouchBegan: actionOnTouchBegan, actionTime: actionTime)
 
     }
     

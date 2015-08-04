@@ -9,6 +9,8 @@
 import UIKit
 import SpriteKit
 
+// Classe da cena da tela de Titulo
+
 class RTTitleScene: SKScene {
 
     var backgroundNode: RTBackground?
@@ -19,14 +21,11 @@ class RTTitleScene: SKScene {
         
         super.init(size: size)
         
-        //Inicia node de Sons e Musica
-        GAudioNode!.playMusic(RTAudio.MusicsEnum.Title)
-        
         self.backgroundColor = UIColor.blackColor()
         
         //Background da Scene
         backgroundNode = RTBackground(imageNamed: "bgTitle")
-        backgroundNode!.position = CGPoint(x: 0.0, y: 0.0)
+        //backgroundNode!.position = CGPoint(x: 0.0, y: 0.0)
         backgroundNode!.alpha = 0.2
         self.addChild(backgroundNode!)
         
@@ -49,7 +48,10 @@ class RTTitleScene: SKScene {
         
         self.screen!.acceptedAnimation()
         
-        let blockLogo = SKAction.runBlock({self.logo!.outroAnimation()})
+        let blockLogo = SKAction.runBlock({
+            self.logo!.outroAnimation()
+            
+        })
         
         let waitLogo = SKAction.waitForDuration(0.8)
         let waitOutros = SKAction.waitForDuration(1.4)
@@ -68,6 +70,7 @@ class RTTitleScene: SKScene {
             self.screen!.removeAllActions()
             let alphaScreen = SKAction.fadeAlphaTo(0.0, duration: 0.2)
             self.screen!.runAction(alphaScreen)
+            GAudioNode!.playMusic(RTAudio.MusicsEnum.Title)
             
         })
         
@@ -95,7 +98,11 @@ class RTTitleScene: SKScene {
     
     //Recebe toques na Scene.
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-        self.outroAnimation()
+       
+    }
+    
+    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+         self.outroAnimation()
     }
     
     

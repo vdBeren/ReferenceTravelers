@@ -43,7 +43,7 @@ class RTEventWindow: RTWindow {
         self.value = value
         
         
-        self.buttonClose = RTButton(imageNamed: "btnEventWindow", actionOnTouchBegan: false)
+        self.buttonClose = RTButton(imageNamed: "btnEventWindow", actionOnTouchBegan: false, actionTime: 0.2)
         self.buttonClose!.anchorPoint = CGPoint(x: 0.5, y: 2.0)
         
         // BLOCO DE AÇÃO DO BOTAO DA EVENT WINDOW

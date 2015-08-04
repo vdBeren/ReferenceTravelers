@@ -9,6 +9,8 @@
 import UIKit
 import SpriteKit
 
+// Classe que controla o monitor da tela de titulo.
+
 class RTTitleStart: RTHideRequired {
    
     var labelStart, labelStart2: RTLabelText?

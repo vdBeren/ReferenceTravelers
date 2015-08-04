@@ -32,6 +32,7 @@ class RTSelectionMenu: SKNode {
     
     var fontSize: CGFloat = 26.0
     
+    
     init(objectArray: [RTSelectable], buttonsImageNames: [String], selectButtonTexts: [String], colors: [SKColor]){
         
         super.init()
@@ -55,6 +56,7 @@ class RTSelectionMenu: SKNode {
     }
     
     func setRTSelectButton(block: (Void) -> (Void)){
+        self.selectableDisplay?.selectableAction = block
         self.selectButtonAction = block
     }
     
@@ -71,7 +73,7 @@ class RTSelectionMenu: SKNode {
         self.selectableDisplay = RTSelectable(imageNamed: objectArray[0].imageName)
         self.addChild(self.selectableDisplay!)
         
-        self.btnLeft = RTBoingButton(imageNamed: self.buttonsImageNames[0], actionOnTouchBegan: true)
+        self.btnLeft = RTBoingButton(imageNamed: self.buttonsImageNames[0], actionOnTouchBegan: true, actionTime: 0.2)
         self.btnLeft?.setRTButtonAction({ () -> () in
             self.buttonLeftAction()
         })
@@ -79,7 +81,7 @@ class RTSelectionMenu: SKNode {
         self.btnLeft?.zPosition += 1
         self.addChild(self.btnLeft!)
         
-        self.btnRight = RTBoingButton(imageNamed: self.buttonsImageNames[1], actionOnTouchBegan: true)
+        self.btnRight = RTBoingButton(imageNamed: self.buttonsImageNames[1], actionOnTouchBegan: true, actionTime: 0.2)
         self.btnRight?.setRTButtonAction({ () -> () in
             self.buttonRightAction()
         })
@@ -87,7 +89,7 @@ class RTSelectionMenu: SKNode {
         self.btnRight?.zPosition += 1
         self.addChild(self.btnRight!)
         
-        self.btnSelect = RTTextButton(imageNamed: self.buttonsImageNames[2], actionOnTouchBegan: false, text: selectButtonTexts[1], fontSize: fontSize, minimum: 5, colors: colors)
+        self.btnSelect = RTTextButton(imageNamed: self.buttonsImageNames[2], actionOnTouchBegan: false, text: selectButtonTexts[1], fontSize: fontSize, minimum: 5, colors: colors, actionTime: 1.0)
         self.btnSelect?.setRTButtonAction({ () -> () in
             self.buttonSelectAction()
         })
@@ -95,7 +97,7 @@ class RTSelectionMenu: SKNode {
         self.addChild(self.btnSelect!)
         
         
-        self.labelObjectName = RTTextButton(imageNamed: self.buttonsImageNames[3], actionOnTouchBegan: false, text: "NAME", fontSize: fontSize, minimum: 7, colors: colors)
+        self.labelObjectName = RTTextButton(imageNamed: self.buttonsImageNames[3], actionOnTouchBegan: false, text: "NAME", fontSize: fontSize, minimum: 7, colors: colors, actionTime: 1.0)
         self.labelObjectName!.userInteractionEnabled = false
         self.refreshLabelName()
         self.addChild(self.labelObjectName!)
@@ -117,10 +119,12 @@ class RTSelectionMenu: SKNode {
     
     private func buttonRightAction(){
         self.chanceSelection(1)
+        GAudioNode!.playSound(RTAudio.SoundsEnum.Blop)
     }
     
     private func buttonLeftAction(){
         self.chanceSelection(-1)
+        GAudioNode!.playSound(RTAudio.SoundsEnum.Blop)
     }
 
     private func chanceSelection(value: Int){

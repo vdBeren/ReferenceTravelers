@@ -17,6 +17,7 @@ class RTSelectable: RTHideRequired {
     var imageName: String = ""
     var moneyCost: CGFloat = 0.99
     
+    var selectableAction: () -> () = {}
     
     init(imageNamed imageName:String){
         
@@ -27,10 +28,16 @@ class RTSelectable: RTHideRequired {
         super.init(texture: texture, color: color, size: size)
         
         self.name = "SELECTABLE"
-        self.userInteractionEnabled = false
         
     }
     
+    func setRTSelectableAction(block: ()->()){
+        self.selectableAction = block
+    }
+    
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        self.selectableAction()
+    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

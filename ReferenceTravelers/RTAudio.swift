@@ -13,7 +13,8 @@ import UIKit
 import SpriteKit
 import AVFoundation
 
-//Classe que cuida de todo o Audio do jogo.
+// Classe que gerencia todo o Audio do jogo. Ela pode tocar uma música por vez, e um numero qualquer de sons curtos.
+
 class RTAudio: SKNode {
     
     var musicPlayer: AVAudioPlayer?
@@ -26,8 +27,10 @@ class RTAudio: SKNode {
     
     // Enumerators de Sons e Musicas. Valor dos Enums tem o nome do arquivo, sem o formato! (Formato .wav para sons e .mp3 para músicas)
     enum SoundsEnum : String{
-        case Golpe = "GOLPE"
-        case Dano = "DANO"
+        case Switch = "LightSwitch"
+        case Power = "PowerIncreasingFast"
+        case Blop = "btnBlop"
+        case Tot = "btnTot"
     }
     
     enum MusicsEnum : String{

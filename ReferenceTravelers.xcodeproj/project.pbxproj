@@ -69,6 +69,11 @@
 		549FBDBE1B6EF97C00A4F00A /* RTStageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549FBDBD1B6EF97C00A4F00A /* RTStageManager.swift */; };
 		549FBDC01B6F35BD00A4F00A /* RTTitleStart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549FBDBF1B6F35BD00A4F00A /* RTTitleStart.swift */; };
 		549FBDC31B6F39D000A4F00A /* RTTitleLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549FBDC21B6F39CF00A4F00A /* RTTitleLogo.swift */; };
+		54CE22CA1B71159700A37235 /* LightSwitch.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54CE22C81B71159700A37235 /* LightSwitch.wav */; };
+		54CE22CE1B711A4600A37235 /* PowerIncreasingFast.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54CE22CD1B711A4600A37235 /* PowerIncreasingFast.wav */; };
+		54CE22D11B7126E700A37235 /* btnBlop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54CE22CF1B7126E700A37235 /* btnBlop.wav */; };
+		54CE22D21B7126E700A37235 /* btnBleep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54CE22D01B7126E700A37235 /* btnBleep.wav */; };
+		54CE22D41B71278400A37235 /* btnTot.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54CE22D31B71278400A37235 /* btnTot.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,6 +153,11 @@
 		549FBDBD1B6EF97C00A4F00A /* RTStageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTStageManager.swift; sourceTree = "<group>"; };
 		549FBDBF1B6F35BD00A4F00A /* RTTitleStart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTTitleStart.swift; sourceTree = "<group>"; };
 		549FBDC21B6F39CF00A4F00A /* RTTitleLogo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTTitleLogo.swift; sourceTree = "<group>"; };
+		54CE22C81B71159700A37235 /* LightSwitch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = LightSwitch.wav; path = ../LightSwitch.wav; sourceTree = "<group>"; };
+		54CE22CD1B711A4600A37235 /* PowerIncreasingFast.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = PowerIncreasingFast.wav; path = ../PowerIncreasingFast.wav; sourceTree = "<group>"; };
+		54CE22CF1B7126E700A37235 /* btnBlop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = btnBlop.wav; sourceTree = "<group>"; };
+		54CE22D01B7126E700A37235 /* btnBleep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = btnBleep.wav; sourceTree = "<group>"; };
+		54CE22D31B71278400A37235 /* btnTot.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = btnTot.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -355,6 +365,7 @@
 		5475B9501B6D7D4C004877C2 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
+				54CE22CC1B7115A400A37235 /* Sound Effects */,
 				5475B9511B6D7D54004877C2 /* Music */,
 			);
 			name = Audio;
@@ -448,6 +459,18 @@
 			name = Title;
 			sourceTree = "<group>";
 		};
+		54CE22CC1B7115A400A37235 /* Sound Effects */ = {
+			isa = PBXGroup;
+			children = (
+				54CE22C81B71159700A37235 /* LightSwitch.wav */,
+				54CE22CD1B711A4600A37235 /* PowerIncreasingFast.wav */,
+				54CE22CF1B7126E700A37235 /* btnBlop.wav */,
+				54CE22D01B7126E700A37235 /* btnBleep.wav */,
+				54CE22D31B71278400A37235 /* btnTot.wav */,
+			);
+			name = "Sound Effects";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -497,6 +520,7 @@
 				TargetAttributes = {
 					540711BC1B54159E00252EF9 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = ECD4M22565;
 					};
 					540711D51B54159E00252EF9 = {
 						CreatedOnToolsVersion = 6.4;
@@ -531,10 +555,15 @@
 				543A0FA61B6D790D00B4C77A /* MedievalTheme.mp3 in Resources */,
 				545F85DD1B579B20003ABC76 /* Images.xcassets in Resources */,
 				543A0FA91B6D793600B4C77A /* TitleTheme.mp3 in Resources */,
+				54CE22D41B71278400A37235 /* btnTot.wav in Resources */,
+				54CE22D11B7126E700A37235 /* btnBlop.wav in Resources */,
 				543A0FAA1B6D793600B4C77A /* TitleThemeShort.mp3 in Resources */,
 				540711D11B54159E00252EF9 /* LaunchScreen.xib in Resources */,
+				54CE22CA1B71159700A37235 /* LightSwitch.wav in Resources */,
 				540711CC1B54159E00252EF9 /* Main.storyboard in Resources */,
+				54CE22D21B7126E700A37235 /* btnBleep.wav in Resources */,
 				543A0FAC1B6D7A9600B4C77A /* Square.ttf in Resources */,
+				54CE22CE1B711A4600A37235 /* PowerIncreasingFast.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -734,9 +763,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ReferenceTravelers/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
@@ -745,10 +777,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ReferenceTravelers/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;

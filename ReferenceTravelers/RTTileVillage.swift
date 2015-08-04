@@ -11,7 +11,7 @@ import SpriteKit
 
 class RTTileVillage: RTTile {
     init(){
-        super.init(imageNamed: "TILEVILLAGE")
+        super.init(imageNamed: "tileUrban")
         
         tileDescription = "A peacefull village, with an Inn for adventurers."
         tileType = TileType.Urban

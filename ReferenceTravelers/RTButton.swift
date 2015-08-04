@@ -18,12 +18,16 @@ import SpriteKit
 class RTButton: RTHideRequired {
     
     var buttonAction: (Void) -> (Void) = {}
+    var buttonActionRunning: Bool = false
+    var actionTimeInterval: NSTimeInterval = 0.0
+    
     var buttonPressed: Bool = false
     var actionOnTouchBegan: Bool //Se a ação do botão é realizada ao soltar ou ao tocar o botão
     var buttonImageName: String
     
     
-    init (imageNamed imageName:String, actionOnTouchBegan: Bool){
+    
+    init (imageNamed imageName:String, actionOnTouchBegan: Bool, actionTime: NSTimeInterval){
         
         let color = UIColor.clearColor()
         let texture = SKTexture(imageNamed: imageName)
@@ -31,6 +35,7 @@ class RTButton: RTHideRequired {
         
         self.buttonImageName = imageName
         self.actionOnTouchBegan = actionOnTouchBegan
+        self.actionTimeInterval = actionTime
         
         super.init(texture: texture, color: color, size: size)
         
@@ -98,23 +103,38 @@ class RTButton: RTHideRequired {
         self.runAction(SKAction.repeatActionForever(sequence))
     }
     
+    private func touchOcurred(){
+        self.buttonAction()
+        self.buttonActionRunning = true
+        
+        let actionWaitBlock = SKAction.runBlock({
+            self.buttonActionRunning = false
+        })
+        
+        let wait = SKAction.waitForDuration(self.actionTimeInterval)
+        println("\(self.actionTimeInterval)")
+        let sequence = SKAction.sequence([wait, actionWaitBlock])
+        
+        self.runAction(sequence)
+        
+    }
     
     //Recebe toques no Node.
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         setButtonPressed()
         
-        if actionOnTouchBegan{
+        if actionOnTouchBegan && !buttonActionRunning{
             //GAudioNode!.playSound(RTAudio.SoundsEnum.Dano)
-            self.buttonAction()
+            self.touchOcurred()
         }
     }
     
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
         setButtonPressed()
         
-        if !actionOnTouchBegan{
+        if !actionOnTouchBegan && !buttonActionRunning{
             //GAudioNode!.playSound(RTAudio.SoundsEnum.Dano)
-            self.buttonAction()
+            self.touchOcurred()
         }
         
     }

@@ -10,7 +10,7 @@ import UIKit
 
 class RTTileLair: RTTile {
     init(){
-        super.init(imageNamed: "TILELAIR")
+        super.init(imageNamed: "tileArcane")
         
         tileDescription = "Some ancient creature lair. Great treasures, great dangers."
         tileType = TileType.Arcane

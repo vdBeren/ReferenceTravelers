@@ -9,6 +9,7 @@
 import UIKit
 import SpriteKit
 
+// Classe da cena do Tabuleiro. Gerencia os tiles e suas mecânicas.
 
 class RTBoardScene: SKScene {
     
@@ -35,7 +36,7 @@ class RTBoardScene: SKScene {
         let tileWindow = RTTileWindow()
         self.addChild(tileWindow)
         
-        let button: RTButton = RTButton(imageNamed: "btnAction", actionOnTouchBegan: true)
+        let button: RTButton = RTButton(imageNamed: "btnAction", actionOnTouchBegan: true, actionTime: 0.2)
         self.position.y -= 300
         button.setRTButtonAction { () -> () in
             let tileWindow = RTTileWindow()

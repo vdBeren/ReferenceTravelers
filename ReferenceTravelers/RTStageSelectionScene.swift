@@ -9,6 +9,7 @@
 import UIKit
 import SpriteKit
 
+// Classe da cena de Fases. Possui um Selection Menu e uma Text Window.
 
 class RTStageSelectionScene: SKScene {
     
@@ -43,7 +44,7 @@ class RTStageSelectionScene: SKScene {
         textWindow?.zPosition += 1
         self.addChild(textWindow!)
         
-        btnBack = RTBoingButton(imageNamed: "btnBack", actionOnTouchBegan: true)
+        btnBack = RTBoingButton(imageNamed: "btnBack", actionOnTouchBegan: true, actionTime: 1.0)
         self.btnBack!.position = CGPoint(x: self.size.width/30, y: self.size.height/1.1)
         self.btnBack!.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         btnBack?.zPosition += 1
@@ -81,7 +82,7 @@ class RTStageSelectionScene: SKScene {
         selectionMenu?.setRTSelectButton({ () -> () in
             self.runAction(SKAction.waitForDuration(0.2))
             let transition = SKTransition.pushWithDirection(SKTransitionDirection.Down, duration: 1.5)
-            self.scene?.view?.presentScene(GBoardScene, transition: transition)
+           //self.scene?.view?.presentScene(GBoardScene, transition: transition)
         })
         
         var sizeW = self.size.width

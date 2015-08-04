@@ -12,6 +12,7 @@ import SpriteKit
 class RTTileWindow: RTWindow {
    
     var tileArray: [RTTilePackCard] = []
+    var setPicked: Bool = false
     
     init(){
         
@@ -52,8 +53,13 @@ class RTTileWindow: RTWindow {
     }
     
     func setPackPicked(tileType: RTTile.TileType){
-        GBoardScene!.setPackPicked(tileType)
-        self.closeWindow()
+        
+        if !setPicked{
+            GBoardScene!.setPackPicked(tileType)
+            self.closeWindow()
+        }
+
+        self.setPicked = true
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {

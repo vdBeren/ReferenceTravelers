@@ -11,7 +11,7 @@ import UIKit
 class RTTileJudgement: RTTile {
     
     init(){
-        super.init(imageNamed: "TILEJUDGEMENT")
+        super.init(imageNamed: "tileNeutral")
         
         tileDescription = "The gods will now judge you."
         tileType = TileType.Neutral

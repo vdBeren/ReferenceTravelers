@@ -11,7 +11,7 @@ import UIKit
 class RTTileCitadel: RTTile {
     
     init(){
-        super.init(imageNamed: "TILECITADEL")
+        super.init(imageNamed: "tileUrban")
         
         tileDescription = "Big city, with lots of streets and alleys, and also lost travelers."
         tileType = TileType.Urban

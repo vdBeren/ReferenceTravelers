@@ -11,7 +11,7 @@ import UIKit
 class RTTileJungle: RTTile {
     
     init(){
-        super.init(imageNamed: "TILEJUNGLE")
+        super.init(imageNamed: "tileExplorer")
         
         tileDescription = "A damp and beautifully dangerous place."
         tileType = TileType.Explorer

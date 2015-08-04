@@ -11,7 +11,7 @@ import UIKit
 class RTTileBlank: RTTile {
     
     init(){
-        super.init(imageNamed: "TILEBLANK")
+        super.init(imageNamed: "tileNeutral")
         
         tileDescription = "You stumble into nothing at all."
         tileType = TileType.Neutral

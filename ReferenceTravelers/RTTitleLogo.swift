@@ -9,6 +9,8 @@
 import UIKit
 import SpriteKit
 
+// Classe que controla o Logo da tela de titulo.
+
 class RTTitleLogo: RTHideRequired {
     
     init(){

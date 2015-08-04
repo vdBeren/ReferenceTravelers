@@ -11,7 +11,7 @@ import UIKit
 class RTTileRandom: RTTile {
     
     init(){
-        super.init(imageNamed: "TILERANDOM")
+        super.init(imageNamed: "tileNeutral")
         
         tileDescription = "What will happen? Nobody knows for sure."
         tileType = TileType.Neutral

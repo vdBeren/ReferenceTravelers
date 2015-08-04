@@ -10,7 +10,7 @@ import UIKit
 import SpriteKit
 
 
-//Classe com os efeitos usados nas Janelas popup do jogo!
+//Classe de janela genérica, que contém os efeitos usados nas Janelas popup do jogo!
 
 class RTWindow: RTHideRequired {
 

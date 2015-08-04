@@ -11,7 +11,7 @@ import UIKit
 class RTTileTribe: RTTile {
    
     init(){
-        super.init(imageNamed: "TILETRIBE")
+        super.init(imageNamed: "tileExplorer")
         
         tileDescription = "You approach a wild tribe by accident. They aren't friendly."
         tileType = TileType.Explorer

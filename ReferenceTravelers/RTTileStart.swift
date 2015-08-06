@@ -1,26 +1,27 @@
 //
-//  RTTileBlank.swift
+//  RTTileStart.swift
 //  ReferenceTravelers
 //
-//  Created by Victor D. Savariego on 30/7/15.
+//  Created by Victor D. Savariego on 5/8/15.
 //  Copyright (c) 2015 RTTeam. All rights reserved.
 //
 
 import UIKit
 
-class RTTileBlank: RTTile {
-    
+class RTTileStart: RTTile {
     init(){
         super.init(imageNamed: "tileNeutral")
         
-        tileName = "An empty field"
-        tileDescription = "You stumble into nothing at all."
+        tileName = "Start Point"
+        tileDescription = "Where you start. What lies ahead in your adventure?"
         tileType = TileType.Neutral
         tileLevel = 1
         
         //Ação do Tile
         self.setRTTileEvent { () -> () in
-            GEventManager!.callEventBlank()
+            // Começa o jogo!
+            GEventManager!.callEventStart()
+
         }
         
     }

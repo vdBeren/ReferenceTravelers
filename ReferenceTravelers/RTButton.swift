@@ -104,7 +104,10 @@ class RTButton: RTHideRequired {
     }
     
     private func touchOcurred(){
-        self.buttonAction()
+        if !buttonActionRunning{
+            self.buttonAction()
+        }
+        
         self.buttonActionRunning = true
         
         let actionWaitBlock = SKAction.runBlock({
@@ -112,7 +115,6 @@ class RTButton: RTHideRequired {
         })
         
         let wait = SKAction.waitForDuration(self.actionTimeInterval)
-        println("\(self.actionTimeInterval)")
         let sequence = SKAction.sequence([wait, actionWaitBlock])
         
         self.runAction(sequence)
@@ -123,7 +125,7 @@ class RTButton: RTHideRequired {
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         setButtonPressed()
         
-        if actionOnTouchBegan && !buttonActionRunning{
+        if actionOnTouchBegan{
             //GAudioNode!.playSound(RTAudio.SoundsEnum.Dano)
             self.touchOcurred()
         }
@@ -132,7 +134,7 @@ class RTButton: RTHideRequired {
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
         setButtonPressed()
         
-        if !actionOnTouchBegan && !buttonActionRunning{
+        if !actionOnTouchBegan{
             //GAudioNode!.playSound(RTAudio.SoundsEnum.Dano)
             self.touchOcurred()
         }

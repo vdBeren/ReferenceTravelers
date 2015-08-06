@@ -13,6 +13,7 @@ class RTTileGraveyard: RTTile {
     init(){
         super.init(imageNamed: "tileUrban")
         
+        tileName = "Graveyard"
         tileDescription = "Graves and tombs. Not friendly at night. Nor day."
         tileType = TileType.Urban
         tileLevel = 1

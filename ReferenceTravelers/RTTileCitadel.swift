@@ -13,6 +13,7 @@ class RTTileCitadel: RTTile {
     init(){
         super.init(imageNamed: "tileUrban")
         
+        tileName = "The Grand Citadel"
         tileDescription = "Big city, with lots of streets and alleys, and also lost travelers."
         tileType = TileType.Urban
         tileLevel = 1

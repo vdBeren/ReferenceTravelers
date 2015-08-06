@@ -39,8 +39,7 @@ class RTTilePackCard: RTHideRequired {
         
         let moveUp = SKAction.moveByX(0.0, y: move, duration: waitTime)
         let moveDown = SKAction.moveByX(0.0, y: -move, duration: waitTime)
-        let wait = SKAction.waitForDuration(0.01)
-        let sequence = SKAction.sequence([moveUp, wait, moveDown])
+        let sequence = SKAction.sequence([moveUp, moveDown])
         
         self.runAction(SKAction.repeatActionForever(sequence))
     }
@@ -48,7 +47,7 @@ class RTTilePackCard: RTHideRequired {
     
     //Recebe toques no Node.
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-        print(tileType.rawValue)
+        //println(tileType.rawValue)
         
         (self.parent as? RTTileWindow)?.setPackPicked(self.tileType)
         

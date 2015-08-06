@@ -70,6 +70,7 @@ class RTHeroSelectionScene: SKScene {
         self.backgroundNode!.runAction(sequence)
     }
     
+    // Constroi o menu de seleção
     private func buildSelectionMenu(){
         
         

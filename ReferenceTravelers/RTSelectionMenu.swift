@@ -56,7 +56,7 @@ class RTSelectionMenu: SKNode {
     }
     
     func setRTSelectButton(block: (Void) -> (Void)){
-        self.selectableDisplay?.selectableAction = block
+        self.selectableDisplay?.selectableAction = ({self.buttonSelectAction()})
         self.selectButtonAction = block
     }
     

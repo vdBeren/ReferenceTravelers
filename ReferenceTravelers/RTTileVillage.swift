@@ -13,6 +13,7 @@ class RTTileVillage: RTTile {
     init(){
         super.init(imageNamed: "tileUrban")
         
+        tileName = "Village"
         tileDescription = "A peacefull village, with an Inn for adventurers."
         tileType = TileType.Urban
         tileLevel = 1

@@ -13,6 +13,8 @@ class RTStageMedieval: RTStage {
     init(){
         super.init(imageNamed: "coverMedieval")
         
+        self.backgroundImage = "bgMedieval"
+        
         self.locked = false
         
         self.title = "RPG MAKER MEDIEVAL FANTASY"

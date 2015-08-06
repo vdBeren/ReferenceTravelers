@@ -24,15 +24,20 @@ class RTTileWindow: RTWindow {
         
         self.name = "TILEWINDOW"
         
-        self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        //self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
         self.zPosition = 5
         self.userInteractionEnabled = true
         
+        self.initWindow()
+    }
+    
+    func initWindow(){
         let explorer = RTTilePackCard(tileType: RTTile.TileType.Explorer)
         let urban = RTTilePackCard(tileType: RTTile.TileType.Urban)
         let arcane = RTTilePackCard(tileType: RTTile.TileType.Arcane)
         tileArray = [explorer, urban, arcane]
+        //tileArray.shuffle()
         
         for (index, tileCard) in enumerate(tileArray) {
             if index == 0{
@@ -56,10 +61,18 @@ class RTTileWindow: RTWindow {
         
         if !setPicked{
             GBoardScene!.setPackPicked(tileType)
+            GBoardScene!.disableNodes(enabled: true)
             self.closeWindow()
         }
 
         self.setPicked = true
+        
+        let wait = SKAction.waitForDuration(1.0)
+        let block = SKAction.runBlock({self.setPicked = false})
+        let sequence = SKAction.sequence([wait, block])
+        
+        self.runAction(sequence)
+        
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {

@@ -17,6 +17,8 @@ class RTTitleScene: SKScene {
     var logo: RTTitleLogo?
     var screen: RTTitleStart?
     
+    var outroStarted: Bool = false
+    
     override init(size: CGSize) {
         
         super.init(size: size)
@@ -102,7 +104,13 @@ class RTTitleScene: SKScene {
     }
     
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
-         self.outroAnimation()
+        
+        if !self.outroStarted{
+            self.outroAnimation()
+        }
+        
+        self.outroStarted = true
+        
     }
     
     

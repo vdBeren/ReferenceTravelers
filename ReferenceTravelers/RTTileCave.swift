@@ -14,6 +14,7 @@ class RTTileCave: RTTile {
     init(){
         super.init(imageNamed: "tileExplorer")
         
+        tileName = "The Cave"
         tileDescription = "A misterious cave. What surprises it hides?"
         tileType = TileType.Explorer
         tileLevel = 1

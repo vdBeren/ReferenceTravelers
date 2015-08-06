@@ -13,10 +13,13 @@ import SpriteKit
 
 class RTTile: RTHideRequired {
    
+    var tileName: String = ""
     var tileDescription: String = ""
     var tileType: RTTile.TileType = TileType.Neutral
     var tileLevel: Int = 1
     var tileEvent: (Void) -> (Void) = {}
+    
+    var tileUsed: Bool = false
     
     enum TileType : String{
         case Explorer = "EXPLORER"
@@ -34,7 +37,7 @@ class RTTile: RTHideRequired {
         super.init(texture: texture, color: color, size: size)
         
         self.name = "TILE"
-        self.userInteractionEnabled = true
+        self.userInteractionEnabled = false
         
         self.setRTTileEvent { () -> () in
             fatalError("MUST OVERRIDE TILE EVENT")

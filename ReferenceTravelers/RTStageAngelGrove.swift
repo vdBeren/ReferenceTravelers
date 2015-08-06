@@ -12,6 +12,8 @@ class RTStageAngelGrove: RTStage {
     init(){
         super.init(imageNamed: "coverMedieval")
         
+        self.backgroundImage = "bgAngelGrove"
+        
         self.locked = true
         
         self.title = "ANGEL GROVE"

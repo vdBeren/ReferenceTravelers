@@ -19,7 +19,7 @@ class RTAttributes: NSObject {
     enum PrimariesEnum : String{
         case Strength = "STRENGTH"
         case Dexterity = "DEXTERITY"
-        case Intelligence = "INTELLIGENCE"
+        case Intelligence = "INTELLECT"
     }
     
     enum AttributesEnum : String{

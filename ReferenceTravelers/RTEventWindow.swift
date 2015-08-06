@@ -11,7 +11,7 @@ import SpriteKit
 
 
 // Classe da janela de evento. É chamada para realizar notificar o jogador do evento.
-// Ao jogador é dado, seguindo um limite, a opção de pular esse evento usando Gold ou Vendo um Video.
+// Ao jogador é dado, seguindo um limite, a opção de pular esse evento usando Gold ou vendo um Video.
 // Uma janela tem sua imagem chamada a partir do tipo de evento. O arquivo da imagem tem que ter a formatação: "TipoDoEvento-eWindowBG"
 // Ex: TREASURE-eWindowBG
 
@@ -34,7 +34,7 @@ class RTEventWindow: RTWindow {
         
         self.name = "EVENTWINDOW"
         
-        self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+       // self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
         self.zPosition = 5
         self.userInteractionEnabled = true
@@ -43,11 +43,14 @@ class RTEventWindow: RTWindow {
         self.value = value
         
         
-        self.buttonClose = RTButton(imageNamed: "btnEventWindow", actionOnTouchBegan: false, actionTime: 0.2)
+        self.buttonClose = RTButton(imageNamed: "btnEventWindow", actionOnTouchBegan: false, actionTime: 1.0)
         self.buttonClose!.anchorPoint = CGPoint(x: 0.5, y: 2.0)
         
         // BLOCO DE AÇÃO DO BOTAO DA EVENT WINDOW
+        // Aqui transforma o tile atual do tabuleiro em usado e chama o update de tabuleiro.
         self.buttonClose?.setRTButtonAction({ () -> () in
+            GBoardScene!.currentTile.tileUsed = true
+            GBoardScene!.disableNodes(enabled: true)
             self.closeWindow()
         })
         

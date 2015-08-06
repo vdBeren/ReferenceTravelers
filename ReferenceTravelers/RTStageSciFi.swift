@@ -12,6 +12,8 @@ class RTStageSciFi: RTStage {
     init(){
         super.init(imageNamed: "coverMedieval")
         
+        self.backgroundImage = "bgSciFi"
+        
         self.locked = true
         
         self.title = "STAR BATTLES"

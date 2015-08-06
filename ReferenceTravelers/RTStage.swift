@@ -14,6 +14,8 @@ class RTStage: RTSelectable {
     var title: String = ""
     var information: String = ""
     
+    var backgroundImage: String = ""
+    
     enum Difficulty : String{
         case Easy = "EASY BREEZY"
         case Normal = "NORMAL"

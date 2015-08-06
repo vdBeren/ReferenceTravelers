@@ -18,6 +18,9 @@ class RTSelectable: RTHideRequired {
     var moneyCost: CGFloat = 0.99
     
     var selectableAction: () -> () = {}
+    var selectableActionRunning = false
+    var waitTimeInterval: NSTimeInterval = 1.5
+    
     
     init(imageNamed imageName:String){
         
@@ -27,6 +30,8 @@ class RTSelectable: RTHideRequired {
         
         super.init(texture: texture, color: color, size: size)
         
+        self.userInteractionEnabled = true
+        
         self.name = "SELECTABLE"
         
     }
@@ -35,8 +40,25 @@ class RTSelectable: RTHideRequired {
         self.selectableAction = block
     }
     
+    func touchOcurred(){
+        if !selectableActionRunning{
+            self.selectableAction()
+        }
+        
+        self.selectableActionRunning = true
+        
+        let actionWaitBlock = SKAction.runBlock({
+            self.selectableActionRunning = false
+        })
+        
+        let wait = SKAction.waitForDuration(self.waitTimeInterval)
+        let sequence = SKAction.sequence([wait, actionWaitBlock])
+        
+        self.runAction(sequence)
+    }
+        
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-        self.selectableAction()
+        self.touchOcurred()
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -31,7 +31,7 @@ class RTStageSelectionScene: SKScene {
         
         // Selection Menu
         
-        let arrayImageNames = ["btnSelectionLeft", "btnSelectionRight", "hologramaLuz", "barText"]
+        let arrayImageNames = ["btnSelectionLeft", "btnSelectionRight", "hologramLight", "barText"]
         let arrayText = ["RESEARCH", "TRAVEL!"]
         let colors = [SKColor.whiteColor(), SKColor.clearColor()]
         
@@ -82,7 +82,7 @@ class RTStageSelectionScene: SKScene {
         selectionMenu?.setRTSelectButton({ () -> () in
             self.runAction(SKAction.waitForDuration(0.2))
             let transition = SKTransition.pushWithDirection(SKTransitionDirection.Down, duration: 1.5)
-           //self.scene?.view?.presentScene(GBoardScene, transition: transition)
+            self.scene?.view?.presentScene(GBoardScene, transition: transition)
         })
         
         var sizeW = self.size.width
@@ -99,7 +99,7 @@ class RTStageSelectionScene: SKScene {
         selectionMenu!.btnSelect?.labelText?.fontSize = 45.0
         selectionMenu!.btnSelect?.labelText?.position.y += 40
         
-        let hologramPad = SKSpriteNode(imageNamed: "hologramaPad")
+        let hologramPad = SKSpriteNode(imageNamed: "hologramPad")
         hologramPad.position.y -= 300
         selectionMenu!.btnSelect?.addChild(hologramPad)
         

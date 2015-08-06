@@ -13,6 +13,7 @@ class RTTileRandom: RTTile {
     init(){
         super.init(imageNamed: "tileNeutral")
         
+        tileName = "Random Totem"
         tileDescription = "What will happen? Nobody knows for sure."
         tileType = TileType.Neutral
         tileLevel = 1

@@ -12,6 +12,7 @@ class RTTileLair: RTTile {
     init(){
         super.init(imageNamed: "tileArcane")
         
+        tileName = "A Lair"
         tileDescription = "Some ancient creature lair. Great treasures, great dangers."
         tileType = TileType.Arcane
         tileLevel = 1

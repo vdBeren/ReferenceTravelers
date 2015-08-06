@@ -26,6 +26,8 @@ class RTEventManager: NSObject {
     var eventDisaster: [RTEvent] = []
     var eventCombat: [RTEvent] = []
     var eventBlank: [RTEvent] = []
+    var eventStart: [RTEvent] = []
+    var eventEnd: [RTEvent] = []
     
     override init(){
         
@@ -37,16 +39,23 @@ class RTEventManager: NSObject {
         
         super.init()
         
+        // Chama as funções que adicionam os eventos ao vetor de eventos
         self.eventTreasures()
         self.eventThefts()
         self.eventHeals()
         self.eventTraps()
         self.eventMiracles()
         self.eventDisasters()
+        
         self.eventCombats()
+        
         self.eventBlanks()
+        
+        self.eventStarts()
+        self.eventEnds()
     }
     
+    // Seleciona um evento do tipo escolhido
     func pickEvent(eventType: RTEvent.EventType) -> RTEvent{
         
         switch eventType{
@@ -73,6 +82,12 @@ class RTEventManager: NSObject {
             
         case RTEvent.EventType.Blank:
             return eventBlank.pickRandomItem()
+            
+        case RTEvent.EventType.Start:
+            return eventStart.pickRandomItem()
+            
+        case RTEvent.EventType.End:
+            return eventEnd.pickRandomItem()
             
         default:
             break
@@ -128,7 +143,7 @@ class RTEventManager: NSObject {
         
         // ========================================================================
         self.name = "The Pit"
-        self.desc = "You fell into the pit. *I fell into the pit, we all fell into that pit*" // Referencia Parks and Rec :P
+        self.desc = "You fell into the pit. *I fell into the piit, we all fell into that piit*" // Referencia Parks and Rec :P
         self.imgName = ""
         self.value = 1
         
@@ -192,6 +207,35 @@ class RTEventManager: NSObject {
 
     }
     
+    private func eventStarts(){
+        self.eventType = RTEvent.EventType.Start
+        
+        // ========================================================================
+        self.name = "The Beginning"
+        self.desc = "The first step towards your death. Yey!"
+        self.imgName = ""
+        self.value = 1
+        
+        self.addEvent(eventType, name: name, desc: desc, imgName: imgName, value: value)
+        // ========================================================================
+        
+    }
+    
+    private func eventEnds(){
+        self.eventType = RTEvent.EventType.Start
+        
+        // ========================================================================
+        self.name = "The End"
+        self.desc = "So you get nothing, you lose, GOOD DAY SIR!"
+        self.imgName = ""
+        self.value = 1
+        
+        self.addEvent(eventType, name: name, desc: desc, imgName: imgName, value: value)
+        // ========================================================================
+        
+    }
+    
+    
     private func addEvent(eventType: RTEvent.EventType, name: String, desc: String, imgName: String, value: Int){
         let event = RTEvent()
         event.type = eventType
@@ -225,6 +269,12 @@ class RTEventManager: NSObject {
         case RTEvent.EventType.Blank:
             self.eventBlank.append(event)
             
+        case RTEvent.EventType.Start:
+            self.eventStart.append(event)
+            
+        case RTEvent.EventType.End:
+            self.eventEnd.append(event)
+            
         default:
             break
         }
@@ -234,6 +284,7 @@ class RTEventManager: NSObject {
     //MARK: Event Calls
     private func openEventWindow(event: RTEvent, value: Int){
         let eventWindow = RTEventWindow(event: event, value: value)
+        eventWindow.position = CGPoint(x: GBoardScene!.size.width/2, y: GBoardScene!.size.height/2)
         GBoardScene!.addChild(eventWindow)
     }
     
@@ -301,12 +352,28 @@ class RTEventManager: NSObject {
         self.openEventWindow(event, value: -1)
     }
 
+    // ========================================================================
+    // START
+    func callEventStart(){
+        let event = GEventManager!.pickEvent(RTEvent.EventType.Start)
+        
+        self.openEventWindow(event, value: -1)
+    }
+    
+    // ========================================================================
+    // END
+    func callEventEnd(){
+        let event = GEventManager!.pickEvent(RTEvent.EventType.End)
+        
+        self.openEventWindow(event, value: -1)
+    }
     
 }
 
 // MARK: pickRandomItem!
 extension Array {
     func pickRandomItem() -> T {
+       // println("\(self.count-1)")
         let index = Int(arc4random_uniform(UInt32(self.count-1)))
         return self[index]
     }

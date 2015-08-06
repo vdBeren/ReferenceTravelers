@@ -51,6 +51,11 @@ class RTAudio: SKNode {
     //Toca um Som curto
     private func playSound (soundName: String){
         
+        // Limpar o array de boxing pra previnir erros.
+        if self.soundPlayerBoxing.count > 10{
+            self.freeBoxing()
+        }
+        
         var error: NSError?
         let fileURL: NSURL? = NSBundle.mainBundle().URLForResource(soundName, withExtension: ".wav")
         
@@ -63,6 +68,8 @@ class RTAudio: SKNode {
         soundPlayer!.numberOfLoops = 0 // Sem Loop
         soundPlayer!.volume = 1.0
         soundPlayer!.play()
+        
+
         
     }
     
@@ -132,10 +139,10 @@ class RTAudio: SKNode {
 // MARK: AVAudioPlayerDelegate
 extension RTAudio : AVAudioPlayerDelegate {
     func audioPlayerDidFinishPlaying(player: AVAudioPlayer!, successfully flag: Bool) {
-        println("finished playing \(flag)")
+       // println("finished playing \(flag)")
     }
     
     func audioPlayerDecodeErrorDidOccur(player: AVAudioPlayer!, error: NSError!) {
-        println("\(error.localizedDescription)")
+       // println("\(error.localizedDescription)")
     }
 }

@@ -13,7 +13,8 @@ class RTTileJungle: RTTile {
     init(){
         super.init(imageNamed: "tileExplorer")
         
-        tileDescription = "A damp and beautifully dangerous place."
+        tileName = "Welcome to the Jungle"
+        tileDescription = "A damp jungle holding a lot of dangers and misteries."
         tileType = TileType.Explorer
         tileLevel = 1
         

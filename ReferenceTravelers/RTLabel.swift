@@ -9,6 +9,8 @@
 import UIKit
 import SpriteKit
 
+// Classe que cuida de todo o texto que é mostrado.
+
 class RTLabel: SKLabelNode {
     
     var finalText: NSString = ""

@@ -13,6 +13,7 @@ class RTTileTribe: RTTile {
     init(){
         super.init(imageNamed: "tileExplorer")
         
+        tileName = "Tribe of Dangerous Beings"
         tileDescription = "You approach a wild tribe by accident. They aren't friendly."
         tileType = TileType.Explorer
         tileLevel = 1

@@ -14,7 +14,7 @@ import SpriteKit
 class RTHeroMage: RTHero {
     
     init(){
-        super.init(imageNamed: "heroBraveWarrior")
+        super.init(imageNamed: "heroGeneric")
         
         self.locked = true
         

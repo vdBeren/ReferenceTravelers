@@ -49,6 +49,13 @@ class RTTile: RTHideRequired {
         self.tileEvent = block
     }
     
+    func setTileUsed(){
+        self.tileUsed = true
+        
+        let alpha = SKAction.fadeAlphaTo(0.5, duration: 0.5)
+        self.runAction(alpha)
+    }
+    
     //Recebe toques no Node.
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         self.tileEvent()

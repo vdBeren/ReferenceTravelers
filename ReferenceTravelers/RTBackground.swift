@@ -23,7 +23,7 @@ class RTBackground: RTHideRequired {
 
         self.name = "BACKGROUND"
         self.anchorPoint = CGPoint(x: 0.0, y: 0.0)
-        self.zPosition = -3
+        //self.zPosition = -3
         
         self.userInteractionEnabled = false
         

@@ -10,10 +10,48 @@ import UIKit
 import SpriteKit
 
 
-//Classe de janela genérica, que contém os efeitos usados nas Janelas popup do jogo!
+// Classe de janela popup generica.
 
 class RTWindow: RTHideRequired {
-
+    
+    
+    var blackBackground: RTBackground?
+    var windowPopUp: SKSpriteNode?
+    
+    
+    init(imageNamed imageName: String, background: Bool){
+        
+        let color = UIColor.clearColor()
+        let texture = SKTexture(imageNamed: "NOTHING")
+        let size = texture.size()
+        
+        super.init(texture: texture, color: color, size: size)
+        
+        self.anchorPoint = CGPoint(x: 0.0, y: 0.0)
+        
+        windowPopUp = SKSpriteNode(imageNamed: imageName)
+        self.windowPopUp?.userInteractionEnabled = false
+        
+        self.windowPopUp?.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        self.addChild(windowPopUp!)
+        
+        if background{
+            blackBackground = RTBackground(imageNamed: "bgBlack")
+            self.blackBackground?.alpha = 0.5
+            self.blackBackground?.zPosition -= 1
+            self.blackBackground?.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+            self.addChild(self.blackBackground!)
+        }
+ 
+        
+    }
+    
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
     func introAnimation(){
         
         // EFEITO DE ANIMAÇÃO AO APARECER :D
@@ -66,6 +104,6 @@ class RTWindow: RTHideRequired {
         
         
     }
-
+    
     
 }

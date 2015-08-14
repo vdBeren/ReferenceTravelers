@@ -10,7 +10,7 @@ import UIKit
 
 class RTTileManager: NSObject {
     
-    var tilesLevel: Int = 1
+    var tilesLevel: Int = 0
     
     //Arrays de Tipos de Tiles
     var arrayExplorer: [RTTile] = []
@@ -27,6 +27,17 @@ class RTTileManager: NSObject {
         self.packArcane()
         self.packNeutral()
         
+    }
+    
+    func levelUpTiles(){
+        self.tilesLevel++
+    }
+    
+    func getTilesLevelAsString() -> String{
+        if tilesLevel >= 10{
+            return "\(self.tilesLevel)"
+        }
+        return ("0\(self.tilesLevel)")
     }
     
     func pickTile(tileType: RTTile.TileType) -> RTTile{

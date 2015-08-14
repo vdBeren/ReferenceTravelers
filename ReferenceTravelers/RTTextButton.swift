@@ -24,7 +24,7 @@ class RTTextButton: RTButton {
         self.secondaryColor = colors[1]
         
         labelText = RTLabelText(text: text, fontSize: fontSize, minimum: minimum)
-        labelText!.fontColor = SKColor.orangeColor()
+        labelText!.fontColor = self.mainColor!
         self.addChild(labelText!)
         
         self.labelText!.introAnimation()
@@ -38,6 +38,7 @@ class RTTextButton: RTButton {
         }
         else{
             labelText!.fontColor = self.secondaryColor!
+            self.boingAnimation()
         }
         
         buttonPressed = !buttonPressed
@@ -53,6 +54,15 @@ class RTTextButton: RTButton {
         
         self.runAction(forever)
         
+    }
+    
+    func boingAnimation(){
+        
+        let blockStretch = SKAction.runBlock({self.stretchAnimation()})
+        let blockShrink = SKAction.runBlock({self.shrinkAnimation()})
+        let sequence = SKAction.sequence([blockStretch, blockShrink])
+        
+        self.runAction(sequence)
     }
     
     private func changeLabelColor(){

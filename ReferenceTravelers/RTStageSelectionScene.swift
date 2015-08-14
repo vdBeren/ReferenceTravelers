@@ -74,6 +74,7 @@ class RTStageSelectionScene: SKScene {
             let selectionIndex: Int = self.selectionMenu!.selectionIndex
             let selectionStage: RTSelectable = self.selectionMenu!.objectArray[selectionIndex]
             
+            // Atualiza a fase atual.
             GStageManager!.currentStage = (selectionStage as? RTStage)!
             self.textWindow!.refreshContents()
             
@@ -83,6 +84,7 @@ class RTStageSelectionScene: SKScene {
             self.runAction(SKAction.waitForDuration(0.2))
             let transition = SKTransition.pushWithDirection(SKTransitionDirection.Down, duration: 1.5)
             self.scene?.view?.presentScene(GBoardScene, transition: transition)
+            //GBoardScene!.
         })
         
         var sizeW = self.size.width
@@ -98,7 +100,10 @@ class RTStageSelectionScene: SKScene {
         selectionMenu!.btnSelect?.position = CGPoint(x: sizeW/1.18, y: sizeH/1.7)
         selectionMenu!.btnSelect?.labelText?.fontSize = 45.0
         selectionMenu!.btnSelect?.labelText?.position.y += 40
+        selectionMenu!.btnSelect?.zPosition += 1
+        selectionMenu!.btnSelect?.userInteractionEnabled = true
         
+        // TEMP: base do botão de holograma
         let hologramPad = SKSpriteNode(imageNamed: "hologramPad")
         hologramPad.position.y -= 300
         selectionMenu!.btnSelect?.addChild(hologramPad)

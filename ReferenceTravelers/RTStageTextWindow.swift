@@ -9,7 +9,7 @@
 import UIKit
 import SpriteKit
 
-class RTStageTextWindow: RTWindow {
+class RTStageTextWindow: RTTextWindow {
  
     var labelTitle, labelDescription, labelDifficulty: RTLabelText?
     
@@ -18,12 +18,9 @@ class RTStageTextWindow: RTWindow {
     
     var fontSize: CGFloat = 30.0
     
-    init(){
-        let color = UIColor.clearColor()
-        let texture = SKTexture(imageNamed: "windowText")
-        let size = texture.size()
+   override init(){
         
-        super.init(texture: texture, color: color, size: size)
+        super.init()
         
         self.name = "STAGETEXTWINDOW"
         self.anchorPoint = CGPoint(x: 0.0, y: 0.0)
@@ -66,13 +63,13 @@ class RTStageTextWindow: RTWindow {
         self.contentsArray = [labelTitle!, labelDescription!, labelDifficulty!]
         
         // Alinhamentos de Coluna e Linha (Relativo)
-        let alignColumnA = self.size.width/20
-        let alignColumnB = self.size.width/3.6
-        let alignColumnC = self.size.width/1.05
+        let alignColumnA = self.windowPopUp!.size.width/20
+        let alignColumnB = self.windowPopUp!.size.width/3.6
+        let alignColumnC = self.windowPopUp!.size.width/1.05
         
-        let alignRowA = self.size.height/1.25
-        let alignRowB = self.size.height/2.0
-        let alignRowC = self.size.height/5
+        let alignRowA = self.windowPopUp!.size.height/1.25
+        let alignRowB = self.windowPopUp!.size.height/2.0
+        let alignRowC = self.windowPopUp!.size.height/5
         
         // Arrays com alinhamentos
         let alignColumnArray = [alignColumnA, alignColumnB, alignColumnC]
@@ -95,7 +92,7 @@ class RTStageTextWindow: RTWindow {
                 label.position.x += alignColumnArray[column]
                 label.position.y += alignRowArray[row]
                 label.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
-                self.addChild(label)
+                self.windowPopUp!.addChild(label)
                 label.introAnimation()
                 
             }

@@ -22,19 +22,20 @@ class RTEventWindow: RTWindow {
     var labelEventDescription, labelEventName, labelEventValue: RTLabel?
     var event: RTEvent?
     var value: Int = 0
+    var clickClose: Bool = false
     
     init(event: RTEvent, value: Int){
         
         let color = UIColor.clearColor()
         //let texture = SKTexture(imageNamed: imageName.rawValue + "-eWindowBG")
-        let texture = SKTexture(imageNamed: "EventWindow")
+        let texture = SKTexture(imageNamed: "windowEvent")
         let size = texture.size()
         
-        super.init(texture: texture, color: color, size: size)
+        super.init(imageNamed: "windowEvent", background: true)
         
         self.name = "EVENTWINDOW"
         
-       // self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
         self.zPosition = 5
         self.userInteractionEnabled = true
@@ -42,42 +43,53 @@ class RTEventWindow: RTWindow {
         self.event = event
         self.value = value
         
-        
         self.buttonClose = RTButton(imageNamed: "btnEventWindow", actionOnTouchBegan: false, actionTime: 1.0)
         self.buttonClose!.anchorPoint = CGPoint(x: 0.5, y: 2.0)
         
         // BLOCO DE AÇÃO DO BOTAO DA EVENT WINDOW
         // Aqui transforma o tile atual do tabuleiro em usado e chama o update de tabuleiro.
         self.buttonClose?.setRTButtonAction({ () -> () in
-            GBoardScene!.currentTile.tileUsed = true
-            GBoardScene!.disableNodes(enabled: true)
-            self.closeWindow()
+            if !self.clickClose{
+                self.clickClose = true
+                GBoardScene!.setCurrentTileUsed()
+                self.closeWindow()
+            }
+
         })
         
-        self.addChild(self.buttonClose!)
+        //self.addChild(self.buttonClose!)
         
         self.setContents()
         
         self.introAnimation()
-        self.floatingAnimation()
+       // self.floatingAnimation()
         
         
     }
     
     func setContents(){
-        self.labelEventDescription = RTLabelText(text: self.event!.eventDescription, fontSize: 22, minimum: 8)
-        //self.labelEventDescription!.position = CGPoint(x: self.size.width*2, y: self.size.height*2)
+        
+        // Textos da tela de Evento
+        
+        self.labelEventDescription = RTLabelText(text: self.event!.eventDescription, fontSize: 24, minimum: 8)
+        self.labelEventDescription!.position.y -= self.size.height/10
         self.addChild(labelEventDescription!)
         
-        self.labelEventName = RTLabelText(text: self.event!.name, fontSize: 22, minimum: 6)
+        self.labelEventName = RTLabelText(text: self.event!.name, fontSize: 36, minimum: 6)
         self.labelEventName!.fontSize += 10
-        self.labelEventName!.position.y += self.size.height/4
+        self.labelEventName!.position.y += self.size.height/10
         self.addChild(labelEventName!)
         
-        self.labelEventValue = RTLabelText(text: String(value), fontSize: 22, minimum: 3)
-        self.labelEventValue!.fontSize += 16
-        self.labelEventValue!.position.y += self.size.height/6
-        self.addChild(labelEventValue!)
+        // Se valor recebido for menor que 0, não mostra o valor do evento.
+        self.labelEventValue = RTLabelText(text: String(value), fontSize: 24, minimum: 3)
+        
+        if self.value > 0{
+            self.labelEventValue!.fontSize += 16
+            self.labelEventValue!.fontColor = SKColor.orangeColor()
+            //self.labelEventValue!.position.y += self.size.height/10
+            self.addChild(labelEventValue!)
+        }
+        
     }
     
      override func introAnimation(){
@@ -106,7 +118,7 @@ class RTEventWindow: RTWindow {
     
         
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-        self.introAnimation()
+        //self.introAnimation()
     }
     
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {

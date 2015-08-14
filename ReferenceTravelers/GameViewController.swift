@@ -24,6 +24,8 @@ var GBoardScene: RTBoardScene?
 var GCombatScene: RTCombatScene?
 var GSettingsScene: RTSettingsScene?
 
+var GSize = CGSize(width: 1024, height: 768)
+var GGamePaused: Bool = false
 var GGold: Int = NSUserDefaults.standardUserDefaults().integerForKey("playergold")
 
 class GameViewController: UIViewController {
@@ -56,7 +58,7 @@ class GameViewController: UIViewController {
         
         GTitleScene!.scaleMode = .AspectFill
         
-        skView.presentScene(GTitleScene!)
+        skView.presentScene(GBoardScene!)
     }
     
     

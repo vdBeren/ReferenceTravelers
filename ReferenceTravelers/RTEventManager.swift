@@ -212,7 +212,7 @@ class RTEventManager: NSObject {
         
         // ========================================================================
         self.name = "The Beginning"
-        self.desc = "The first step towards your death. Yey!"
+        self.desc = "The first step of your adventure! (Touch to continue)"
         self.imgName = ""
         self.value = 1
         

@@ -16,23 +16,23 @@ class RTTileWindow: RTWindow {
     
     init(){
         
-        let color = UIColor.clearColor()
-        let texture = SKTexture(imageNamed: "EventWindow")
-        let size = texture.size()
-        
-        super.init(texture: texture, color: color, size: size)
+        super.init(imageNamed: "windowTilePack", background: true)
         
         self.name = "TILEWINDOW"
         
-        //self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        
-        self.zPosition = 5
+        self.zPosition += 1
         self.userInteractionEnabled = true
+        
+        //self.windowPopUp!.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
         self.initWindow()
     }
     
     func initWindow(){
+        
+        let sizeX = self.windowPopUp!.size.width/3
+        let sizeY = self.windowPopUp!.size.height/5
+        
         let explorer = RTTilePackCard(tileType: RTTile.TileType.Explorer)
         let urban = RTTilePackCard(tileType: RTTile.TileType.Urban)
         let arcane = RTTilePackCard(tileType: RTTile.TileType.Arcane)
@@ -40,14 +40,17 @@ class RTTileWindow: RTWindow {
         //tileArray.shuffle()
         
         for (index, tileCard) in enumerate(tileArray) {
+            tileCard.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+            tileCard.position.y -= sizeY
+            
             if index == 0{
-                tileCard.anchorPoint = CGPoint(x: 1.5, y: 0.5)
+                tileCard.position.x -= sizeX
             }
             else if index == 1{
-                tileCard.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+                //tileCard.position.x -= sizeX/2
             }
             else{
-                tileCard.anchorPoint = CGPoint(x: -0.5, y: 0.5)
+                tileCard.position.x += sizeX
             }
             self.addChild(tileCard)
             
@@ -61,7 +64,7 @@ class RTTileWindow: RTWindow {
         
         if !setPicked{
             GBoardScene!.setPackPicked(tileType)
-            GBoardScene!.disableNodes(enabled: true)
+            GTileManager!.levelUpTiles()
             self.closeWindow()
         }
 

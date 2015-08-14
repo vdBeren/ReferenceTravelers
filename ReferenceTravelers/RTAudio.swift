@@ -52,7 +52,7 @@ class RTAudio: SKNode {
     private func playSound (soundName: String){
         
         // Limpar o array de boxing pra previnir erros.
-        if self.soundPlayerBoxing.count > 10{
+        if self.soundPlayerBoxing.count > 5{
             self.freeBoxing()
         }
         

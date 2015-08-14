@@ -18,7 +18,6 @@ import SpriteKit
 class RTButton: RTHideRequired {
     
     var buttonAction: (Void) -> (Void) = {}
-    var buttonActionRunning: Bool = false
     var actionTimeInterval: NSTimeInterval = 0.0
     
     var buttonPressed: Bool = false
@@ -104,14 +103,14 @@ class RTButton: RTHideRequired {
     }
     
     private func touchOcurred(){
-        if !buttonActionRunning{
+        if self.userInteractionEnabled{
             self.buttonAction()
         }
         
-        self.buttonActionRunning = true
+        self.userInteractionEnabled = false
         
         let actionWaitBlock = SKAction.runBlock({
-            self.buttonActionRunning = false
+            self.userInteractionEnabled = true
         })
         
         let wait = SKAction.waitForDuration(self.actionTimeInterval)

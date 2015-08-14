@@ -13,7 +13,7 @@ class RTTileJudgement: RTTile {
     init(){
         super.init(imageNamed: "tileNeutral")
         
-        tileName = "Angel-Devil Statue"
+        tileName = "Angel - Devil Statue"
         tileDescription = "The gods will now judge you."
         tileType = TileType.Neutral
         tileLevel = 1

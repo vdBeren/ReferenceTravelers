@@ -13,21 +13,20 @@ import SpriteKit
 
 class RTPauseWindow: RTWindow {
    
-    var background: RTBackground?
-    var buttonPlay, buttonBack: RTBoingButton?
+    var buttonPlay, buttonBack: RTTextButton?
+    var labelText: RTLabelText?
     
     init(){
         
-        super.init(imageNamed: "", background: true)
+        super.init(imageNamed: "windowPopUp", background: true)
         
         self.name = "PAUSEWINDOW"
-        //self.anchorPoint = CGPoint(x: 0.0, y: 0.0)
-        //self.position = CGPoint(x: super.size.width/2, y: super.size.height/2)
-        //println("\(super.size.width), \(super.size.height)")
+       // self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+
         
         self.userInteractionEnabled = false
         
-        
+        self.position = CGPoint(x: GSize.width/2, y: GSize.height/2)
         self.initContents()
         
         self.introAnimation()
@@ -38,14 +37,34 @@ class RTPauseWindow: RTWindow {
     
     func initContents(){
         
-        self.buttonBack = RTBoingButton(imageNamed: "", actionOnTouchBegan: false, actionTime: 1.0)
+        labelText = RTLabelText(text: "TRAVEL BACK?", fontSize: 60, minimum: 5)
+        //self.labelText?.position = CGPoint(x: self.windowPopUp!.size.width, y: self.windowPopUp!.size.height)
+        self.labelText?.position.y += self.size.height/20
+        self.addChild(labelText!)
+        self.labelText?.introAnimation()
+        
+        let colors = [SKColor.whiteColor(), SKColor.whiteColor()]
+        
+        self.buttonBack = RTTextButton(imageNamed: "btnPopUp", actionOnTouchBegan: false, text: "MAIN MENU", fontSize: 32, minimum: 4, colors: colors, actionTime: 1.0)
         self.buttonBack!.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        self.buttonBack!.position = CGPoint(x: GSize.width/2.5, y: GSize.height/2)
+        self.buttonBack!.position.x -= self.size.width/7
+        self.buttonBack!.position.y -= self.size.height/10
+        
+        self.buttonBack!.setRTButtonAction { () -> () in
+            
+        }
+        
         self.addChild(self.buttonBack!)
         
-        self.buttonPlay = RTBoingButton(imageNamed: "", actionOnTouchBegan: false, actionTime: 1.0)
+        self.buttonPlay = RTTextButton(imageNamed: "btnPopUp", actionOnTouchBegan: false, text: "CONTINUE", fontSize: 32, minimum: 4, colors: colors, actionTime: 1.0)
         self.buttonPlay!.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        self.buttonPlay!.position = CGPoint(x: GSize.width/1.6, y: GSize.height/2)
+        self.buttonPlay!.position.x += self.size.width/7
+        self.buttonPlay!.position.y -= self.size.height/10
+        
+        self.buttonPlay!.setRTButtonAction { () -> () in
+            self.closeWindow()
+        }
+        
         self.addChild(self.buttonPlay!)
         
         

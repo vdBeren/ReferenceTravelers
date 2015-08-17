@@ -22,13 +22,13 @@ class RTHeroMage: RTHero {
         self.quote = "BLAARGH WAARHGH BLARRGH! @_@"
         
         self.attributes.primaryType = RTAttributes.PrimariesEnum.Intelligence
-        self.attributes.primary = 6
+        self.attributes.primary = 7
         self.attributes.agility = 3
-        self.attributes.luck = 4
+        self.attributes.luck = 5
         self.attributes.greed = 1
         
-        self.attributes.maxHealth = 100
-        self.attributes.maxStamina = 100
+        self.attributes.maxHealth = 80
+        self.attributes.maxStamina = 90
     }
     
     required init?(coder aDecoder: NSCoder) {

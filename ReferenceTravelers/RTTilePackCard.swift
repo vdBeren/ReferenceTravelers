@@ -12,6 +12,7 @@ import SpriteKit
 class RTTilePackCard: RTHideRequired {
     
     var tileType: RTTile.TileType
+    var labelName: RTLabelText?
     
     init(tileType: RTTile.TileType){
         
@@ -25,6 +26,11 @@ class RTTilePackCard: RTHideRequired {
         
         self.name = "TILEPACKCARD"
         self.userInteractionEnabled = true
+        
+        labelName = RTLabelText(text: tileType.rawValue, fontSize: 28, minimum: 5)
+        self.labelName?.position.y += self.size.height/1.5
+        self.addChild(labelName!)
+        self.labelName?.introAnimation()
         
         self.floatingAnimation()
         

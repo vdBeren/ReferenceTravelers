@@ -45,7 +45,7 @@ class RTStageSelectionScene: SKScene {
         self.addChild(textWindow!)
         
         btnBack = RTBoingButton(imageNamed: "btnBack", actionOnTouchBegan: true, actionTime: 1.0)
-        self.btnBack!.position = CGPoint(x: self.size.width/30, y: self.size.height/1.1)
+        self.btnBack!.position = CGPoint(x: self.size.width/22, y: self.size.height/1.08)
         self.btnBack!.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         btnBack?.zPosition += 1
         
@@ -81,8 +81,10 @@ class RTStageSelectionScene: SKScene {
         })
         
         selectionMenu?.setRTSelectButton({ () -> () in
+            GAudioNode?.playMusic(RTAudio.MusicsEnum.Board)
             self.runAction(SKAction.waitForDuration(0.2))
-            let transition = SKTransition.pushWithDirection(SKTransitionDirection.Down, duration: 1.5)
+            let transition = SKTransition.crossFadeWithDuration(0.5)
+            //let transition = SKTransition.pushWithDirection(SKTransitionDirection.Down, duration: 1.5)
             self.scene?.view?.presentScene(GBoardScene, transition: transition)
             //GBoardScene!.
         })

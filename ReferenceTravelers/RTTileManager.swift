@@ -8,6 +8,9 @@
 
 import UIKit
 
+
+// TODO: Ler os tiles a partir de um arquivo, de forma a ficar mais simples de adicionar novos tipos de tiles.
+
 class RTTileManager: NSObject {
     
     var tilesLevel: Int = 0
@@ -117,10 +120,10 @@ class RTTileManager: NSObject {
     private func packArcane(){
         
         let tileLair = RTTileLair()
-        let tileLair2 = RTTileLair()
-        let tileLair3 = RTTileLair()
+        let tileVolcano = RTTileVolcano()
+        let tileLaboratory = RTTileLaboratory()
         
-        let arrayTiles = [tileLair, tileLair2, tileLair3]
+        let arrayTiles = [tileLair, tileVolcano, tileLaboratory]
         
         for tile in arrayTiles{
             arrayArcane.append(tile)

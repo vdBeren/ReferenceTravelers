@@ -68,7 +68,7 @@ class RTBoardScene: SKScene {
         // Botão que pausa e mostra Pop-Up que tem Voltar, Continuar ou Recomeçar
         
         self.buttonPause = RTBoingButton(imageNamed: "btnBack", actionOnTouchBegan: false, actionTime: 0.6)
-        self.buttonPause!.position = CGPoint(x: self.size.width/16, y: self.size.height/1.08)
+        self.buttonPause!.position = CGPoint(x: self.size.width/16, y: self.size.height/1.11)
         self.buttonPause!.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         self.buttonPause!.setRTButtonAction { () -> () in
             if !GGamePaused{
@@ -81,7 +81,7 @@ class RTBoardScene: SKScene {
             }
             GGamePaused = !GGamePaused
         }
-        self.buttonPause!.zPosition += 3
+        //self.buttonPause!.zPosition += 3
         self.addChild(buttonPause!)
         
         //--------------------------------------------------------------------------
@@ -113,6 +113,7 @@ class RTBoardScene: SKScene {
         
         self.buttonAdvance!.setRTButtonAction { () -> () in
             self.advanceButtonAction()
+            
         }
         self.addChild(buttonAdvance!)
         
@@ -158,7 +159,7 @@ class RTBoardScene: SKScene {
         self.addChild(labelLv!)
         self.labelLv?.introAnimation()
         
-        self.labelLevelValue = RTLabelText(text: GTileManager!.getTilesLevelAsString(), fontSize: 160, minimum: 1)
+        self.labelLevelValue = RTLabelText(text: GTileManager!.getTilesLevelAsString(), fontSize: 160, minimum: 2)
         self.labelLevelValue?.position = CGPoint(x: self.size.width/1.85, y: self.size.height/7.5)
         self.addChild(labelLevelValue!)
         self.labelLevelValue?.introAnimation()
@@ -195,11 +196,30 @@ class RTBoardScene: SKScene {
     // Deixa o tile atual usado e chama o update do tabuleiro.
     func setCurrentTileUsed(){
         
-        // Se o tile atual for tambem o ultimo
+        // Caso o tile atual for tambem o ultimo, chama a janela de escolha de pack
         if self.currentTile == self.lastTile{
-            self.currentTile.setTileUsed()
-            return
+            
+            let blockUsed = SKAction.runBlock({self.currentTile.setTileUsed()})
+            
+            let block = SKAction.runBlock({
+                // CHAMA JANELA DE PACK
+                let tileWindow = RTTileWindow()
+                tileWindow.position = CGPoint(x: self.size.width/2, y: self.size.height/2)
+                self.addChild(tileWindow)
+                
+                self.disableNodes(enabled: false)
+            })
+
+            
+            let wait = SKAction.waitForDuration(0.6)
+            
+            let sequence = SKAction.sequence([blockUsed, wait, block])
+            self.runAction(sequence)
+            
+            return // Sai do metodo para não ter que realizar animação / atualização do tabuleiro
         }
+        
+        // Animação de tile sendo usado e tabuleiro sendo atualizado.
         
         let blockTileUsed = SKAction.runBlock({self.currentTile.setTileUsed()})
         let blockTileUpdate = SKAction.runBlock({self.updateBoard()})
@@ -275,19 +295,9 @@ class RTBoardScene: SKScene {
             self.disableNodes(enabled: false)
             
         }
-        else if currentTile == lastTile{
-            
-            // CHAMA JANELA DE PACK
-            let tileWindow = RTTileWindow()
-            tileWindow.position = CGPoint(x: self.size.width/2, y: self.size.height/2)
-            self.addChild(tileWindow)
-    
-            self.disableNodes(enabled: false)
-            
-        }
-        else{ // Está usado e não é o último
-        
+        else if currentTile != lastTile{ // Está usado e não é o último
             self.updateBoard()
+            
         }
         
     }

@@ -14,6 +14,8 @@ class RTTileWindow: RTWindow {
     var tileArray: [RTTilePackCard] = []
     var setPicked: Bool = false
     
+    var labelText: RTLabelText?
+    
     init(){
         
         super.init(imageNamed: "windowTilePack", background: true)
@@ -22,6 +24,12 @@ class RTTileWindow: RTWindow {
         
         self.zPosition += 1
         self.userInteractionEnabled = true
+        
+        
+        labelText = RTLabelText(text: "CHOOSE YOUR FATE.", fontSize: 42, minimum: 7)
+        self.labelText?.position.y += self.size.height/6
+        self.addChild(labelText!)
+        self.labelText?.introAnimation()
         
         //self.windowPopUp!.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         

@@ -9,6 +9,8 @@
 import UIKit
 import SpriteKit
 
+// Classe da cena de Configurações
+
 class RTSettingsScene: SKScene {
    
 }

@@ -49,6 +49,8 @@
 		543A0FA91B6D793600B4C77A /* TitleTheme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 543A0FA71B6D793600B4C77A /* TitleTheme.mp3 */; };
 		543A0FAA1B6D793600B4C77A /* TitleThemeShort.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 543A0FA81B6D793600B4C77A /* TitleThemeShort.mp3 */; };
 		543A0FAC1B6D7A9600B4C77A /* Square.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 543A0FAB1B6D799400B4C77A /* Square.ttf */; };
+		545523D31B84EEFF00BCEBB2 /* RTMonster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545523D11B84EEFF00BCEBB2 /* RTMonster.swift */; };
+		545523D41B84EEFF00BCEBB2 /* RTMonsterSkeleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545523D21B84EEFF00BCEBB2 /* RTMonsterSkeleton.swift */; };
 		545F85DD1B579B20003ABC76 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 545F85DC1B579B20003ABC76 /* Images.xcassets */; };
 		5475B9551B6D84F0004877C2 /* RTHeroTextWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5475B9541B6D84F0004877C2 /* RTHeroTextWindow.swift */; };
 		5475B9571B6D88D5004877C2 /* RTLabelValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5475B9561B6D88D5004877C2 /* RTLabelValue.swift */; };
@@ -143,6 +145,8 @@
 		543A0FA71B6D793600B4C77A /* TitleTheme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TitleTheme.mp3; sourceTree = "<group>"; };
 		543A0FA81B6D793600B4C77A /* TitleThemeShort.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TitleThemeShort.mp3; sourceTree = "<group>"; };
 		543A0FAB1B6D799400B4C77A /* Square.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Square.ttf; sourceTree = "<group>"; };
+		545523D11B84EEFF00BCEBB2 /* RTMonster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTMonster.swift; sourceTree = "<group>"; };
+		545523D21B84EEFF00BCEBB2 /* RTMonsterSkeleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTMonsterSkeleton.swift; sourceTree = "<group>"; };
 		545F85DC1B579B20003ABC76 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5475B9541B6D84F0004877C2 /* RTHeroTextWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTHeroTextWindow.swift; sourceTree = "<group>"; };
 		5475B9561B6D88D5004877C2 /* RTLabelValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTLabelValue.swift; sourceTree = "<group>"; };
@@ -293,6 +297,7 @@
 				548950261B63405000032B67 /* Board */,
 				549FBDB41B6EDB6A00A4F00A /* Stage */,
 				540711FD1B544B5000252EF9 /* Hero */,
+				545523D51B84EF0500BCEBB2 /* Monster */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -385,6 +390,15 @@
 				543A0F8D1B69D15700B4C77A /* RTTileBlank.swift */,
 			);
 			name = "Neutral Pack";
+			sourceTree = "<group>";
+		};
+		545523D51B84EF0500BCEBB2 /* Monster */ = {
+			isa = PBXGroup;
+			children = (
+				545523D11B84EEFF00BCEBB2 /* RTMonster.swift */,
+				545523D21B84EEFF00BCEBB2 /* RTMonsterSkeleton.swift */,
+			);
+			name = Monster;
 			sourceTree = "<group>";
 		};
 		5475B9501B6D7D4C004877C2 /* Audio */ = {
@@ -636,6 +650,7 @@
 				543A0FA21B6D75DE00B4C77A /* RTHeroRogue.swift in Sources */,
 				543A0F8E1B69D15700B4C77A /* RTTileBlank.swift in Sources */,
 				5489502A1B64267E00032B67 /* RTTileVillage.swift in Sources */,
+				545523D41B84EEFF00BCEBB2 /* RTMonsterSkeleton.swift in Sources */,
 				54CE22D71B72578400A37235 /* RTTileStart.swift in Sources */,
 				54B8CBBB1B8274DA0054F4F5 /* RTHud.swift in Sources */,
 				548950211B58C03100032B67 /* RTSelectorButton.swift in Sources */,
@@ -672,6 +687,7 @@
 				543A0F901B69DFA500B4C77A /* RTTileTribe.swift in Sources */,
 				54B551D01B79555A001C4C23 /* RTTextWindow.swift in Sources */,
 				548950281B641D7000032B67 /* RTTileCave.swift in Sources */,
+				545523D31B84EEFF00BCEBB2 /* RTMonster.swift in Sources */,
 				549FBDB31B6EDB5F00A4F00A /* RTStage.swift in Sources */,
 				5489501E1B584B3800032B67 /* RTGamePad.swift in Sources */,
 				5475B9551B6D84F0004877C2 /* RTHeroTextWindow.swift in Sources */,

@@ -20,7 +20,7 @@ class RTGamePad: RTHideRequired {
     init (){
         
         let color = UIColor.clearColor()
-        let texture = SKTexture(imageNamed: "GamePad")
+        let texture = SKTexture(imageNamed: "NOTHING")
         let size = texture.size()
         
         super.init(texture: texture, color: color, size: size)

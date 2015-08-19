@@ -15,6 +15,7 @@ class RTPauseWindow: RTWindow {
    
     var buttonPlay, buttonBack: RTTextButton?
     var labelText: RTLabelText?
+    var windowConfirm: RTConfirmWindow?
     
     init(){
         
@@ -51,7 +52,7 @@ class RTPauseWindow: RTWindow {
         self.buttonBack!.position.y -= self.size.height/10
         
         self.buttonBack!.setRTButtonAction { () -> () in
-            
+            self.callWindowConfirm()
         }
         
         self.addChild(self.buttonBack!)
@@ -62,12 +63,29 @@ class RTPauseWindow: RTWindow {
         self.buttonPlay!.position.y -= self.size.height/10
         
         self.buttonPlay!.setRTButtonAction { () -> () in
+            GGamePaused = false
             self.closeWindow()
         }
         
         self.addChild(self.buttonPlay!)
         
         
+        
+    }
+    
+    func callWindowConfirm(){
+        self.windowConfirm = RTConfirmWindow()
+        self.windowConfirm?.setWindowBackButton({ () -> () in
+            
+            GAudioManager?.playMusic(RTAudioManager.MusicsEnum.Title)
+            GHeroSelectionScene!.returningFromStage()
+            
+            let transition = SKTransition.crossFadeWithDuration(1.2)
+            self.scene?.view?.presentScene(GHeroSelectionScene!, transition: transition)
+            
+        })
+        self.addChild(windowConfirm!)
+        self.windowConfirm?.introAnimation()
     }
 
     required init?(coder aDecoder: NSCoder) {

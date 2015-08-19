@@ -13,9 +13,10 @@ class RTHeroTextWindow: RTTextWindow {
     
     var labelHealth, labelStamina, labelPrimary, labelAgility, labelLuck, labelGreed: RTLabelValue?
     var labelQuote, labelQuoteText: RTLabelText?
+    var contentsArray: [RTLabelValue] = []
+    
     var heroSelected: RTHero = RTHeroWarrior()
     var heroAttributes: RTAttributes = RTAttributes()
-    var contentsArray: [RTLabelValue] = []
     
     var fontSize: CGFloat = 30.0
     
@@ -64,13 +65,15 @@ class RTHeroTextWindow: RTTextWindow {
         heroSelected = GHeroesManager!.currentHero
         heroAttributes = GHeroesManager!.currentHero.attributes
         
+        let valueXAlign = self.size.width/5.5
+        
         // INICIALIZAÇÃO DOS LABEL VALUES
-        self.labelHealth = RTLabelValue(text: RTAttributes.AttributesEnum.MaxHealth.rawValue, value: heroAttributes.maxHealth, fontSize: fontSize + 2)
-        self.labelStamina = RTLabelValue(text: RTAttributes.AttributesEnum.MaxStamina.rawValue, value: heroAttributes.maxStamina, fontSize: fontSize + 2)
-        self.labelPrimary = RTLabelValue(text: heroAttributes.primaryType.rawValue, value: heroAttributes.primary, fontSize: fontSize)
-        self.labelAgility = RTLabelValue(text: RTAttributes.AttributesEnum.Agility.rawValue, value: heroAttributes.agility, fontSize: fontSize)
-        self.labelLuck = RTLabelValue(text: RTAttributes.AttributesEnum.Luck.rawValue, value: heroAttributes.luck, fontSize: fontSize)
-        self.labelGreed = RTLabelValue(text: RTAttributes.AttributesEnum.Greed.rawValue, value: heroAttributes.greed, fontSize: fontSize)
+        self.labelHealth = RTLabelValue(text: RTAttributes.AttributesEnum.MaxHealth.rawValue, value: heroAttributes.maxHealth, fontSize: fontSize + 2, valueXAlign: valueXAlign)
+        self.labelStamina = RTLabelValue(text: RTAttributes.AttributesEnum.MaxStamina.rawValue, value: heroAttributes.maxStamina, fontSize: fontSize + 2, valueXAlign: valueXAlign)
+        self.labelPrimary = RTLabelValue(text: heroAttributes.primaryType.rawValue, value: heroAttributes.primary, fontSize: fontSize, valueXAlign: valueXAlign)
+        self.labelAgility = RTLabelValue(text: RTAttributes.AttributesEnum.Agility.rawValue, value: heroAttributes.agility, fontSize: fontSize, valueXAlign: valueXAlign)
+        self.labelLuck = RTLabelValue(text: RTAttributes.AttributesEnum.Luck.rawValue, value: heroAttributes.luck, fontSize: fontSize, valueXAlign: valueXAlign)
+        self.labelGreed = RTLabelValue(text: RTAttributes.AttributesEnum.Greed.rawValue, value: heroAttributes.greed, fontSize: fontSize, valueXAlign: valueXAlign)
         
         self.labelQuote = RTLabelText(text: "QUOTE", fontSize: fontSize + 4, minimum: 5)
         self.labelQuoteText = RTLabelText(text: "\"\(heroSelected.quote)\"", fontSize: fontSize - 4, minimum: 15)

@@ -26,7 +26,7 @@ class RTTileWindow: RTWindow {
         self.userInteractionEnabled = true
         
         
-        labelText = RTLabelText(text: "CHOOSE YOUR FATE.", fontSize: 42, minimum: 7)
+        labelText = RTLabelText(text: "CHOOSE YOUR PATH.", fontSize: 42, minimum: 7)
         self.labelText?.position.y += self.size.height/6
         self.addChild(labelText!)
         self.labelText?.introAnimation()

@@ -81,7 +81,7 @@ class RTHeroSelectionScene: SKScene {
             GHeroesManager!.currentHero = (selectionHero as? RTHero)!
             self.textWindow!.refreshContents()
             
-            GAudioNode!.playSound(RTAudio.SoundsEnum.Blop)
+            GAudioManager!.playSound(RTAudioManager.SoundsEnum.Blop)
             
         })
         

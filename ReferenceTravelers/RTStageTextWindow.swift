@@ -75,10 +75,11 @@ class RTStageTextWindow: RTTextWindow {
         let alignColumnArray = [alignColumnA, alignColumnB, alignColumnC]
         let alignRowArray = [alignRowA, alignRowB, alignRowC]
         
-        // Arrays com conteudo de cada linha / coluna
+        // Conteudo vazio das colunas
         let labelBlank: RTLabelText = RTLabelText(text: "", fontSize: 1, minimum: 1)
         let labelBlank2: RTLabelText = RTLabelText(text: "", fontSize: 1, minimum: 1)
         
+        // Arrays com conteudo de cada linha / coluna
         let labelArrayRowA = [self.labelTitle!, labelBlank, self.labelDifficulty!]
         let labelArrayRowB = [self.labelDescription!]
         let labelArrayRowC = [labelBlank2]

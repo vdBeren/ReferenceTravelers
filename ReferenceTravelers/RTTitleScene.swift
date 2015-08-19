@@ -58,11 +58,19 @@ class RTTitleScene: SKScene {
         let waitLogo = SKAction.waitForDuration(0.8)
         let waitOutros = SKAction.waitForDuration(1.4)
         
+        let soundSwitch = SKAction.runBlock({
+            GAudioManager!.playSound(RTAudioManager.SoundsEnum.Switch)
+        })
+        
+        let soundGenerator = SKAction.runBlock({
+            GAudioManager!.playSound(RTAudioManager.SoundsEnum.Power)
+        })
+        
         let alpha = SKAction.fadeAlphaTo(1.0, duration: 0.1)
         let alphaBack = SKAction.fadeAlphaTo(0.2, duration: 0.3)
         let wait = SKAction.waitForDuration(0.3)
         
-        let sequence = SKAction.sequence([waitOutros, blockLogo, waitLogo, alpha, alphaBack, wait, alpha, alphaBack, waitLogo, alpha, wait])
+        let sequence = SKAction.sequence([waitOutros, blockLogo, waitLogo, soundSwitch, wait, soundGenerator, wait, wait, alpha, alphaBack, wait, alpha, alphaBack, waitLogo, alpha, wait])
         
         let zoom = SKAction.scaleTo(1.15, duration: 1.0)
         let move = SKAction.moveByX(-70, y: -70, duration: 1.0)
@@ -72,7 +80,7 @@ class RTTitleScene: SKScene {
             self.screen!.removeAllActions()
             let alphaScreen = SKAction.fadeAlphaTo(0.0, duration: 0.2)
             self.screen!.runAction(alphaScreen)
-            GAudioNode!.playMusic(RTAudio.MusicsEnum.Title)
+            GAudioManager!.playMusic(RTAudioManager.MusicsEnum.Title)
             
         })
         

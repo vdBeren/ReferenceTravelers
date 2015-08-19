@@ -81,12 +81,13 @@ class RTStageSelectionScene: SKScene {
         })
         
         selectionMenu?.setRTSelectButton({ () -> () in
-            GAudioNode?.playMusic(RTAudio.MusicsEnum.Board)
+            GAudioManager?.playMusic(RTAudioManager.MusicsEnum.Board)
             self.runAction(SKAction.waitForDuration(0.2))
-            let transition = SKTransition.crossFadeWithDuration(0.5)
+            let transition = SKTransition.crossFadeWithDuration(1.2)
             //let transition = SKTransition.pushWithDirection(SKTransitionDirection.Down, duration: 1.5)
+            
+            GBoardScene!.initBoard()
             self.scene?.view?.presentScene(GBoardScene, transition: transition)
-            //GBoardScene!.
         })
         
         var sizeW = self.size.width

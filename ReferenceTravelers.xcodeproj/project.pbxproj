@@ -20,7 +20,7 @@
 		540711F41B54297B00252EF9 /* RTHideRequired.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540711F31B54297B00252EF9 /* RTHideRequired.swift */; };
 		540711F61B542A0700252EF9 /* RTHero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540711F51B542A0700252EF9 /* RTHero.swift */; };
 		540712051B56F1AE00252EF9 /* RTAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540712041B56F1AE00252EF9 /* RTAttributes.swift */; };
-		540712071B56F95C00252EF9 /* RTAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540712061B56F95C00252EF9 /* RTAudio.swift */; };
+		540712071B56F95C00252EF9 /* RTAudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540712061B56F95C00252EF9 /* RTAudioManager.swift */; };
 		5407120B1B571F8D00252EF9 /* RTBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5407120A1B571F8D00252EF9 /* RTBackground.swift */; };
 		5407120D1B572ABE00252EF9 /* RTSettingsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5407120C1B572ABE00252EF9 /* RTSettingsScene.swift */; };
 		5407120F1B57709300252EF9 /* RTButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5407120E1B57709300252EF9 /* RTButton.swift */; };
@@ -74,12 +74,16 @@
 		54B551CC1B751D73001C4C23 /* RTPauseWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B551CB1B751D73001C4C23 /* RTPauseWindow.swift */; };
 		54B551CE1B75483F001C4C23 /* RTGameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B551CD1B75483F001C4C23 /* RTGameManager.swift */; };
 		54B551D01B79555A001C4C23 /* RTTextWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B551CF1B79555A001C4C23 /* RTTextWindow.swift */; };
+		54B8CBBB1B8274DA0054F4F5 /* RTHud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B8CBBA1B8274DA0054F4F5 /* RTHud.swift */; };
 		54CE22CA1B71159700A37235 /* LightSwitch.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54CE22C81B71159700A37235 /* LightSwitch.wav */; };
 		54CE22CE1B711A4600A37235 /* PowerIncreasingFast.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54CE22CD1B711A4600A37235 /* PowerIncreasingFast.wav */; };
 		54CE22D11B7126E700A37235 /* btnBlop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54CE22CF1B7126E700A37235 /* btnBlop.wav */; };
 		54CE22D21B7126E700A37235 /* btnBleep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54CE22D01B7126E700A37235 /* btnBleep.wav */; };
 		54CE22D41B71278400A37235 /* btnTot.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54CE22D31B71278400A37235 /* btnTot.wav */; };
 		54CE22D71B72578400A37235 /* RTTileStart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CE22D61B72578400A37235 /* RTTileStart.swift */; };
+		54EBB0BB1B83AC17004A5E55 /* RTConfirmWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EBB0BA1B83AC17004A5E55 /* RTConfirmWindow.swift */; };
+		54EBB0BD1B8402EA004A5E55 /* RTLabelValueHud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EBB0BC1B8402EA004A5E55 /* RTLabelValueHud.swift */; };
+		54EBB0BF1B840EAD004A5E55 /* RTPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EBB0BE1B840EAD004A5E55 /* RTPlayerManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,7 +114,7 @@
 		540711F31B54297B00252EF9 /* RTHideRequired.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTHideRequired.swift; sourceTree = "<group>"; };
 		540711F51B542A0700252EF9 /* RTHero.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTHero.swift; sourceTree = "<group>"; };
 		540712041B56F1AE00252EF9 /* RTAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTAttributes.swift; sourceTree = "<group>"; };
-		540712061B56F95C00252EF9 /* RTAudio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTAudio.swift; sourceTree = "<group>"; };
+		540712061B56F95C00252EF9 /* RTAudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTAudioManager.swift; sourceTree = "<group>"; };
 		5407120A1B571F8D00252EF9 /* RTBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTBackground.swift; sourceTree = "<group>"; };
 		5407120C1B572ABE00252EF9 /* RTSettingsScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTSettingsScene.swift; sourceTree = "<group>"; };
 		5407120E1B57709300252EF9 /* RTButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTButton.swift; sourceTree = "<group>"; };
@@ -164,12 +168,16 @@
 		54B551CB1B751D73001C4C23 /* RTPauseWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTPauseWindow.swift; sourceTree = "<group>"; };
 		54B551CD1B75483F001C4C23 /* RTGameManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTGameManager.swift; sourceTree = "<group>"; };
 		54B551CF1B79555A001C4C23 /* RTTextWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTTextWindow.swift; sourceTree = "<group>"; };
+		54B8CBBA1B8274DA0054F4F5 /* RTHud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTHud.swift; sourceTree = "<group>"; };
 		54CE22C81B71159700A37235 /* LightSwitch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = LightSwitch.wav; path = ../LightSwitch.wav; sourceTree = "<group>"; };
 		54CE22CD1B711A4600A37235 /* PowerIncreasingFast.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = PowerIncreasingFast.wav; path = ../PowerIncreasingFast.wav; sourceTree = "<group>"; };
 		54CE22CF1B7126E700A37235 /* btnBlop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = btnBlop.wav; sourceTree = "<group>"; };
 		54CE22D01B7126E700A37235 /* btnBleep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = btnBleep.wav; sourceTree = "<group>"; };
 		54CE22D31B71278400A37235 /* btnTot.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = btnTot.wav; sourceTree = "<group>"; };
 		54CE22D61B72578400A37235 /* RTTileStart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTTileStart.swift; sourceTree = "<group>"; };
+		54EBB0BA1B83AC17004A5E55 /* RTConfirmWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTConfirmWindow.swift; sourceTree = "<group>"; };
+		54EBB0BC1B8402EA004A5E55 /* RTLabelValueHud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTLabelValueHud.swift; sourceTree = "<group>"; };
+		54EBB0BE1B840EAD004A5E55 /* RTPlayerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTPlayerManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -267,7 +275,7 @@
 			children = (
 				540711F31B54297B00252EF9 /* RTHideRequired.swift */,
 				54B551CD1B75483F001C4C23 /* RTGameManager.swift */,
-				540712061B56F95C00252EF9 /* RTAudio.swift */,
+				540712061B56F95C00252EF9 /* RTAudioManager.swift */,
 				5407120A1B571F8D00252EF9 /* RTBackground.swift */,
 				54CE22D51B7252D600A37235 /* Window */,
 				5475B9581B6D89DE004877C2 /* Text */,
@@ -278,6 +286,7 @@
 		540711FA1B542BA200252EF9 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				54EBB0C01B840ED8004A5E55 /* Player */,
 				549FBDC11B6F361F00A4F00A /* Title */,
 				540711F91B542A6E00252EF9 /* Base */,
 				5489501F1B58BF5900032B67 /* Control */,
@@ -420,6 +429,7 @@
 				543A0F6F1B64784400B4C77A /* RTLabel.swift */,
 				5475B95E1B6DED9D004877C2 /* RTLabelText.swift */,
 				5475B9561B6D88D5004877C2 /* RTLabelValue.swift */,
+				54EBB0BC1B8402EA004A5E55 /* RTLabelValueHud.swift */,
 			);
 			name = Text;
 			sourceTree = "<group>";
@@ -489,12 +499,22 @@
 			isa = PBXGroup;
 			children = (
 				543A0F9B1B6AEA7100B4C77A /* RTWindow.swift */,
+				54B8CBBA1B8274DA0054F4F5 /* RTHud.swift */,
 				54B551CF1B79555A001C4C23 /* RTTextWindow.swift */,
 				5475B9541B6D84F0004877C2 /* RTHeroTextWindow.swift */,
 				549FBDB51B6EEA1600A4F00A /* RTStageTextWindow.swift */,
 				54B551CB1B751D73001C4C23 /* RTPauseWindow.swift */,
+				54EBB0BA1B83AC17004A5E55 /* RTConfirmWindow.swift */,
 			);
 			name = Window;
+			sourceTree = "<group>";
+		};
+		54EBB0C01B840ED8004A5E55 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				54EBB0BE1B840EAD004A5E55 /* RTPlayerManager.swift */,
+			);
+			name = Player;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -617,6 +637,7 @@
 				543A0F8E1B69D15700B4C77A /* RTTileBlank.swift in Sources */,
 				5489502A1B64267E00032B67 /* RTTileVillage.swift in Sources */,
 				54CE22D71B72578400A37235 /* RTTileStart.swift in Sources */,
+				54B8CBBB1B8274DA0054F4F5 /* RTHud.swift in Sources */,
 				548950211B58C03100032B67 /* RTSelectorButton.swift in Sources */,
 				543A0F841B69B19C00B4C77A /* RTTileManager.swift in Sources */,
 				543A0FA01B6D72F800B4C77A /* RTHeroWarrior.swift in Sources */,
@@ -628,6 +649,7 @@
 				543A0F961B69E92800B4C77A /* RTTileGraveyard.swift in Sources */,
 				543A0F7E1B682C8200B4C77A /* RTEventManager.swift in Sources */,
 				540711EE1B54283700252EF9 /* RTHeroSelectionScene.swift in Sources */,
+				54EBB0BB1B83AC17004A5E55 /* RTConfirmWindow.swift in Sources */,
 				543A0F981B6AC1DF00B4C77A /* RTTileWindow.swift in Sources */,
 				540711C91B54159E00252EF9 /* GameViewController.swift in Sources */,
 				548950251B633CA800032B67 /* RTTile.swift in Sources */,
@@ -640,7 +662,8 @@
 				543A0FA41B6D775B00B4C77A /* RTHeroMage.swift in Sources */,
 				5489502C1B64274E00032B67 /* RTTileLair.swift in Sources */,
 				540711F21B5428AA00252EF9 /* RTBoardScene.swift in Sources */,
-				540712071B56F95C00252EF9 /* RTAudio.swift in Sources */,
+				54EBB0BD1B8402EA004A5E55 /* RTLabelValueHud.swift in Sources */,
+				540712071B56F95C00252EF9 /* RTAudioManager.swift in Sources */,
 				549FBDC01B6F35BD00A4F00A /* RTTitleStart.swift in Sources */,
 				5475B95D1B6DE1A1004877C2 /* RTSelectable.swift in Sources */,
 				540816421B7E78E0005728BD /* RTTileVolcano.swift in Sources */,
@@ -664,6 +687,7 @@
 				540711EC1B5426EF00252EF9 /* RTTitleScene.swift in Sources */,
 				549FBDC31B6F39D000A4F00A /* RTTitleLogo.swift in Sources */,
 				549FBDB81B6EF65100A4F00A /* RTStageMedieval.swift in Sources */,
+				54EBB0BF1B840EAD004A5E55 /* RTPlayerManager.swift in Sources */,
 				549FBDBC1B6EF89900A4F00A /* RTStageAngelGrove.swift in Sources */,
 				540712051B56F1AE00252EF9 /* RTAttributes.swift in Sources */,
 				54305D441B6EA88E008A85D0 /* RTBoingButton.swift in Sources */,

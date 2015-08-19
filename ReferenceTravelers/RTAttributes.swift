@@ -52,13 +52,13 @@ class RTAttributes: NSObject {
     // GOLD
     func obtainGold(base: Int) -> Int{
         var result = formulaObtainGold(base)
-        GGold += result
+        GPlayerManager.gold += result
         return result
     }
     
     func loseGold(base: Int) -> Int{
         var result = checkForNegative(formulaLoseGold(base))
-        GGold -= result
+        GPlayerManager.gold -= result
         return result
     }
     

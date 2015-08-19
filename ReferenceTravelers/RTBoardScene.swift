@@ -34,7 +34,6 @@ class RTBoardScene: SKScene {
     var tileMargin: CGFloat = 128
     var fontSize: CGFloat = 30.0
     
-
     override init(size: CGSize) {
         
         super.init(size: size)
@@ -42,24 +41,29 @@ class RTBoardScene: SKScene {
         self.initBoard()
         
     }
-
-    private func initBoard(){
+    
+    
+    func initBoard(){
         
-        // Limpa a scene do tabuleiro.
+        // Limpa a scene do tabuleiro e reseta variaveis.
         self.removeAllChildren()
+        
+        self.boardPath.removeAll(keepCapacity: false)
+        self.boardPathIndex = 0
+        GTileManager!.resetTiles()
         
         //--------------------------------------------------------------------------
         //Background da Scene
         
         self.backgroundNode = RTBackground(imageNamed: GStageManager!.currentStage.backgroundImage)
         // backgroundNode!.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        addChild(self.backgroundNode!)
+        self.addChild(self.backgroundNode!)
         
         // Faixa de fundo
         self.blackStrip = SKSpriteNode(imageNamed: "boardBlackStrip")
         self.blackStrip!.alpha = 0.3
         self.blackStrip!.anchorPoint = CGPoint(x: 0.0, y: 0.5)
-        self.blackStrip!.position = CGPoint(x: 0.0, y: GSize.height/1.95)
+        self.blackStrip!.position = CGPoint(x: 0.0, y: self.size.height/1.985)
         self.addChild(blackStrip!)
         
         //--------------------------------------------------------------------------
@@ -67,19 +71,18 @@ class RTBoardScene: SKScene {
         //--------------------------------------------------------------------------
         // Botão que pausa e mostra Pop-Up que tem Voltar, Continuar ou Recomeçar
         
-        self.buttonPause = RTBoingButton(imageNamed: "btnBack", actionOnTouchBegan: false, actionTime: 0.6)
+        self.buttonPause = RTBoingButton(imageNamed: "btnBack", actionOnTouchBegan: false, actionTime: 1.2)
         self.buttonPause!.position = CGPoint(x: self.size.width/16, y: self.size.height/1.11)
         self.buttonPause!.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         self.buttonPause!.setRTButtonAction { () -> () in
-            if !GGamePaused{
-                self.pauseWindow = RTPauseWindow()
-                self.pauseWindow!.zPosition += 2
-                self.addChild(self.pauseWindow!)
-            }
-            else{
-                self.pauseWindow!.closeWindow()
-            }
-            GGamePaused = !GGamePaused
+            
+            self.pauseWindow = RTPauseWindow()
+            self.pauseWindow!.zPosition += 2
+            self.addChild(self.pauseWindow!)
+            
+            GGamePaused = true
+            
+            GAudioManager!.playSound(RTAudioManager.SoundsEnum.Tot)
         }
         //self.buttonPause!.zPosition += 3
         self.addChild(buttonPause!)
@@ -104,7 +107,7 @@ class RTBoardScene: SKScene {
         //--------------------------------------------------------------------------
         // Botão de Avançar
         
-        self.buttonAdvance = RTTextButton(imageNamed: "btnAdvance", actionOnTouchBegan: true, text: "CONFIRM", fontSize: 68, minimum: 8, colors: colors, actionTime: 1.0)
+        self.buttonAdvance = RTTextButton(imageNamed: "btnAdvance", actionOnTouchBegan: true, text: "CONFIRM", fontSize: 68, minimum: 8, colors: colors, actionTime: 2.0)
         self.buttonAdvance!.anchorPoint = CGPoint(x: 1.0, y: 0.0)
         self.buttonAdvance!.position = CGPoint(x: self.size.width/1.0, y: 0.0)
         
@@ -112,6 +115,7 @@ class RTBoardScene: SKScene {
         self.buttonAdvance!.labelText?.position.y += self.buttonAdvance!.size.height/6
         
         self.buttonAdvance!.setRTButtonAction { () -> () in
+            GAudioManager!.playSound(RTAudioManager.SoundsEnum.Tot)
             self.advanceButtonAction()
             
         }
@@ -122,7 +126,7 @@ class RTBoardScene: SKScene {
         //--------------------------------------------------------------------------
         // Botão de Pular
         
-        self.buttonSkip = RTTextButton(imageNamed: "btnSkip", actionOnTouchBegan: true, text: "SKIP", fontSize: 68, minimum: 4, colors: colors, actionTime: 1.0)
+        self.buttonSkip = RTTextButton(imageNamed: "btnSkip", actionOnTouchBegan: true, text: "SKIP", fontSize: 68, minimum: 4, colors: colors, actionTime: 2.0)
         self.buttonSkip!.anchorPoint = CGPoint(x: 0.0, y: 0.0)
         self.buttonSkip!.position = CGPoint(x: 0.0, y: 0.0)
         
@@ -130,18 +134,19 @@ class RTBoardScene: SKScene {
         self.buttonSkip!.labelText?.position.y += self.buttonSkip!.size.height/6
         
         self.buttonSkip!.setRTButtonAction { () -> () in
+            GAudioManager!.playSound(RTAudioManager.SoundsEnum.Tot)
             self.skipButtonAction()
             
         }
         self.addChild(buttonSkip!)
         
         //--------------------------------------------------------------------------
-
+        
         //--------------------------------------------------------------------------
         // Label de Nome e Descrição dos Tiles.
         
-        self.labelTileName = RTLabelText(text: currentTile.tileName, fontSize: fontSize, minimum: 15)
-        self.labelTileName?.position = CGPoint(x: self.size.width/2, y: self.size.height/1.4)
+        self.labelTileName = RTLabelText(text: currentTile.tileName, fontSize: fontSize + 8, minimum: 15)
+        self.labelTileName?.position = CGPoint(x: self.size.width/2, y: self.size.height/1.42)
         self.addChild(labelTileName!)
         
         self.labelTileDescription = RTLabelText(text: currentTile.tileDescription, fontSize: fontSize, minimum: 20)
@@ -209,7 +214,7 @@ class RTBoardScene: SKScene {
                 
                 self.disableNodes(enabled: false)
             })
-
+            
             
             let wait = SKAction.waitForDuration(0.6)
             
@@ -279,10 +284,12 @@ class RTBoardScene: SKScene {
     
     // Atualiza o tabuleiro, mudando seu index, movendo os tiles e selecionando o tile atual.
     private func updateBoard(){
+        
         self.boardPathIndex++
         self.moveTiles()
         self.changeTilesSize()
         self.updateTileInfo()
+        
         
     }
     
@@ -292,21 +299,39 @@ class RTBoardScene: SKScene {
             //  CHAMA EVENTO DO TILE ATUAL
             currentTile.tileEvent()
             
-            self.disableNodes(enabled: false)
-            
         }
         else if currentTile != lastTile{ // Está usado e não é o último
             self.updateBoard()
             
         }
         
+        self.buttonsControl()
+        
+
     }
     
     // Ação do botão de pular
     private func skipButtonAction(){
         if !currentTile.tileUsed{
             self.setCurrentTileUsed()
+            self.buttonsControl()
         }
+    }
+    
+    
+    private func buttonsControl(){
+        let block = SKAction.runBlock({
+            self.disableNodes(enabled: false)
+        })
+        
+        let block2 = SKAction.runBlock({
+            self.disableNodes(enabled: true)
+        })
+        
+        let wait = SKAction.waitForDuration(2.0)
+        let sequence = SKAction.sequence([block, wait, block2])
+        
+        self.runAction(sequence)
     }
     
     // Adiciona um tile ao tabuleiro / scene

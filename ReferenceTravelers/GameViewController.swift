@@ -9,9 +9,11 @@
 import UIKit
 import SpriteKit
 
-//VARIAVEIS GLOBAIS
+//VARIAVEIS GLOBAIS / SINGLETONS
 
-var GAudioNode: RTAudio? = RTAudio()
+var GPlayerManager: RTPlayerManager = RTPlayerManager()
+
+var GAudioManager: RTAudioManager? = RTAudioManager()
 var GEventManager: RTEventManager? = RTEventManager()
 var GTileManager: RTTileManager? = RTTileManager()
 var GHeroesManager: RTHeroManager? = RTHeroManager()
@@ -26,13 +28,16 @@ var GSettingsScene: RTSettingsScene?
 
 var GSize = CGSize(width: 1024, height: 768)
 var GGamePaused: Bool = false
-var GGold: Int = NSUserDefaults.standardUserDefaults().integerForKey("playergold")
+
 
 class GameViewController: UIViewController {
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Carrega as informações do jogador
+        GPlayerManager.loadPlayerInfos()
         
         // Configure the view.
         let skView = self.view as! SKView

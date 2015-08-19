@@ -119,12 +119,12 @@ class RTSelectionMenu: SKNode {
     
     private func buttonRightAction(){
         self.chanceSelection(1)
-        GAudioNode!.playSound(RTAudio.SoundsEnum.Blop)
+        GAudioManager!.playSound(RTAudioManager.SoundsEnum.Blop)
     }
     
     private func buttonLeftAction(){
         self.chanceSelection(-1)
-        GAudioNode!.playSound(RTAudio.SoundsEnum.Blop)
+        GAudioManager!.playSound(RTAudioManager.SoundsEnum.Blop)
     }
 
     private func chanceSelection(value: Int){

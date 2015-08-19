@@ -19,10 +19,12 @@ class RTButton: RTHideRequired {
     
     var buttonAction: (Void) -> (Void) = {}
     var actionTimeInterval: NSTimeInterval = 0.0
+    var actionOcurred: Bool = false
     
     var buttonPressed: Bool = false
     var actionOnTouchBegan: Bool //Se a ação do botão é realizada ao soltar ou ao tocar o botão
     var buttonImageName: String
+    
     
     
     
@@ -103,13 +105,20 @@ class RTButton: RTHideRequired {
     }
     
     private func touchOcurred(){
-        if self.userInteractionEnabled{
+        
+        if !self.actionOcurred{
             self.buttonAction()
+            
+        }
+        else{
+            self.userInteractionEnabled = false
+            return
         }
         
-        self.userInteractionEnabled = false
+        self.actionOcurred = true
         
         let actionWaitBlock = SKAction.runBlock({
+            self.actionOcurred = false
             self.userInteractionEnabled = true
         })
         
@@ -125,7 +134,6 @@ class RTButton: RTHideRequired {
         setButtonPressed()
         
         if actionOnTouchBegan{
-            //GAudioNode!.playSound(RTAudio.SoundsEnum.Dano)
             self.touchOcurred()
         }
     }
@@ -134,7 +142,6 @@ class RTButton: RTHideRequired {
         setButtonPressed()
         
         if !actionOnTouchBegan{
-            //GAudioNode!.playSound(RTAudio.SoundsEnum.Dano)
             self.touchOcurred()
         }
         

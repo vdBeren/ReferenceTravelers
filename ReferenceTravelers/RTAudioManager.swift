@@ -1,5 +1,5 @@
 //
-//  RTAudio.swift
+//  RTAudioManager.swift
 //  ReferenceTravelers
 //
 //  Created by Victor D. Savariego on 15/7/15.
@@ -15,7 +15,7 @@ import AVFoundation
 
 // Classe que gerencia todo o Audio do jogo. Ela pode tocar uma música por vez, e um numero qualquer de sons curtos.
 
-class RTAudio: SKNode {
+class RTAudioManager: SKNode {
     
     var musicPlayer: AVAudioPlayer?
     var soundPlayerBoxing: [AVAudioPlayer] = [] //Boxing de sons! Ensinado pelo Matheus.
@@ -137,7 +137,7 @@ class RTAudio: SKNode {
 }
 
 // MARK: AVAudioPlayerDelegate
-extension RTAudio : AVAudioPlayerDelegate {
+extension RTAudioManager : AVAudioPlayerDelegate {
     func audioPlayerDidFinishPlaying(player: AVAudioPlayer!, successfully flag: Bool) {
        // println("finished playing \(flag)")
     }

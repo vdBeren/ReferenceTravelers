@@ -69,19 +69,20 @@ class RTEventWindow: RTWindow {
     
     func setContents(){
         
-        // Textos da tela de Evento
+        // TODO: Colocar efeito de idle animation.
         
+        // Textos da tela de Evento
         self.labelEventDescription = RTLabelText(text: self.event!.eventDescription, fontSize: 24, minimum: 8)
         self.labelEventDescription!.position.y -= self.size.height/10
         self.addChild(labelEventDescription!)
         
-        self.labelEventName = RTLabelText(text: self.event!.name, fontSize: 36, minimum: 6)
+        self.labelEventName = RTLabelText(text: self.event!.name, fontSize: 46, minimum: 6)
         self.labelEventName!.fontSize += 10
         self.labelEventName!.position.y += self.size.height/10
         self.addChild(labelEventName!)
         
         // Se valor recebido for menor que 0, não mostra o valor do evento.
-        self.labelEventValue = RTLabelText(text: String(value), fontSize: 24, minimum: 3)
+        self.labelEventValue = RTLabelText(text: String(value), fontSize: 36, minimum: 3)
         
         if self.value > 0{
             self.labelEventValue!.fontSize += 16

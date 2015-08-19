@@ -36,6 +36,10 @@ class RTTileManager: NSObject {
         self.tilesLevel++
     }
     
+    func resetTiles(){
+        self.tilesLevel = 0
+    }
+    
     func getTilesLevelAsString() -> String{
         if tilesLevel >= 10{
             return "\(self.tilesLevel)"

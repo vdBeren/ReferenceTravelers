@@ -100,6 +100,7 @@ class RTTile: RTHideRequired {
         
         let move = SKAction.moveToX(x, duration: 0.5)
         self.runAction(move)
+        
     }
     
     

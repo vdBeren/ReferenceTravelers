@@ -9,6 +9,7 @@
 import UIKit
 import SpriteKit
 
+
 // Classe da cena de seleção de Heroi. Possui um Selection Menu e uma Text Window.
 
 class RTHeroSelectionScene: SKScene {

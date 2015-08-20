@@ -9,20 +9,19 @@
 import UIKit
 import SpriteKit
 
-class RTHero: RTHideRequired {
+class RTHero: RTSelectable {
 
-    var properties: RTAttributes = RTAttributes()
-    var information: String = ""
+    var attributes: RTAttributes = RTAttributes()
+    var quote: String = ""
+    var nameShown = ""
     
-    init(imageNamed imageName:String){
+    override init(imageNamed imageName:String){
         
-        let color = UIColor.clearColor()
-        let texture = SKTexture(imageNamed: imageName)
-        let size = texture.size()
+        super.init(imageNamed: imageName)
         
-        super.init(texture: texture, color: color, size: size)
+        self.imageName = imageName
         
-        self.name = "CHARACTER"
+        self.name = "HERO"
         self.userInteractionEnabled = false
         
         //Cria o corpo fisico do HEROI
@@ -34,11 +33,6 @@ class RTHero: RTHideRequired {
         self.physicsBody!.collisionBitMask = 0
     }
     
-    
-    //Recebe toques na tela no Node.
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-        
-    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

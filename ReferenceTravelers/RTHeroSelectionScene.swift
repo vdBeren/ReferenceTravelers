@@ -8,10 +8,13 @@
 
 import UIKit
 import SpriteKit
-import AVFoundation
+
+
+// Classe da cena de seleção de Heroi. Possui um Selection Menu e uma Text Window.
 
 class RTHeroSelectionScene: SKScene {
     
+<<<<<<< HEAD
     let agiLabel : SKLabelNode = SKLabelNode(text: "AGI")
     var mainLabel : SKLabelNode = SKLabelNode(text: "X")
     let hpLabel : SKLabelNode = SKLabelNode(text: "HP")
@@ -170,56 +173,63 @@ class RTHeroSelectionScene: SKScene {
         roupa6.properties.primaryType = "DES"
         roupa6.name = "Meowth"
         roupa6.information = "C"
+=======
+    var backgroundNode: RTBackground?
+    var selectionMenu: RTSelectionMenu?
+    var textWindow: RTHeroTextWindow?
+    
+    override init(size: CGSize) {
+>>>>>>> master
         
-        addChild(roupa1)
+        super.init(size: size)
         
-        addChild(roupa2)
         
-        addChild(roupa3)
+        //Background da Scene
+        backgroundNode = RTBackground(imageNamed: "bgHeroSelection")
+        backgroundNode!.position = CGPoint(x: 0.0, y: 0.0)
+        self.addChild(backgroundNode!)
         
-        addChild(roupa4)
+        // Text Window
+        textWindow = RTHeroTextWindow()
+        self.addChild(textWindow!)
         
-        addChild(roupa5)
+        // Selection Menu
+        let arrayImageNames = ["btnSelectionLeft", "btnSelectionRight", "btnText", "barText"]
+        let arrayText = ["HIRE", "CHOOSE"]
+        let colors = [SKColor.orangeColor(), SKColor.whiteColor()]
         
-        addChild(roupa6)
+        selectionMenu = RTSelectionMenu(objectArray: GHeroesManager!.heroArray, buttonsImageNames: arrayImageNames, selectButtonTexts: arrayText, colors: colors)
+        self.buildSelectionMenu()
+        self.addChild(selectionMenu!)
         
-        roupasArray = [roupa1, roupa2, roupa3, roupa4, roupa5, roupa6]
-        hpStarArray = [hpStar1, hpStar2, hpStar3, hpStar4, hpStar5]
-        ganStarArray = [ganStar1, ganStar2, ganStar3, ganStar4, ganStar5]
-        mainStarArray = [mainStar1, mainStar2, mainStar3, mainStar4, mainStar5]
-        agiStarArray = [agiStar1, agiStar2, agiStar3, agiStar4, agiStar5]
-        staStarArray = [staStar1, staStar2, staStar3, staStar4, staStar5]
+        self.userInteractionEnabled = false
+
+    }
+    
+    func restoreScene(){
         
-        let roupaCrescer : SKAction = SKAction.scaleTo(2.0, duration: 0.5)
+        let alpha = SKAction.fadeAlphaTo(1.0, duration: 0.8)
         
-        textNome = SKLabelNode(text: roupa3.name!)
-        textDescricao = SKLabelNode(text:roupa3.information)
+        let blockHidden = SKAction.runBlock({
+            self.textWindow?.runAction(alpha)
+            self.selectionMenu?.runAction(alpha)
+            self.selectionMenu?.userInteractionEnabled = true
+        })
         
-        textNome.position = CGPointMake(meio, frame.maxY - 50)
-        textDescricao.position = CGPointMake(meio + 100, meioY - 100)
-        addChild(textNome)
-        addChild(textDescricao)
+        self.runAction(blockHidden)
         
-        posFinais()
-        starsPos()
-        stars()
+    }
+    
+    func returningFromStage(){
         
-        agiLabel.fontSize = 25
-        hpLabel.fontSize = 25
-        ganLabel.fontSize = 25
-        staLabel.fontSize = 25
+        let zoom = SKAction.scaleTo(1.0, duration: 1.0)
+        let move = SKAction.moveByX(880, y: 630, duration: 1.0)
+        let group = SKAction.group([zoom, move])
         
-        var botY = frame.minY
+        let block = SKAction.runBlock({self.restoreScene()})
+        let sequence = SKAction.sequence([group, block])
         
-        hpLabel.position = CGPoint(x: 50, y: botY + 200)
-        ganLabel.position = CGPoint(x: 50, y: botY + 150)
-        agiLabel.position = CGPoint(x: 50, y: botY + 100)
-        staLabel.position = CGPoint(x: 50, y: botY + 50)
-        
-        mainLabel.text = roupasArray[pos].properties.primaryType
-        mainLabel.fontSize = 25
-        mainLabel.position = CGPoint(x : 50, y: botY + 250)
-        
+<<<<<<< HEAD
         addChild(hpLabel)
         addChild(mainLabel)
         addChild(ganLabel)
@@ -253,34 +263,82 @@ class RTHeroSelectionScene: SKScene {
         
         let moverIn : SKAction = SKAction.moveByX(100, y: 0.0 , duration: 0.5)
         let roupaCrescer : SKAction = SKAction.scaleTo(2, duration: 0.5)
+=======
+        self.backgroundNode!.runAction(sequence)
+    }
+    
+    // Constroi o menu de seleção
+    private func buildSelectionMenu(){
+>>>>>>> master
         
-        let moverOut : SKAction = SKAction.moveByX(100, y: 0.0, duration: 0.5)
-        let roupaDiminuir : SKAction = SKAction.scaleTo(1, duration: 0.5)
         
-        let moverSaida : SKAction = SKAction.moveByX(-50, y: 0.0, duration: 0.5)
-        let roupaEntrada : SKAction = SKAction.scaleBy(1.5, duration: 0.5)
+        selectionMenu?.setRTChangeSelectionAction({ () -> () in
+            let selectionIndex: Int = self.selectionMenu!.selectionIndex
+            let selectionHero: RTSelectable = self.selectionMenu!.objectArray[selectionIndex]
+            
+            GHeroesManager!.currentHero = (selectionHero as? RTHero)!
+            self.textWindow!.refreshContents()
+            
+            GAudioManager!.playSound(RTAudioManager.SoundsEnum.Blop)
+            
+        })
         
-        let moverEntrada : SKAction = SKAction.moveByX(-50, y: 0.0, duration: 0.5)
-        let roupaSaida : SKAction = SKAction.scaleBy(0.65, duration: 0.5)
+        selectionMenu?.setRTSelectButton({ () -> () in
+            
+            let alpha = SKAction.fadeAlphaTo(0.0, duration: 0.4)
+            
+            self.selectionMenu?.userInteractionEnabled = false
+
+            
+            let blockHidden = SKAction.runBlock({
+                self.textWindow?.runAction(alpha)
+                self.selectionMenu?.runAction(alpha)
+            })
+            
+            let wait = SKAction.waitForDuration(0.8)
+            
+            let sequenceHidden = SKAction.sequence([blockHidden, wait])
+            
+            self.runAction(sequenceHidden)
+            
+            
+            let zoom = SKAction.scaleTo(2.5, duration: 1.0)
+            let move = SKAction.moveByX(-880, y: -630, duration: 1.0)
+            let group = SKAction.group([zoom, move])
+            
+            let block = SKAction.runBlock({
+                
+                let transition = SKTransition.pushWithDirection(SKTransitionDirection.Up, duration: 1.5)
+                self.scene?.view?.presentScene(GStageSelectionScene, transition: transition)
+            })
+            
+            let sequence = SKAction.sequence([group, block])
+            
+            self.backgroundNode!.runAction(sequence)
+
+        })
         
-        // Para esquerda
+        var sizeW = self.size.width
+        var sizeH = self.size.height
         
-        let moverInE : SKAction = SKAction.moveByX(-100, y: 0.0 , duration: 0.5)
+        selectionMenu!.btnLeft?.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        selectionMenu!.btnLeft!.position = CGPoint(x: sizeW/3.1, y: sizeH/1.7)
         
-        let moverOutE : SKAction = SKAction.moveByX(-100, y: 0.0, duration: 0.5)
+        selectionMenu!.btnRight?.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        selectionMenu!.btnRight!.position = CGPoint(x: sizeW/1.45, y: sizeH/1.7)
         
-        let moverSaidaE : SKAction = SKAction.moveByX(50, y: 0.0, duration: 0.5)
+        selectionMenu!.btnSelect?.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        selectionMenu!.btnSelect!.position = CGPoint(x: sizeW/2, y: sizeH/2.6)
         
-        let moverEntradaE : SKAction = SKAction.moveByX(50, y: 0.0, duration: 0.5)
+        selectionMenu!.selectableDisplay?.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        selectionMenu!.selectableDisplay?.position = CGPoint(x: sizeW/2, y: sizeH/1.75)
         
-        let url = NSURL(fileURLWithPath:
-            NSBundle.mainBundle().pathForResource("Troca",
-                ofType: "wav")!)
         
-        var error: NSError?
+        selectionMenu!.labelObjectName?.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        selectionMenu!.labelObjectName?.position = CGPoint(x: sizeW/2, y: sizeH/1.3)
         
-        AVAudioPlayer(contentsOfURL: url, error: &error)
         
+<<<<<<< HEAD
         if(liberar){
             liberar = false
             starsPos()
@@ -384,121 +442,27 @@ class RTHeroSelectionScene: SKScene {
             stars()
             mainLabel.text = roupasArray[pos].properties.primaryType
         }
+=======
+>>>>>>> master
     }
     
-    func posFinais(){
-        var spriteMeio = meioY + 50
-        var spriteY = frame.maxY - 150
+    //Chamado a todo frame. Usado para realizar o update dos nodes da Scene, em cascata.
+    override func update(currentTime: NSTimeInterval) {
+        super.update(currentTime)
         
-        roupasArray[posEntrada].zPosition = 0
-        roupasArray[posEntrada].position = CGPoint(x: meio - 50, y: spriteY)
-        roupasArray[posEntrada].size = CGSize(width: 50, height: 50)
-        roupasArray[posEntrada].hidden = false
-        
-        roupasArray[posSaida].zPosition = 0
-        roupasArray[posSaida].position = CGPoint(x: meio + 50, y: spriteY)
-        roupasArray[posSaida].size = CGSize(width: 50, height: 50)
-        roupasArray[posSaida].hidden = false
-        
-        roupasArray[posAnterior].zPosition = 1
-        roupasArray[posAnterior].position = CGPoint(x: meio - 100, y: spriteY)
-        roupasArray[posAnterior].size = CGSize(width: 75, height: 75)
-        roupasArray[posAnterior].hidden = false
-        
-        roupasArray[posPosterior].zPosition = 1
-        roupasArray[posPosterior].position = CGPoint(x: meio + 100, y: spriteY)
-        roupasArray[posPosterior].size = CGSize(width: 75, height: 75)
-        roupasArray[posPosterior].hidden = false
-        
-        roupasArray[pos].position = CGPoint(x: meio, y: spriteY)
-        roupasArray[pos].size = CGSize(width: 150, height: 150)
-        roupasArray[pos].hidden = false
-        roupasArray[pos].zPosition = 2
     }
     
-    func starsPos(){
-        var cont = 0
-        var botY = frame.minY
+    
+    //Recebe toques na Scene.
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         
-        while(cont < 5){
-            hpStarArray[cont].position = CGPoint(x: 150, y: botY + 210)
-            hpStarArray[cont].size = CGSize(width: 30, height: 30)
-            cont++
-        }
         
-        cont = 0
-        while(cont < 5){
-            mainStarArray[cont].position = CGPoint(x: 150, y: 260)
-            mainStarArray[cont].size = CGSize(width: 30, height: 30)
-            cont++
-        }
-        
-        cont = 0
-        while(cont < 5){
-            ganStarArray[cont].position = CGPoint(x: 150, y: 160)
-            ganStarArray[cont].size = CGSize(width: 30, height: 30)
-            cont++
-        }
-        
-        cont = 0
-        while(cont < 5){
-            agiStarArray[cont].position = CGPoint(x: 150, y: 110)
-            agiStarArray[cont].size = CGSize(width: 30, height: 30)
-            cont++
-        }
-        
-        cont = 0
-        while(cont < 5){
-            staStarArray[cont].position = CGPoint(x: 150, y: 60)
-            staStarArray[cont].size = CGSize(width: 30, height: 30)
-            cont++
-        }
     }
     
-    func stars(){
-        var cont : Int = 1
-        var xCont : CGFloat = 30
-        
-        while(cont < roupasArray[pos].properties.primary) {
-            mainStarArray[cont].runAction(SKAction.moveByX(xCont, y: 0, duration: 0.1))
-            cont++
-            xCont += 30
-        }
-        cont = 1
-        xCont = 30
-        
-        while(cont < roupasArray[pos].properties.health) {
-            hpStarArray[cont].runAction(SKAction.moveByX(xCont, y: 0, duration: 0.1))
-            cont++
-            xCont += 30
-        }
-        cont = 1
-        xCont = 30
-        
-        while(cont < roupasArray[pos].properties.greed) {
-            ganStarArray[cont].runAction(SKAction.moveByX(xCont, y: 0, duration: 0.1))
-            cont++
-            xCont += 30
-        }
-        cont = 1
-        xCont = 30
-        
-        while(cont < roupasArray[pos].properties.agility) {
-            agiStarArray[cont].runAction(SKAction.moveByX(xCont, y: 0, duration: 0.1))
-            cont++
-            xCont += 30
-        }
-        cont = 1
-        xCont = 30
-        
-        while(cont < roupasArray[pos].properties.stamina) {
-            staStarArray[cont].runAction(SKAction.moveByX(xCont, y: 0, duration: 0.1))
-            cont++
-            xCont += 30
-        }
-    }
     
-    override func update(currentTime: CFTimeInterval) {
-        
+    
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }

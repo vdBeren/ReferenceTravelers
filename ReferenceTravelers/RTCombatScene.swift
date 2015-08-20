@@ -26,7 +26,9 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
     var btnDir = RTButton(imageNamed: "btnCombatDir", actionOnTouchBegan: true, actionTime: 0.2)
     var btnEsq = RTButton(imageNamed: "btnCombatEsq", actionOnTouchBegan: true, actionTime: 0.2)
     var btnPulo = RTButton(imageNamed: "btnJump", actionOnTouchBegan: true, actionTime: 0.2)
-    var btnPause = RTButton(imageNamed: "btnCombatPause", actionOnTouchBegan: true, actionTime: 0.2)
+    
+    var buttonPause: RTButton?
+    var pauseWindow: RTPauseWindow?
     
     var velocityY : Int = 400
     var jump : Bool = false
@@ -42,6 +44,8 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
     var mobDeathLabel : SKLabelNode = SKLabelNode(text: String(0))
     var bossBattle = false
     var invulnerabilty : Bool = false
+    
+    var boardHud: RTHud?
     
     
     let fireballBitMask : UInt32 = 0x1 << 7
@@ -65,6 +69,40 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
         self.background?.zPosition = -2
 
         self.addChild(background!)
+        
+        //--------------------------------------------------------------------------
+        // HUD
+        
+        self.boardHud = RTHud()
+        self.boardHud?.windowPopUp!.position.y = self.size.height
+        self.boardHud?.windowPopUp?.zPosition += 1
+        self.addChild(boardHud!)
+        
+        //--------------------------------------------------------------------------
+        
+        //--------------------------------------------------------------------------
+        // Botão que pausa e mostra Pop-Up que tem Voltar, Continuar ou Recomeçar
+        
+        self.buttonPause = RTButton(imageNamed: "btnPause", actionOnTouchBegan: false, actionTime: 1.2)
+        self.buttonPause!.position = CGPoint(x: self.size.width/2, y: self.size.height/1.2)
+        self.buttonPause!.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        self.buttonPause!.setRTButtonAction { () -> () in
+            
+            self.pauseWindow = RTPauseWindow()
+            self.pauseWindow!.zPosition += 2
+            self.addChild(self.pauseWindow!)
+            
+            GGamePaused = true
+            
+            GAudioManager!.playSound(RTAudioManager.SoundsEnum.Tot)
+        }
+        self.buttonPause!.zPosition += 2
+        self.addChild(buttonPause!)
+        
+        //--------------------------------------------------------------------------
+        
+
+        
         
         //Gravidade
         physicsWorld.gravity = CGVectorMake(0.0, -15)
@@ -207,8 +245,6 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
         })
         addChild(btnPulo)
         
-        btnPause.position = CGPoint(x: frame.midX - 100, y: 30)
-        addChild(btnPause)
         
     }
     
@@ -277,7 +313,7 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
         }
         
         if(mobDeathCount >= 50){
-            winCombat()
+            self.winCombat()
         }
         
         if(jump){
@@ -285,51 +321,33 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
         }
         
         if(GHeroesManager?.currentHero.attributes.health <= 0){
-            loseCombat()
+            self.loseCombat()
         }
     }
     
     func didBeginContact(contact: SKPhysicsContact) {
+        
         let firstNode = contact.bodyA.node
         let secondNode = contact.bodyB.node
         let contactA = contact.bodyA.categoryBitMask
         let contactB = contact.bodyB.categoryBitMask
         
+        // Contato de arma com monstro
         if ((contactA == weaponBitMask) && (contactB == mobsBitMask)){
-            let sparkEmmiter = SKEmitterNode(fileNamed: "MobDeathParticle.sks")
-            let stopSpark = SKAction.runBlock({sparkEmmiter.particleBirthRate = 0})
-            let wait = SKAction.waitForDuration(0.5)
-            let seq = SKAction.sequence([wait, stopSpark])
-            mobCount--
-            mobDeathCount++
-            mobDeathLabel.text = String(mobDeathCount)
-            sparkEmmiter.position = CGPointMake(secondNode!.position.x, secondNode!.position.y)
-            sparkEmmiter.name = "sparkEmmitter"
-            sparkEmmiter.zPosition = 1
-            sparkEmmiter.targetNode = self
-            sparkEmmiter.particleLifetime = 1
-            addChild(sparkEmmiter)
-            secondNode?.removeFromParent()
-            runAction(seq)
+
+            self.monsterDeath()
+            self.spawnParticle(secondNode!, fire: false)
             
-        } else if(contactB == weaponBitMask && contactA == mobsBitMask){
-            let sparkEmmiter = SKEmitterNode(fileNamed: "MobDeathParticle.sks")
-            let stopSpark = SKAction.runBlock({sparkEmmiter.particleBirthRate = 0})
-            let wait = SKAction.waitForDuration(0.5)
-            let seq = SKAction.sequence([wait, stopSpark])
-            mobCount--
-            mobDeathCount++
-            mobDeathLabel.text = String(mobDeathCount)
-            sparkEmmiter.position = CGPointMake(firstNode!.position.x, firstNode!.position.y)
-            sparkEmmiter.name = "sparkEmmitter"
-            sparkEmmiter.zPosition = 1
-            sparkEmmiter.targetNode = self
-            sparkEmmiter.particleLifetime = 1
-            addChild(sparkEmmiter)
-            firstNode?.removeFromParent()
-            runAction(seq)
+        }
+        // Contato de monstro com arma
+        else if(contactB == weaponBitMask && contactA == mobsBitMask){
+
+            self.monsterDeath()
+            self.spawnParticle(firstNode!, fire: false)
+  
         }
         
+    
         if((contactB == heroBitMask) && (contactA == mobsBitMask) && !invulnerabilty){
             self.damageHero()
             
@@ -337,44 +355,84 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
             self.damageHero()
         }
         
+        if((contactB == heroBitMask) && (contactA == fireballBitMask) && !invulnerabilty){
+            self.damageHero()
+            
+        } else if((contactA == heroBitMask) && (contactB == fireballBitMask) && !invulnerabilty){
+            self.damageHero()
+        }
+
+        
         if((contactA == heroBitMask) && (contactB == fireballBitMask)){
-            damageHero()
+            self.damageHero()
             secondNode?.removeFromParent()
-        } else if((contactA == fireballBitMask)  && (contactB == heroBitMask)){
-            damageHero()
+            
+        }
+        else if((contactA == fireballBitMask)  && (contactB == heroBitMask)){
+            self.damageHero()
             firstNode?.removeFromParent()
         }
         
         if((contactA == floorBitMask) && (contactB == fireballBitMask)){
-            let sparkEmmiter = SKEmitterNode(fileNamed: "FireballDeathParticle.sks")
-            let stopSpark = SKAction.runBlock({sparkEmmiter.particleBirthRate = 0})
-            let wait = SKAction.waitForDuration(0.5)
-            let seq = SKAction.sequence([wait, stopSpark])
-            sparkEmmiter.position = CGPointMake(secondNode!.position.x, secondNode!.position.y - 40)
-            sparkEmmiter.name = "fireEmmitter"
-            sparkEmmiter.zPosition = 1
-            sparkEmmiter.targetNode = self
-            sparkEmmiter.particleLifetime = 1
-            addChild(sparkEmmiter)
-            secondNode?.removeFromParent()
-            runAction(seq)
-        } else if((contactA == fireballBitMask) && (contactB == floorBitMask)){
-            let sparkEmmiter = SKEmitterNode(fileNamed: "FireballDeathParticle.sks")
-            let stopSpark = SKAction.runBlock({sparkEmmiter.particleBirthRate = 0})
-            let wait = SKAction.waitForDuration(0.5)
-            let seq = SKAction.sequence([wait, stopSpark])
-            mobCount--
-            mobDeathCount++
-            mobDeathLabel.text = String(mobDeathCount)
-            sparkEmmiter.position = CGPointMake(firstNode!.position.x, firstNode!.position.y - 40)
-            sparkEmmiter.name = "fireEmmitter"
-            sparkEmmiter.zPosition = 1
-            sparkEmmiter.targetNode = self
-            sparkEmmiter.particleLifetime = 1
-            addChild(sparkEmmiter)
-            firstNode?.removeFromParent()
-            runAction(seq)
+            
+            self.spawnParticle(secondNode!, fire: true)
+        
         }
+        else if((contactA == fireballBitMask) && (contactB == floorBitMask)){
+            
+            
+            self.spawnParticle(firstNode!, fire: true)
+            
+
+        }
+    }
+    
+    private func monsterDeath(){
+        mobCount--
+        mobDeathCount++
+        mobDeathLabel.text = String(mobDeathCount)
+    }
+    
+    private func spawnParticle(node: SKNode, fire: Bool){
+        
+        let sparkEmmiter: SKEmitterNode?
+        let waitTime: NSTimeInterval
+        
+        if fire{
+            sparkEmmiter = SKEmitterNode(fileNamed: "FireballDeathParticle.sks")
+            sparkEmmiter!.name = "fireEmmitter"
+            waitTime = 0.2
+        }
+        else{
+            sparkEmmiter = SKEmitterNode(fileNamed: "MobDeathParticle.sks")
+            sparkEmmiter!.name = "sparkEmmitter"
+            waitTime = 0.6
+        }
+        
+        let stopSpark = SKAction.runBlock({
+            
+            sparkEmmiter!.particleBirthRate = 0
+            
+            let wait = SKAction.waitForDuration(waitTime)
+            self.runAction(wait, completion: {
+                sparkEmmiter!.removeFromParent()
+            })
+            
+            
+        })
+        
+        let wait = SKAction.waitForDuration(0.6)
+        let sequence = SKAction.sequence([wait, stopSpark])
+        sparkEmmiter!.position = CGPointMake(node.position.x, node.position.y - 40)
+        
+        sparkEmmiter!.zPosition = 1
+        sparkEmmiter!.targetNode = self
+        sparkEmmiter!.particleLifetime = 1
+        
+        self.addChild(sparkEmmiter!)
+        node.removeFromParent()
+        self.runAction(sequence)
+
     }
     
     func loseCombat(){

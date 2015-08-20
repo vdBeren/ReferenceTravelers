@@ -9,7 +9,7 @@
 import UIKit
 import SpriteKit
 
-//
+// Gerenciador do combate
 
 class RTCombatManager: NSObject {
     

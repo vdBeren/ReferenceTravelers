@@ -66,6 +66,7 @@ class GameViewController: UIViewController {
         GCombatScene!.scaleMode = .AspectFill
         
         skView.presentScene(GCombatScene!)
+        skView.showsPhysics = true;
     }
     
     

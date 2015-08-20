@@ -86,6 +86,9 @@
 		54EBB0BB1B83AC17004A5E55 /* RTConfirmWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EBB0BA1B83AC17004A5E55 /* RTConfirmWindow.swift */; };
 		54EBB0BD1B8402EA004A5E55 /* RTLabelValueHud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EBB0BC1B8402EA004A5E55 /* RTLabelValueHud.swift */; };
 		54EBB0BF1B840EAD004A5E55 /* RTPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EBB0BE1B840EAD004A5E55 /* RTPlayerManager.swift */; };
+		C76A0D6C1B863D8900230353 /* MobDeathParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = C76A0D6A1B863D8900230353 /* MobDeathParticle.sks */; };
+		C76A0D6D1B863D8900230353 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = C76A0D6B1B863D8900230353 /* spark.png */; };
+		C76A0D701B86453400230353 /* FireballDeathParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = C76A0D6F1B86453400230353 /* FireballDeathParticle.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -182,6 +185,9 @@
 		54EBB0BA1B83AC17004A5E55 /* RTConfirmWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTConfirmWindow.swift; sourceTree = "<group>"; };
 		54EBB0BC1B8402EA004A5E55 /* RTLabelValueHud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTLabelValueHud.swift; sourceTree = "<group>"; };
 		54EBB0BE1B840EAD004A5E55 /* RTPlayerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTPlayerManager.swift; sourceTree = "<group>"; };
+		C76A0D6A1B863D8900230353 /* MobDeathParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MobDeathParticle.sks; sourceTree = "<group>"; };
+		C76A0D6B1B863D8900230353 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		C76A0D6F1B86453400230353 /* FireballDeathParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FireballDeathParticle.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -423,6 +429,7 @@
 		5475B9521B6D7D5D004877C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C76A0D6E1B86449A00230353 /* Particles */,
 				5475B9531B6D7D67004877C2 /* Fonts */,
 				5475B9501B6D7D4C004877C2 /* Audio */,
 			);
@@ -531,6 +538,16 @@
 			name = Player;
 			sourceTree = "<group>";
 		};
+		C76A0D6E1B86449A00230353 /* Particles */ = {
+			isa = PBXGroup;
+			children = (
+				C76A0D6A1B863D8900230353 /* MobDeathParticle.sks */,
+				C76A0D6B1B863D8900230353 /* spark.png */,
+				C76A0D6F1B86453400230353 /* FireballDeathParticle.sks */,
+			);
+			name = Particles;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -615,7 +632,10 @@
 				543A0FA61B6D790D00B4C77A /* MedievalTheme.mp3 in Resources */,
 				545F85DD1B579B20003ABC76 /* Images.xcassets in Resources */,
 				543A0FA91B6D793600B4C77A /* TitleTheme.mp3 in Resources */,
+				C76A0D6D1B863D8900230353 /* spark.png in Resources */,
+				C76A0D6C1B863D8900230353 /* MobDeathParticle.sks in Resources */,
 				54CE22D41B71278400A37235 /* btnTot.wav in Resources */,
+				C76A0D701B86453400230353 /* FireballDeathParticle.sks in Resources */,
 				54CE22D11B7126E700A37235 /* btnBlop.wav in Resources */,
 				543A0FAA1B6D793600B4C77A /* TitleThemeShort.mp3 in Resources */,
 				540711D11B54159E00252EF9 /* LaunchScreen.xib in Resources */,

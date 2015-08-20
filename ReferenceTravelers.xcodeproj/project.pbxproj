@@ -52,10 +52,7 @@
 		545523D31B84EEFF00BCEBB2 /* RTMonster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545523D11B84EEFF00BCEBB2 /* RTMonster.swift */; };
 		545523D41B84EEFF00BCEBB2 /* RTMonsterSkeleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545523D21B84EEFF00BCEBB2 /* RTMonsterSkeleton.swift */; };
 		545F85DD1B579B20003ABC76 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 545F85DC1B579B20003ABC76 /* Images.xcassets */; };
-<<<<<<< HEAD
-		C74B36991B6AAF020039E2D6 /* Troca.wav in Resources */ = {isa = PBXBuildFile; fileRef = C74B36981B6AAF020039E2D6 /* Troca.wav */; };
-		C74B369B1B6C01A20039E2D6 /* RTStage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74B369A1B6C01A20039E2D6 /* RTStage.swift */; };
-=======
+
 		5475B9551B6D84F0004877C2 /* RTHeroTextWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5475B9541B6D84F0004877C2 /* RTHeroTextWindow.swift */; };
 		5475B9571B6D88D5004877C2 /* RTLabelValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5475B9561B6D88D5004877C2 /* RTLabelValue.swift */; };
 		5475B95A1B6DD92E004877C2 /* RTSelectionMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5475B9591B6DD92E004877C2 /* RTSelectionMenu.swift */; };
@@ -93,7 +90,7 @@
 		C76A0D6C1B863D8900230353 /* MobDeathParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = C76A0D6A1B863D8900230353 /* MobDeathParticle.sks */; };
 		C76A0D6D1B863D8900230353 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = C76A0D6B1B863D8900230353 /* spark.png */; };
 		C76A0D701B86453400230353 /* FireballDeathParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = C76A0D6F1B86453400230353 /* FireballDeathParticle.sks */; };
->>>>>>> master
+
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -156,10 +153,7 @@
 		545523D11B84EEFF00BCEBB2 /* RTMonster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTMonster.swift; sourceTree = "<group>"; };
 		545523D21B84EEFF00BCEBB2 /* RTMonsterSkeleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTMonsterSkeleton.swift; sourceTree = "<group>"; };
 		545F85DC1B579B20003ABC76 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-<<<<<<< HEAD
-		C74B36981B6AAF020039E2D6 /* Troca.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Troca.wav; path = ../../../Downloads/Troca.wav; sourceTree = "<group>"; };
-		C74B369A1B6C01A20039E2D6 /* RTStage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTStage.swift; sourceTree = "<group>"; };
-=======
+
 		5475B9541B6D84F0004877C2 /* RTHeroTextWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTHeroTextWindow.swift; sourceTree = "<group>"; };
 		5475B9561B6D88D5004877C2 /* RTLabelValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTLabelValue.swift; sourceTree = "<group>"; };
 		5475B9591B6DD92E004877C2 /* RTSelectionMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTSelectionMenu.swift; sourceTree = "<group>"; };
@@ -197,7 +191,7 @@
 		C76A0D6A1B863D8900230353 /* MobDeathParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MobDeathParticle.sks; sourceTree = "<group>"; };
 		C76A0D6B1B863D8900230353 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		C76A0D6F1B86453400230353 /* FireballDeathParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FireballDeathParticle.sks; sourceTree = "<group>"; };
->>>>>>> master
+
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -309,16 +303,13 @@
 				54EBB0C01B840ED8004A5E55 /* Player */,
 				549FBDC11B6F361F00A4F00A /* Title */,
 				540711F91B542A6E00252EF9 /* Base */,
-<<<<<<< HEAD
-				540711FD1B544B5000252EF9 /* Character */,
-				C74B369C1B6C01A80039E2D6 /* Stage */,
-=======
+
 				5489501F1B58BF5900032B67 /* Control */,
 				548950261B63405000032B67 /* Board */,
 				549FBDB41B6EDB6A00A4F00A /* Stage */,
 				540711FD1B544B5000252EF9 /* Hero */,
 				545523D51B84EF0500BCEBB2 /* Monster */,
->>>>>>> master
+
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -701,15 +692,13 @@
 				543A0FA01B6D72F800B4C77A /* RTHeroWarrior.swift in Sources */,
 				5475B95A1B6DD92E004877C2 /* RTSelectionMenu.swift in Sources */,
 				540711E71B5419F800252EF9 /* RTCombatScene.swift in Sources */,
-<<<<<<< HEAD
-				C74B369B1B6C01A20039E2D6 /* RTStage.swift in Sources */,
-=======
+
 				543A0F9C1B6AEA7100B4C77A /* RTWindow.swift in Sources */,
 				540816441B7E7A0A005728BD /* RTTileLaboratory.swift in Sources */,
 				549FBDBA1B6EF71800A4F00A /* RTStageSciFi.swift in Sources */,
 				543A0F961B69E92800B4C77A /* RTTileGraveyard.swift in Sources */,
 				543A0F7E1B682C8200B4C77A /* RTEventManager.swift in Sources */,
->>>>>>> master
+
 				540711EE1B54283700252EF9 /* RTHeroSelectionScene.swift in Sources */,
 				54EBB0BB1B83AC17004A5E55 /* RTConfirmWindow.swift in Sources */,
 				543A0F981B6AC1DF00B4C77A /* RTTileWindow.swift in Sources */,

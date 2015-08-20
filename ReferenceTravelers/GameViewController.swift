@@ -63,14 +63,10 @@ class GameViewController: UIViewController {
         
         GTitleScene!.scaleMode = .AspectFill
         
-<<<<<<< HEAD
-        skView.presentScene(GStageSelectionScene)
-=======
         GCombatScene!.scaleMode = .AspectFill
         
         skView.presentScene(GCombatScene!)
         skView.showsPhysics = true;
->>>>>>> master
     }
     
     

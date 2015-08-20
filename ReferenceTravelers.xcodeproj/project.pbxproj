@@ -551,6 +551,16 @@
 			name = Particles;
 			sourceTree = "<group>";
 		};
+		C76A0D6E1B86449A00230353 /* Particles */ = {
+			isa = PBXGroup;
+			children = (
+				C76A0D6A1B863D8900230353 /* MobDeathParticle.sks */,
+				C76A0D6B1B863D8900230353 /* spark.png */,
+				C76A0D6F1B86453400230353 /* FireballDeathParticle.sks */,
+			);
+			name = Particles;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */

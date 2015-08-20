@@ -68,6 +68,7 @@ class GameViewController: UIViewController {
         
         skView.presentScene(GCombatScene!)
 
+
     }
     
     

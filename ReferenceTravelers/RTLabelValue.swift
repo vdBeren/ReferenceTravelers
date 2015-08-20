@@ -29,7 +29,6 @@ class RTLabelValue: RTLabel {
         self.labelValue!.position.x += valueXAlign
         self.labelValue!.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Right
         self.addChild(labelValue!)
-        
        
         
         self.labelValue!.introAnimation()
@@ -60,7 +59,7 @@ class RTLabelValue: RTLabel {
 
     
     func setValue(value: Int){
-        self.labelValue!.setLabelText(String(text))
+        self.labelValue!.setLabelText(String(value))
     }
 
     required init?(coder aDecoder: NSCoder) {

@@ -18,6 +18,7 @@ var GEventManager: RTEventManager? = RTEventManager()
 var GTileManager: RTTileManager? = RTTileManager()
 var GHeroesManager: RTHeroManager? = RTHeroManager()
 var GStageManager: RTStageManager? = RTStageManager()
+var GCombatManager: RTCombatManager? = RTCombatManager()
 
 var GTitleScene: RTTitleScene?
 var GHeroSelectionScene: RTHeroSelectionScene?
@@ -65,7 +66,7 @@ class GameViewController: UIViewController {
         
         GCombatScene!.scaleMode = .AspectFill
         
-        skView.presentScene(GCombatScene!)
+        skView.presentScene(GBoardScene!)
     }
     
     

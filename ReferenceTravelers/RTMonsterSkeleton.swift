@@ -15,6 +15,7 @@ class RTMonsterSkeleton: RTMonster {
         super.init(imageNamed: "skeleton")
         
         self.name = "SKELETON"
+        self.zPosition += 1
     }
     
     override func update() {

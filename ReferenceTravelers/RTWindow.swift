@@ -64,8 +64,6 @@ class RTWindow: RTHideRequired {
         duration = 0.2
         let scaleActionFinish = SKAction.scaleTo(scale, duration: duration)
         
-        let wait = SKAction.waitForDuration(0.5)
-        
         let sequenceArray = SKAction.sequence([scaleActionBegin, scaleActionFinish])
         self.runAction(sequenceArray)
     }

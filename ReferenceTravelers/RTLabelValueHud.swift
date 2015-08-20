@@ -16,7 +16,7 @@ class RTLabelValueHud: RTLabel {
     
     var labelValue, labelValueAux: RTLabelText?
     
-    init(text: String, value: Int, valueAux: Int, fontSize: CGFloat, xAlign: CGFloat){
+    init(text: String, value: Int, valueAux: Int, fontSize: CGFloat, xAlign: CGFloat, stats: Bool){
         
         super.init(fontSize: fontSize)
         
@@ -34,12 +34,26 @@ class RTLabelValueHud: RTLabel {
         
         
         // Configura e adiciona label de valor auxiliar (maxHealth, stats extras)
-        let auxText = "/ \(valueAux)"
+        let auxText: String
+        
+        if stats{
+            if value >= 0{
+                auxText = "+\(valueAux)"
+            }
+            else{
+                auxText = "\(valueAux)"
+            }
+            
+        }
+        else{
+            auxText = "/ \(valueAux)"
+        }
+        
         
         self.labelValueAux = RTLabelText(text: auxText, fontSize: fontSize, minimum: 2)
         self.labelValueAux!.fontColor = SKColor.whiteColor()
         self.labelValueAux!.fontSize = fontSize
-        self.labelValueAux!.position.x += xAlign*2
+        self.labelValueAux!.position.x += xAlign*1.4
         self.labelValueAux!.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Right
         self.addChild(labelValueAux!)
         self.labelValueAux!.introAnimation()
@@ -47,6 +61,10 @@ class RTLabelValueHud: RTLabel {
         
     }
     
+    func refresh(){
+        self.labelValue?.introAnimation()
+        self.labelValueAux?.introAnimation()
+    }
     
     func setValues(value: Int, valueAux: Int){
         self.labelValue!.setLabelText(String(value))

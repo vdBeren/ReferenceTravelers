@@ -26,7 +26,7 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
     var btnDir = RTButton(imageNamed: "btnCombatDir", actionOnTouchBegan: true, actionTime: 0.2)
     var btnEsq = RTButton(imageNamed: "btnCombatEsq", actionOnTouchBegan: true, actionTime: 0.2)
     var btnPulo = RTButton(imageNamed: "btnJump", actionOnTouchBegan: true, actionTime: 0.2)
-    var btnPause = RTButton(imageNamed: "btnPause", actionOnTouchBegan: true, actionTime: 0.2)
+    var btnPause = RTButton(imageNamed: "btnCombatPause", actionOnTouchBegan: true, actionTime: 0.2)
     
     var velocityY : Int = 400
     var jump : Bool = false
@@ -42,6 +42,8 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
     var mobDeathLabel : SKLabelNode = SKLabelNode(text: String(0))
     var bossBattle = false
     var invulnerabilty : Bool = false
+    
+    
     let fireballBitMask : UInt32 = 0x1 << 7
     let parentBitMask : UInt32 = 0x1 << 6
     let floorBitMask : UInt32 = 0x1 << 5
@@ -60,6 +62,7 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
         //Background da Scene
         background = RTBackground(imageNamed: "bgMedieval")
         self.background!.position = CGPoint(x: 0.0, y: 0.0)
+        self.background?.zPosition = -2
         self.addChild(background!)
         
         //Gravidade

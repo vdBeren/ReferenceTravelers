@@ -77,12 +77,11 @@ class RTStageTextWindow: RTTextWindow {
         
         // Conteudo vazio das colunas
         let labelBlank: RTLabelText = RTLabelText(text: "", fontSize: 1, minimum: 1)
-        let labelBlank2: RTLabelText = RTLabelText(text: "", fontSize: 1, minimum: 1)
         
         // Arrays com conteudo de cada linha / coluna
         let labelArrayRowA = [self.labelTitle!, labelBlank, self.labelDifficulty!]
         let labelArrayRowB = [self.labelDescription!]
-        let labelArrayRowC = [labelBlank2]
+        let labelArrayRowC = [labelBlank]
         
         // Array de linhas
         let rowArray = [labelArrayRowA, labelArrayRowB, labelArrayRowC]
@@ -90,6 +89,12 @@ class RTStageTextWindow: RTTextWindow {
         // Realiza os posicionamentos de todos os nodes de texto.
         for (row, array) in enumerate(rowArray){
             for (column, label) in enumerate(array){
+                
+                // Se for um label em branco, pula
+                if label.fontSize == 1{
+                    continue
+                }
+                
                 label.position.x += alignColumnArray[column]
                 label.position.y += alignRowArray[row]
                 label.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left

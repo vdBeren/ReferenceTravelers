@@ -341,6 +341,8 @@ class RTEventManager: NSObject {
     func callEventCombat(){
         let event = GEventManager!.pickEvent(RTEvent.EventType.Combat)
         
+        GCombatManager!.callCombat(0)
+        
         //self.openEventWindow(event, value: -1)
         
         //GBoardScene!.setCurrentTileUsed()

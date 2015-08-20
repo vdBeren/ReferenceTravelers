@@ -17,11 +17,13 @@ import SpriteKit
 class RTBoardScene: SKScene {
     
     var backgroundNode: RTBackground?
-    var buttonPause: RTBoingButton?
+    var buttonPause: RTButton?
     var buttonAdvance, buttonSkip: RTTextButton?
     var labelTileName, labelTileDescription, labelLv, labelLevelValue: RTLabelText?
     var blackStrip: SKSpriteNode?
     var heroDisplay: RTSelectable?
+    
+    var boardHud: RTHud?
     
     var pauseWindow: RTPauseWindow?
     
@@ -57,6 +59,7 @@ class RTBoardScene: SKScene {
         
         self.backgroundNode = RTBackground(imageNamed: GStageManager!.currentStage.backgroundImage)
         // backgroundNode!.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        self.backgroundNode?.zPosition -= 2
         self.addChild(self.backgroundNode!)
         
         // Faixa de fundo
@@ -69,10 +72,20 @@ class RTBoardScene: SKScene {
         //--------------------------------------------------------------------------
         
         //--------------------------------------------------------------------------
+        // HUD
+        
+        self.boardHud = RTHud()
+        self.boardHud?.windowPopUp!.position.y = self.size.height
+        self.boardHud?.windowPopUp?.zPosition -= 1
+        self.addChild(boardHud!)
+        
+        //--------------------------------------------------------------------------
+        
+        //--------------------------------------------------------------------------
         // Botão que pausa e mostra Pop-Up que tem Voltar, Continuar ou Recomeçar
         
-        self.buttonPause = RTBoingButton(imageNamed: "btnBack", actionOnTouchBegan: false, actionTime: 1.2)
-        self.buttonPause!.position = CGPoint(x: self.size.width/16, y: self.size.height/1.11)
+        self.buttonPause = RTButton(imageNamed: "btnPause", actionOnTouchBegan: false, actionTime: 1.2)
+        self.buttonPause!.position = CGPoint(x: self.size.width/2, y: self.size.height/1.2)
         self.buttonPause!.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         self.buttonPause!.setRTButtonAction { () -> () in
             
@@ -84,7 +97,7 @@ class RTBoardScene: SKScene {
             
             GAudioManager!.playSound(RTAudioManager.SoundsEnum.Tot)
         }
-        //self.buttonPause!.zPosition += 3
+        //self.buttonPause!.zPosition += 1
         self.addChild(buttonPause!)
         
         //--------------------------------------------------------------------------
@@ -107,7 +120,7 @@ class RTBoardScene: SKScene {
         //--------------------------------------------------------------------------
         // Botão de Avançar
         
-        self.buttonAdvance = RTTextButton(imageNamed: "btnAdvance", actionOnTouchBegan: true, text: "CONFIRM", fontSize: 68, minimum: 8, colors: colors, actionTime: 2.0)
+        self.buttonAdvance = RTTextButton(imageNamed: "btnAdvance", actionOnTouchBegan: true, text: "CONFIRM", fontSize: 68, minimum: 8, colors: colors, actionTime: 1.2)
         self.buttonAdvance!.anchorPoint = CGPoint(x: 1.0, y: 0.0)
         self.buttonAdvance!.position = CGPoint(x: self.size.width/1.0, y: 0.0)
         
@@ -126,7 +139,7 @@ class RTBoardScene: SKScene {
         //--------------------------------------------------------------------------
         // Botão de Pular
         
-        self.buttonSkip = RTTextButton(imageNamed: "btnSkip", actionOnTouchBegan: true, text: "SKIP", fontSize: 68, minimum: 4, colors: colors, actionTime: 2.0)
+        self.buttonSkip = RTTextButton(imageNamed: "btnSkip", actionOnTouchBegan: true, text: "SKIP", fontSize: 68, minimum: 4, colors: colors, actionTime: 1.2)
         self.buttonSkip!.anchorPoint = CGPoint(x: 0.0, y: 0.0)
         self.buttonSkip!.position = CGPoint(x: 0.0, y: 0.0)
         
@@ -188,15 +201,7 @@ class RTBoardScene: SKScene {
         self.userInteractionEnabled = true
         
     }
-    
-    
-    // Desabilita/Habilita os nodes que possuem interação.
-    func disableNodes(#enabled: Bool){
-        self.buttonAdvance?.userInteractionEnabled = enabled
-        self.buttonSkip?.userInteractionEnabled = enabled
-        self.buttonPause?.userInteractionEnabled = enabled
-    }
-    
+
     
     // Deixa o tile atual usado e chama o update do tabuleiro.
     func setCurrentTileUsed(){
@@ -212,7 +217,6 @@ class RTBoardScene: SKScene {
                 tileWindow.position = CGPoint(x: self.size.width/2, y: self.size.height/2)
                 self.addChild(tileWindow)
                 
-                self.disableNodes(enabled: false)
             })
             
             
@@ -228,11 +232,10 @@ class RTBoardScene: SKScene {
         
         let blockTileUsed = SKAction.runBlock({self.currentTile.setTileUsed()})
         let blockTileUpdate = SKAction.runBlock({self.updateBoard()})
-        let blockButtonCooldown = SKAction.runBlock({self.disableNodes(enabled: true)})
         
         let wait = SKAction.waitForDuration(0.2)
         
-        let sequence = SKAction.sequence([blockTileUsed, wait, blockTileUpdate, wait, blockButtonCooldown])
+        let sequence = SKAction.sequence([blockTileUsed, wait, blockTileUpdate])
         
         self.runAction(sequence)
     }
@@ -261,11 +264,10 @@ class RTBoardScene: SKScene {
             self.labelLevelValue?.introAnimation()
         })
         let blockTileUpdate = SKAction.runBlock({self.updateBoard()})
-        let blockButtonCooldown = SKAction.runBlock({self.disableNodes(enabled: true)})
         
         let wait = SKAction.waitForDuration(0.5)
         
-        let sequence = SKAction.sequence([blockTileSize, wait, blockTileUpdate, wait, blockButtonCooldown])
+        let sequence = SKAction.sequence([blockTileSize, wait, blockTileUpdate])
         
         
         self.runAction(sequence)
@@ -304,9 +306,6 @@ class RTBoardScene: SKScene {
             self.updateBoard()
             
         }
-        
-        self.buttonsControl()
-        
 
     }
     
@@ -314,25 +313,10 @@ class RTBoardScene: SKScene {
     private func skipButtonAction(){
         if !currentTile.tileUsed{
             self.setCurrentTileUsed()
-            self.buttonsControl()
         }
     }
     
     
-    private func buttonsControl(){
-        let block = SKAction.runBlock({
-            self.disableNodes(enabled: false)
-        })
-        
-        let block2 = SKAction.runBlock({
-            self.disableNodes(enabled: true)
-        })
-        
-        let wait = SKAction.waitForDuration(2.0)
-        let sequence = SKAction.sequence([block, wait, block2])
-        
-        self.runAction(sequence)
-    }
     
     // Adiciona um tile ao tabuleiro / scene
     private func addTile(tile: RTTile){

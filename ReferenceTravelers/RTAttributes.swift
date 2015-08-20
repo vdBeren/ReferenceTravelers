@@ -13,8 +13,9 @@ import UIKit
 class RTAttributes: NSObject {
     
     var primary, agility, luck, greed, health, stamina, level, maxHealth, maxStamina: Int
+    var primaryBuff, agilityBuff, luckBuff, greedBuff: Int
     var primaryType: RTAttributes.PrimariesEnum
-    var minimumStatValue: Int = 5
+    var minimumStatValue: Int = 1
     
     enum PrimariesEnum : String{
         case Strength = "STRENGTH"
@@ -39,6 +40,11 @@ class RTAttributes: NSObject {
         agility = 0
         luck = 0
         greed = 0
+        
+        primaryBuff = 0
+        agilityBuff = 0
+        luckBuff = 0
+        greedBuff = 0
         
         health = 100
         stamina = 100
@@ -123,16 +129,16 @@ class RTAttributes: NSObject {
         
         switch statType{
         case RTAttributes.AttributesEnum.Primary:
-            return checkForMin(self.primary + statValue)
+            return checkForMin(self.primaryBuff + statValue)
             
         case RTAttributes.AttributesEnum.Agility:
-            return checkForMin(self.agility + statValue)
+            return checkForMin(self.agilityBuff + statValue)
             
         case RTAttributes.AttributesEnum.Luck:
-            return checkForMin(self.luck + statValue)
+            return checkForMin(self.luckBuff + statValue)
             
         case RTAttributes.AttributesEnum.Greed:
-            return checkForMin(self.greed + statValue)
+            return checkForMin(self.greedBuff + statValue)
             
         case RTAttributes.AttributesEnum.MaxHealth:
             return checkForMin(self.maxHealth + statValue)

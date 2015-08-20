@@ -63,6 +63,7 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
         background = RTBackground(imageNamed: "bgMedieval")
         self.background!.position = CGPoint(x: 0.0, y: 0.0)
         self.background?.zPosition = -2
+
         self.addChild(background!)
         
         //Gravidade
@@ -83,7 +84,7 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
         parentNode.physicsBody?.allowsRotation = false
         parentNode.physicsBody?.dynamic = true
         parentNode.physicsBody?.categoryBitMask = parentBitMask
-        parentNode.physicsBody?.collisionBitMask = floorBitMask
+        parentNode.physicsBody?.collisionBitMask = floorBitMask | edgesBitMask
         addChild(parentNode)
         
         ladoDir.position = CGPoint(x: frame.maxX + 10, y: frame.midY)
@@ -92,7 +93,7 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
         ladoDir.physicsBody?.dynamic = false
         ladoDir.physicsBody?.mass = 100000
         ladoDir.physicsBody?.categoryBitMask = edgesBitMask
-        ladoDir.physicsBody?.collisionBitMask = heroBitMask
+        ladoDir.physicsBody?.collisionBitMask = heroBitMask | parentBitMask
         ladoDir.physicsBody?.pinned = true
         ladoDir.hidden = true
         addChild(ladoDir)
@@ -103,7 +104,7 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
         ladoEsq.physicsBody?.dynamic = true
         ladoEsq.physicsBody?.mass = 100000
         ladoEsq.physicsBody?.categoryBitMask = edgesBitMask
-        ladoEsq.physicsBody?.collisionBitMask = heroBitMask
+        ladoEsq.physicsBody?.collisionBitMask = heroBitMask | parentBitMask
         ladoEsq.physicsBody?.pinned = true
         ladoEsq.hidden = true
         addChild(ladoEsq)
@@ -119,18 +120,19 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
         sword.physicsBody?.affectedByGravity = false
         sword.physicsBody?.dynamic = true
         sword.physicsBody?.categoryBitMask = weaponBitMask
-        sword.physicsBody?.contactTestBitMask = mobsBitMask
-        sword.physicsBody?.collisionBitMask = floorBitMask | weaponBitMask | parentBitMask | heroBitMask
+        sword.physicsBody?.contactTestBitMask = mobsBitMask | fireballBitMask
+        sword.physicsBody?.collisionBitMask = floorBitMask | weaponBitMask | parentBitMask | heroBitMask | edgesBitMask
         
         player.size = CGSize(width: 150, height: 100)
         player.position = CGPoint(x: 0, y: 0)
-        player.physicsBody = SKPhysicsBody(texture: player.texture , size: player.size)
+        player.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: 50, height: 100), center: CGPoint(x: 45, y: 0))
         player.anchorPoint = CGPointMake(0.5, 0.5)
-        player.physicsBody?.pinned = true
+        player.physicsBody!.pinned = true
         player.physicsBody!.affectedByGravity = true
         player.physicsBody!.allowsRotation = false
         player.physicsBody!.categoryBitMask = heroBitMask
-        player.physicsBody?.collisionBitMask = floorBitMask | weaponBitMask | parentBitMask | heroBitMask | edgesBitMask
+        player.physicsBody!.contactTestBitMask = mobsBitMask | fireballBitMask
+        player.physicsBody!.collisionBitMask = floorBitMask | weaponBitMask | parentBitMask | heroBitMask | edgesBitMask
         player.xScale = -1
         parentNode.addChild(player)
         parentNode.addChild(sword)
@@ -150,7 +152,7 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
         btnDir.setRTButtonAction({ () -> () in
             if(self.lado == 2 || self.lado == 0){
                 self.parentNode.physicsBody!.velocity = CGVectorMake(200, 0)
-                self.sword.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: 62, height: 27), center: CGPointMake(0.5, 0.5))
+                self.sword.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: 75, height: 30), center: CGPointMake(0.5, 0.5))
                 self.sword.position.y = -18
                 self.sword.physicsBody?.pinned = true
                 self.sword.physicsBody?.affectedByGravity = false
@@ -170,7 +172,7 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
         btnEsq.setRTButtonAction({ () -> () in
             if(self.lado == 1 || self.lado == 0){
                 self.parentNode.xScale = -1
-                self.sword.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: 62, height: 27), center: CGPointMake(0.5, 0.5))
+                self.sword.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: 75, height: 30), center: CGPointMake(0.5, 0.5))
                 self.sword.position.y = -18
                 self.sword.physicsBody?.pinned = true
                 self.sword.physicsBody?.affectedByGravity = false
@@ -191,14 +193,15 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
             if(self.jump == false){
                 self.velocityY = 500
                 let action : SKAction = SKAction.runBlock({
-                    self.player.physicsBody!.applyImpulse(CGVectorMake(0.0, 100.0))
+                    self.player.physicsBody!.applyImpulse(CGVectorMake(0.0, 200.0))
                 })
                 let jumpAction : SKAction = SKAction.repeatAction(action, count: 5)
-                let time : SKAction = SKAction.waitForDuration(1.1)
+                let timeAir : SKAction = SKAction.waitForDuration(0.5)
                 self.player.runAction(jumpAction)
                 self.jump = true
-                self.player.runAction(time, completion: {
+                self.player.runAction(timeAir, completion: {
                     self.jump = false
+                    self.physicsWorld.gravity.dy = -15
                 })
             }
         })
@@ -210,15 +213,16 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
     }
     
     func createMob() {
+        let waitHalf = SKAction.waitForDuration(0.5)
         let wait = SKAction.waitForDuration(1)
-        let wait2 = SKAction.waitForDuration(2)
         let mobSubir = SKAction.moveToY(280, duration: 2)
         let skeletonMob = SKAction.runBlock({
             if(self.mobCount < 15 && !self.bossBattle){
-                var mob = RTMonsterSkeleton()
+                var mob : RTMonsterSkeleton = RTMonsterSkeleton()
                 mob.size = CGSize(width: 70, height: 100)
                 mob.position = CGPoint(x: Int(arc4random_uniform(UInt32((self.frame.maxX - 50)))), y: Int(self.frame.minY))
                 self.addChild(mob)
+                mob.hidden = false
                 self.mobCount++
                 mob.zPosition = -1
                 mob.runAction(mobSubir, completion: {
@@ -232,27 +236,31 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
             }
         })
         let fireballMob = SKAction.runBlock({
-            if(self.mobDeathCount >= 0 && !self.bossBattle){
-                var mobFireball = RTMonster(imageNamed: "fireball")
-                mobFireball.size = CGSize(width: 60, height: 60)
-                mobFireball.position = CGPoint(x: Int(arc4random_uniform(UInt32((self.frame.maxX - 50)))), y: Int(self.frame.maxY))
-                mobFireball.physicsBody = SKPhysicsBody(circleOfRadius: 30)
-                mobFireball.physicsBody?.categoryBitMask = self.fireballBitMask
-                mobFireball.physicsBody?.contactTestBitMask = self.weaponBitMask | self.floorBitMask
-                mobFireball.physicsBody?.collisionBitMask = self.nullBitMask
-                self.addChild(mobFireball)
-                mobFireball.physicsBody?.applyImpulse(CGVector(dx: 0, dy: -30))
+            if(arc4random_uniform(2) == 0){
+                if(self.mobDeathCount >= 0 && !self.bossBattle){
+                    var mobFireball = RTMonster(imageNamed: "fireball")
+                    mobFireball.size = CGSize(width: 60, height: 60)
+                    mobFireball.position = CGPoint(x: Int(arc4random_uniform(UInt32((self.frame.maxX - 50)))), y: Int(self.frame.maxY))
+                    mobFireball.physicsBody = SKPhysicsBody(circleOfRadius: 30)
+                    mobFireball.physicsBody?.categoryBitMask = self.fireballBitMask
+                    mobFireball.physicsBody?.contactTestBitMask = self.weaponBitMask | self.floorBitMask
+                    mobFireball.physicsBody?.collisionBitMask = self.nullBitMask
+                    mobFireball.physicsBody?.affectedByGravity = false
+                    self.addChild(mobFireball)
+                    if(mobFireball.position.x < self.frame.midX){
+                        mobFireball.physicsBody?.applyImpulse(CGVector(dx: 25, dy: -30))
+                        mobFireball.xScale = -1
+                    } else {
+                        mobFireball.physicsBody?.applyImpulse(CGVector(dx: -25, dy: -30))
+                    }
+                }
             }
         })
-        runAction(SKAction.repeatActionForever(SKAction.sequence([wait2, fireballMob])))
+        runAction(SKAction.repeatActionForever(SKAction.sequence([waitHalf, fireballMob])))
         runAction(SKAction.repeatActionForever(SKAction.sequence([wait, skeletonMob])))
     }
     
     override func didFinishUpdate() {
-        
-    }
-    
-    func endGame(){
         
     }
     
@@ -269,9 +277,16 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
         }
         
         if(mobDeathCount >= 50){
-            endGame()
+            winCombat()
         }
         
+        if(jump){
+            physicsWorld.gravity.dy = -100
+        }
+        
+        if(GHeroesManager?.currentHero.attributes.health <= 0){
+            loseCombat()
+        }
     }
     
     func didBeginContact(contact: SKPhysicsContact) {
@@ -281,49 +296,107 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
         let contactB = contact.bodyB.categoryBitMask
         
         if ((contactA == weaponBitMask) && (contactB == mobsBitMask)){
+            let sparkEmmiter = SKEmitterNode(fileNamed: "MobDeathParticle.sks")
+            let stopSpark = SKAction.runBlock({sparkEmmiter.particleBirthRate = 0})
+            let wait = SKAction.waitForDuration(0.5)
+            let seq = SKAction.sequence([wait, stopSpark])
+            mobCount--
+            mobDeathCount++
+            mobDeathLabel.text = String(mobDeathCount)
+            sparkEmmiter.position = CGPointMake(secondNode!.position.x, secondNode!.position.y)
+            sparkEmmiter.name = "sparkEmmitter"
+            sparkEmmiter.zPosition = 1
+            sparkEmmiter.targetNode = self
+            sparkEmmiter.particleLifetime = 1
+            addChild(sparkEmmiter)
             secondNode?.removeFromParent()
-            mobCount--
-            mobDeathCount++
-            mobDeathLabel.text = String(mobDeathCount)
+            runAction(seq)
+            
         } else if(contactB == weaponBitMask && contactA == mobsBitMask){
-            firstNode?.removeFromParent()
+            let sparkEmmiter = SKEmitterNode(fileNamed: "MobDeathParticle.sks")
+            let stopSpark = SKAction.runBlock({sparkEmmiter.particleBirthRate = 0})
+            let wait = SKAction.waitForDuration(0.5)
+            let seq = SKAction.sequence([wait, stopSpark])
             mobCount--
             mobDeathCount++
             mobDeathLabel.text = String(mobDeathCount)
+            sparkEmmiter.position = CGPointMake(firstNode!.position.x, firstNode!.position.y)
+            sparkEmmiter.name = "sparkEmmitter"
+            sparkEmmiter.zPosition = 1
+            sparkEmmiter.targetNode = self
+            sparkEmmiter.particleLifetime = 1
+            addChild(sparkEmmiter)
+            firstNode?.removeFromParent()
+            runAction(seq)
         }
         
-        if((contactB == heroBitMask) && (contactA == mobsBitMask) && (!invulnerabilty)){
-            let wait = SKAction.waitForDuration(1.5)
-            println("tomou dano")
-            invulnerabilty = true
-            //Diminuir HP Diminuir HP Diminuir HPDiminuir HP Diminuir HP Diminuir HP Diminuir HP Diminuir HP Diminuir HP Diminuir HP Diminuir HP
-            runAction(wait, completion: {
-                self.invulnerabilty = false
-            })
+        if((contactB == heroBitMask) && (contactA == mobsBitMask) && !invulnerabilty){
+            self.damageHero()
             
         } else if((contactA == heroBitMask) && (contactB == mobsBitMask) && !invulnerabilty){
-            let wait = SKAction.waitForDuration(1.5)
-            println("tomou dano")
-            invulnerabilty = true
-            //Diminuir HP Diminuir HP Diminuir HPDiminuir HP Diminuir HP Diminuir HP Diminuir HP Diminuir HP Diminuir HP Diminuir HP Diminuir HP
-            runAction(wait, completion: {
-                self.invulnerabilty = false
-            })
+            self.damageHero()
         }
         
-        if((contactA == heroBitMask) && (contactB == fireballBitMask) && (!invulnerabilty)){
-            //Diminuir HP Diminuir HP Diminuir HPDiminuir HP Diminuir HP Diminuir HP Diminuir HP Diminuir HP Diminuir HP Diminuir HP Diminuir HP
+        if((contactA == heroBitMask) && (contactB == fireballBitMask)){
+            damageHero()
             secondNode?.removeFromParent()
-        } else if((contactA == fireballBitMask)  && (contactB == heroBitMask) && (!invulnerabilty)){
-            //Diminuir HP Diminuir HP Diminuir HPDiminuir HP Diminuir HP Diminuir HP Diminuir HP Diminuir HP Diminuir HP Diminuir HP Diminuir HP
+        } else if((contactA == fireballBitMask)  && (contactB == heroBitMask)){
+            damageHero()
             firstNode?.removeFromParent()
         }
         
         if((contactA == floorBitMask) && (contactB == fireballBitMask)){
+            let sparkEmmiter = SKEmitterNode(fileNamed: "FireballDeathParticle.sks")
+            let stopSpark = SKAction.runBlock({sparkEmmiter.particleBirthRate = 0})
+            let wait = SKAction.waitForDuration(0.5)
+            let seq = SKAction.sequence([wait, stopSpark])
+            sparkEmmiter.position = CGPointMake(secondNode!.position.x, secondNode!.position.y - 40)
+            sparkEmmiter.name = "fireEmmitter"
+            sparkEmmiter.zPosition = 1
+            sparkEmmiter.targetNode = self
+            sparkEmmiter.particleLifetime = 1
+            addChild(sparkEmmiter)
             secondNode?.removeFromParent()
+            runAction(seq)
         } else if((contactA == fireballBitMask) && (contactB == floorBitMask)){
+            let sparkEmmiter = SKEmitterNode(fileNamed: "FireballDeathParticle.sks")
+            let stopSpark = SKAction.runBlock({sparkEmmiter.particleBirthRate = 0})
+            let wait = SKAction.waitForDuration(0.5)
+            let seq = SKAction.sequence([wait, stopSpark])
+            mobCount--
+            mobDeathCount++
+            mobDeathLabel.text = String(mobDeathCount)
+            sparkEmmiter.position = CGPointMake(firstNode!.position.x, firstNode!.position.y - 40)
+            sparkEmmiter.name = "fireEmmitter"
+            sparkEmmiter.zPosition = 1
+            sparkEmmiter.targetNode = self
+            sparkEmmiter.particleLifetime = 1
+            addChild(sparkEmmiter)
             firstNode?.removeFromParent()
+            runAction(seq)
         }
+    }
+    
+    func loseCombat(){
+        
+    }
+    
+    func winCombat(){
+        
+    }
+    
+    func damageHero(){
+        GHeroesManager?.currentHero.attributes.loseHealth(10)
+        //HUD
+        let wait = SKAction.waitForDuration(0.25)
+        let colorIn = SKAction.colorizeWithColor(SKColor.redColor(), colorBlendFactor: 0.8, duration: 0)
+        let colorOut = SKAction.colorizeWithColorBlendFactor(0, duration: 0)
+        let sequence = SKAction.sequence([colorIn, wait, colorOut, wait])
+        let repeat = SKAction.repeatAction(sequence, count: 3)
+        self.invulnerabilty = true
+        player.runAction(repeat, completion:{
+            self.invulnerabilty = false
+        })
     }
     
     override func didSimulatePhysics() {

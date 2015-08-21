@@ -70,6 +70,7 @@ class GameViewController: UIViewController {
         
         skView.presentScene(GTitleScene!)
 
+        //CHANGE
 
     }
     

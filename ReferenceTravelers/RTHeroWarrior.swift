@@ -27,6 +27,8 @@ class RTHeroWarrior: RTHero {
         self.attributes.luck = 3
         self.attributes.greed = 2
         
+        self.attributes.health = 150
+        self.attributes.stamina = 80
         self.attributes.maxHealth = 150
         self.attributes.maxStamina = 80
     }

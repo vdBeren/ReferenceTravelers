@@ -27,6 +27,8 @@ class RTHeroRogue: RTHero {
         self.attributes.luck = 2
         self.attributes.greed = 4
         
+        self.attributes.health = 80
+        self.attributes.stamina = 140
         self.attributes.maxHealth = 80
         self.attributes.maxStamina = 140
     }

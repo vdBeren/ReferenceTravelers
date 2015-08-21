@@ -27,6 +27,8 @@ class RTHeroMage: RTHero {
         self.attributes.luck = 5
         self.attributes.greed = 1
         
+        self.attributes.health = 80
+        self.attributes.stamina = 90
         self.attributes.maxHealth = 80
         self.attributes.maxStamina = 90
     }

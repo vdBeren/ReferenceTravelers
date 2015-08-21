@@ -27,6 +27,8 @@ var GBoardScene: RTBoardScene?
 var GCombatScene: RTCombatScene?
 var GSettingsScene: RTSettingsScene?
 
+var GHud: RTHud? = RTHud()
+
 var GSize = CGSize(width: 1024, height: 768)
 var GGamePaused: Bool = false
 

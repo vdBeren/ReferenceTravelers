@@ -24,7 +24,9 @@ class RTEventWindow: RTWindow {
     var value: Int = 0
     var clickClose: Bool = false
     
-    init(event: RTEvent, value: Int){
+    var attribute: RTHud.HudAttributes?
+    
+    init(event: RTEvent, value: Int, attribute: RTHud.HudAttributes){
         
         let color = UIColor.clearColor()
         //let texture = SKTexture(imageNamed: imageName.rawValue + "-eWindowBG")
@@ -42,6 +44,7 @@ class RTEventWindow: RTWindow {
         
         self.event = event
         self.value = value
+        self.attribute = attribute
         
         self.buttonClose = RTButton(imageNamed: "btnEventWindow", actionOnTouchBegan: false, actionTime: 1.0)
         self.buttonClose!.anchorPoint = CGPoint(x: 0.5, y: 2.0)
@@ -52,6 +55,8 @@ class RTEventWindow: RTWindow {
             if !self.clickClose{
                 self.clickClose = true
                 GBoardScene!.setCurrentTileUsed()
+                
+                self.labelAnimation()
                 self.closeWindow()
             }
 
@@ -64,7 +69,11 @@ class RTEventWindow: RTWindow {
         self.introAnimation()
        // self.floatingAnimation()
         
-        
+    }
+    
+    
+    private func labelAnimation(){
+        self.labelEventValue?.moveLabelTo(GHud!.getLabelPosition(self.attribute!))
     }
     
     func setContents(){

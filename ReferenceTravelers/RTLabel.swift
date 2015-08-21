@@ -36,6 +36,20 @@ class RTLabel: SKLabelNode {
         self.finalText = text
     }
     
+    func moveLabelTo(location: CGPoint){
+        let move = SKAction.moveTo(location, duration: 0.7)
+        let wait = SKAction.waitForDuration(0.3)
+        
+        let block = SKAction.runBlock({self.introAnimation()})
+        
+        let fade = SKAction.fadeAlphaTo(0.0, duration: 0.3)
+        
+        let sequence = SKAction.sequence([move, wait, block, wait, fade])
+        
+        self.runAction(sequence)
+    }
+
+    
     func introAnimation(){
         
         

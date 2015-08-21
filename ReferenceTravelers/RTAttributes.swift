@@ -59,12 +59,18 @@ class RTAttributes: NSObject {
     func obtainGold(base: Int) -> Int{
         var result = formulaObtainGold(base)
         GPlayerManager.gold += result
+        
+        GHud?.refreshContent(RTHud.HudAttributes.Gold)
+        
         return result
     }
     
     func loseGold(base: Int) -> Int{
-        var result = checkForNegative(formulaLoseGold(base))
-        GPlayerManager.gold -= result
+        var result = formulaLoseGold(base)
+        GPlayerManager.gold = checkForNegative(GPlayerManager.gold + result)
+        
+        GHud?.refreshContent(RTHud.HudAttributes.Gold)
+        
         return result
     }
     
@@ -78,14 +84,20 @@ class RTAttributes: NSObject {
     // ========================================================================
     // HEALTH
     func recoverHealth(base: Int) -> Int{
-        var result = checkForMax(formulaRecoverHealth(base), max: self.maxHealth)
-        health += result
+        var result = formulaRecoverHealth(base)
+        health = checkForMax(health + result, max: self.maxHealth)
+        
+        GHud?.refreshContent(RTHud.HudAttributes.Health)
+        
         return result
     }
     
     func loseHealth(base: Int) -> Int{
         var result = checkForNegative(formulaLoseHealth(base))
-        health -= result
+        health = checkForMin(health - result)
+        
+        GHud?.refreshContent(RTHud.HudAttributes.Health)
+        
         return result
     }
     
@@ -101,12 +113,18 @@ class RTAttributes: NSObject {
     func recoverStamina(base: Int) -> Int{
         var result = checkForMax(formulaRecoverStamina(base), max: self.maxStamina)
         stamina += result
+        
+        GHud?.refreshContent(RTHud.HudAttributes.Stamina)
+        
         return result
     }
     
     func loseStamina(base: Int) -> Int{
         var result = checkForNegative(formulaLoseStamina(base))
-        stamina -= result
+        stamina = checkForMin(stamina - result)
+        
+        GHud?.refreshContent(RTHud.HudAttributes.Stamina)
+        
         return result
     }
     
@@ -129,21 +147,27 @@ class RTAttributes: NSObject {
         
         switch statType{
         case RTAttributes.AttributesEnum.Primary:
+            GHud?.refreshContent(RTHud.HudAttributes.PrimaryBuff)
             return checkForMin(self.primaryBuff + statValue)
             
         case RTAttributes.AttributesEnum.Agility:
+            GHud?.refreshContent(RTHud.HudAttributes.AgilityBuff)
             return checkForMin(self.agilityBuff + statValue)
             
         case RTAttributes.AttributesEnum.Luck:
+            GHud?.refreshContent(RTHud.HudAttributes.LuckBuff)
             return checkForMin(self.luckBuff + statValue)
             
         case RTAttributes.AttributesEnum.Greed:
+            GHud?.refreshContent(RTHud.HudAttributes.GreedBuff)
             return checkForMin(self.greedBuff + statValue)
             
         case RTAttributes.AttributesEnum.MaxHealth:
+            GHud?.refreshContent(RTHud.HudAttributes.MaxHealth)
             return checkForMin(self.maxHealth + statValue)
             
         case RTAttributes.AttributesEnum.MaxStamina:
+            GHud?.refreshContent(RTHud.HudAttributes.MaxStamina)
             return checkForMin(self.maxStamina + statValue)
             
         default:
@@ -182,7 +206,7 @@ class RTAttributes: NSObject {
     }
     
     private func checkForMax(value: Int, max: Int) -> Int{
-        if value > max{
+        if value >= max{
             return max
         }
         

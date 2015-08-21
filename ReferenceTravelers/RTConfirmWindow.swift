@@ -18,7 +18,7 @@ class RTConfirmWindow: RTWindow {
         
         super.init(imageNamed: "windowPopUp", background: false)
         
-        self.name = "PAUSEWINDOW"
+        self.name = "CONFIRMWINDOW"
         //self.anchorPoint = CGPoint(x: -0.5, y: -0.5)
         
         

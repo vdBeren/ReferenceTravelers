@@ -21,10 +21,29 @@ class RTHud: RTWindow {
     
     var contentsArray: [RTLabelValueHud] = []
     
+    var attributeArray: [Int] = []
+    
     var heroSelected: RTHero = RTHeroWarrior()
     var heroAttributes: RTAttributes = RTAttributes()
     
     var fontSize: CGFloat = 30.0
+    
+    enum HudAttributes : Int{
+        case Health = 0
+        case MaxHealth = 1
+        case Stamina = 2
+        case MaxStamina = 3
+        case Primary = 4
+        case PrimaryBuff = 5
+        case Agility = 6
+        case AgilityBuff = 7
+        case Luck = 8
+        case LuckBuff = 9
+        case Greed = 10
+        case GreedBuff = 11
+        case Gold = 12
+        
+    }
     
     init(){
         super.init(imageNamed: "topHUD", background: false)
@@ -32,30 +51,94 @@ class RTHud: RTWindow {
         
         self.userInteractionEnabled = false
         
+        self.heroSelected = GHeroesManager!.currentHero
+        self.heroAttributes = GHeroesManager!.currentHero.attributes
+        
+
         self.initContents()
     }
     
+    func getLabelPosition(attribute: HudAttributes) -> CGPoint{
+        
+        
+        switch(attribute){
+        case .Health:
+            return labelHealth!.getValuePosition()
+        case .Stamina:
+            return labelStamina!.getValuePosition()
+        case .PrimaryBuff:
+            return labelPrimary!.getValueAuxPosition()
+        case .AgilityBuff:
+            return labelAgility!.getValueAuxPosition()
+        case .LuckBuff:
+            return labelLuck!.getValueAuxPosition()
+        case .GreedBuff:
+            return labelGreed!.getValueAuxPosition()
+        case .Gold:
+            return labelGold!.getValuePosition()
+        default:
+            return CGPoint(x: 0.0, y: 0.0)
+        }
+
+    
+        
+    }
+    
     func refreshContents(){
-        heroSelected = GHeroesManager!.currentHero
-        heroAttributes = GHeroesManager!.currentHero.attributes
         
-        self.labelPrimary?.setLabelText(heroAttributes.primaryType.rawValue)
-        
-        // Array com os atributos e atributos buffs. A ordem tem que respeitar a ordem dos labels do contentArray.
-        var attributeArray: [Int] = [heroAttributes.health, heroAttributes.maxHealth, heroAttributes.stamina, heroAttributes.maxStamina, heroAttributes.primary, heroAttributes.primaryBuff, heroAttributes.agility, heroAttributes.agilityBuff, heroAttributes.luck, heroAttributes.luckBuff, heroAttributes.greed, heroAttributes.greedBuff]
+        self.updateAttributesArray()
         
         for (index, label) in enumerate(contentsArray){
             label.setValues(attributeArray[index], valueAux: attributeArray[index+1])
-            label.introAnimation()
-            label.refresh()
+            label.refreshValues()
         }
+
+        self.labelGold?.refreshValue()
+        
+    }
+    
+    func refreshContent(attribute: HudAttributes){
+        self.updateAttributesArray()
+        
+        switch(attribute){
+        case .Health:
+            self.labelHealth?.setValue(self.attributeArray[attribute.rawValue])
+            self.labelHealth?.refreshValue()
+        case .Stamina:
+            self.labelStamina?.setValue(self.attributeArray[attribute.rawValue])
+            self.labelStamina?.refreshValue()
+        case .PrimaryBuff:
+            self.labelPrimary?.setValues(self.attributeArray[attribute.rawValue-1], valueAux: self.attributeArray[attribute.rawValue])
+            self.labelPrimary?.refreshValues()
+        case .AgilityBuff:
+            self.labelAgility?.setValues(self.attributeArray[attribute.rawValue-1], valueAux: self.attributeArray[attribute.rawValue])
+            self.labelAgility?.refreshValues()
+        case .LuckBuff:
+            self.labelLuck?.setValues(self.attributeArray[attribute.rawValue-1], valueAux: self.attributeArray[attribute.rawValue])
+            self.labelLuck?.refreshValues()
+        case .GreedBuff:
+            self.labelGreed?.setValues(self.attributeArray[attribute.rawValue-1], valueAux: self.attributeArray[attribute.rawValue])
+            self.labelGreed?.refreshValues()
+        case .Gold:
+            self.labelGold?.setValue(GPlayerManager.gold)
+            self.labelGold?.refreshValue()
+        default:
+            return
+        }
+
+    }
+    
+    private func updateAttributesArray(){
+        // Array com os atributos e atributos buffs. A ordem tem que respeitar a ordem dos labels do contentArray.
+        self.attributeArray = [heroAttributes.health, heroAttributes.maxHealth, heroAttributes.stamina, heroAttributes.maxStamina, heroAttributes.primary, heroAttributes.primaryBuff, heroAttributes.agility, heroAttributes.agilityBuff, heroAttributes.luck, heroAttributes.luckBuff, heroAttributes.greed, heroAttributes.greedBuff]
+        
+        self.labelGold?.setValue(GPlayerManager.gold)
+        
         
     }
     
     private func initContents(){
         
-        heroSelected = GHeroesManager!.currentHero
-        heroAttributes = GHeroesManager!.currentHero.attributes
         
         let valueXAlign = self.size.width/5.5
         let valueYAlign = self.size.height/10

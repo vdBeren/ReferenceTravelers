@@ -36,7 +36,7 @@ class RTCombatManager: NSObject {
             let transition = SKTransition.crossFadeWithDuration(1.2)
             //let transition = SKTransition.pushWithDirection(SKTransitionDirection.Down, duration: 1.5)
             
-            //GCombatScene!.initCombat()
+            GCombatScene!.initCombat()
             GBoardScene!.scene?.view?.presentScene(GCombatScene, transition: transition)
         })
         

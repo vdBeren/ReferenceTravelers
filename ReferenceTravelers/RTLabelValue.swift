@@ -61,7 +61,14 @@ class RTLabelValue: RTLabel {
     func setValue(value: Int){
         self.labelValue!.setLabelText(String(value))
     }
+    
+    func refreshValue(){
+        self.labelValue!.introAnimation()
+    }
 
+    func getValuePosition() -> CGPoint{
+        return self.labelValue!.position
+    }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

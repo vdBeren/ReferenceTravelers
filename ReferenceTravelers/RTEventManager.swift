@@ -282,8 +282,8 @@ class RTEventManager: NSObject {
     }
     
     //MARK: Event Calls
-    private func openEventWindow(event: RTEvent, value: Int){
-        let eventWindow = RTEventWindow(event: event, value: value)
+    private func openEventWindow(event: RTEvent, value: Int, attribute: RTHud.HudAttributes){
+        let eventWindow = RTEventWindow(event: event, value: value, attribute: attribute)
         eventWindow.position = CGPoint(x: GBoardScene!.size.width/2, y: GBoardScene!.size.height/2)
         GBoardScene!.addChild(eventWindow)
     }
@@ -294,14 +294,14 @@ class RTEventManager: NSObject {
         let event = GEventManager!.pickEvent(RTEvent.EventType.Treasure)
         
         let gold = GHeroesManager!.currentHero.attributes.obtainGold(randomBase)
-        self.openEventWindow(event, value: gold)
+        self.openEventWindow(event, value: gold, attribute: RTHud.HudAttributes.Gold)
     }
     
     func callEventTheft(randomBase: Int){
         let event = GEventManager!.pickEvent(RTEvent.EventType.Theft)
         
         let gold = GHeroesManager!.currentHero.attributes.loseGold(randomBase)
-        self.openEventWindow(event, value: gold)
+        self.openEventWindow(event, value: gold, attribute: RTHud.HudAttributes.Gold)
     }
     
     // ========================================================================
@@ -310,14 +310,14 @@ class RTEventManager: NSObject {
         let event = GEventManager!.pickEvent(RTEvent.EventType.Heal)
         
         let heal = GHeroesManager!.currentHero.attributes.recoverHealth(randomBase)
-        self.openEventWindow(event, value: heal)
+        self.openEventWindow(event, value: heal, attribute: RTHud.HudAttributes.Health)
     }
     
     func callEventTrap(randomBase: Int){
         let event = GEventManager!.pickEvent(RTEvent.EventType.Trap)
         
         let damage = GHeroesManager!.currentHero.attributes.loseHealth(randomBase)
-        self.openEventWindow(event, value: damage)
+        self.openEventWindow(event, value: damage, attribute: RTHud.HudAttributes.Health)
     }
     
     // ========================================================================
@@ -326,14 +326,40 @@ class RTEventManager: NSObject {
         let event = GEventManager!.pickEvent(RTEvent.EventType.Miracle)
         
         let statGain = GHeroesManager!.currentHero.attributes.gainOrLoseStat(attribute, base: randomBase, gain: true)
-        self.openEventWindow(event, value: statGain)
+        self.openEventWindow(event, value: statGain, attribute: self.getAttributes(attribute))
     }
     
     func callEventDisaster(attribute: RTAttributes.AttributesEnum, randomBase: Int){
         let event = GEventManager!.pickEvent(RTEvent.EventType.Disaster)
         
         let statLoss = GHeroesManager!.currentHero.attributes.gainOrLoseStat(attribute, base: randomBase, gain: false)
-        self.openEventWindow(event, value: statLoss)
+        self.openEventWindow(event, value: statLoss, attribute: self.getAttributes(attribute))
+    }
+    
+    private func getAttributes(attribute: RTAttributes.AttributesEnum) -> RTHud.HudAttributes{
+        
+        switch(attribute){
+        case .MaxHealth:
+            return RTHud.HudAttributes.MaxHealth
+            
+        case .MaxStamina:
+            return RTHud.HudAttributes.MaxStamina
+            
+        case .Primary:
+            return RTHud.HudAttributes.PrimaryBuff
+            
+        case .Agility:
+            return RTHud.HudAttributes.AgilityBuff
+            
+        case .Luck:
+            return RTHud.HudAttributes.LuckBuff
+            
+        case .Greed:
+            return RTHud.HudAttributes.GreedBuff
+
+        }
+        
+        
     }
     
     // ========================================================================
@@ -353,7 +379,7 @@ class RTEventManager: NSObject {
     func callEventBlank(){
         let event = GEventManager!.pickEvent(RTEvent.EventType.Blank)
         
-        self.openEventWindow(event, value: -1)
+        self.openEventWindow(event, value: -1, attribute: RTHud.HudAttributes.Primary)
     }
 
     // ========================================================================
@@ -361,7 +387,7 @@ class RTEventManager: NSObject {
     func callEventStart(){
         let event = GEventManager!.pickEvent(RTEvent.EventType.Start)
         
-        self.openEventWindow(event, value: -1)
+        self.openEventWindow(event, value: -1, attribute: RTHud.HudAttributes.Primary)
     }
     
     // ========================================================================
@@ -369,7 +395,7 @@ class RTEventManager: NSObject {
     func callEventEnd(){
         let event = GEventManager!.pickEvent(RTEvent.EventType.End)
         
-        self.openEventWindow(event, value: -1)
+        self.openEventWindow(event, value: -1, attribute: RTHud.HudAttributes.Primary)
     }
     
 }

@@ -23,7 +23,6 @@ class RTBoardScene: SKScene {
     var blackStrip: SKSpriteNode?
     var heroDisplay: RTSelectable?
     
-    var boardHud: RTHud?
     
     var pauseWindow: RTPauseWindow?
     
@@ -74,10 +73,11 @@ class RTBoardScene: SKScene {
         //--------------------------------------------------------------------------
         // HUD
         
-        self.boardHud = RTHud()
-        self.boardHud?.windowPopUp!.position.y = self.size.height
-        self.boardHud?.windowPopUp?.zPosition -= 1
-        self.addChild(boardHud!)
+        GHud?.removeFromParent()
+        GHud = RTHud()
+        GHud?.windowPopUp!.position.y = self.size.height
+        GHud?.windowPopUp?.zPosition -= 1
+        self.addChild(GHud!)
         
         //--------------------------------------------------------------------------
         

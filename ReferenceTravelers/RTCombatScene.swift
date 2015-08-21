@@ -45,8 +45,6 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
     var bossBattle = false
     var invulnerabilty : Bool = false
     
-    var boardHud: RTHud?
-    
     
     let fireballBitMask : UInt32 = 0x1 << 7
     let parentBitMask : UInt32 = 0x1 << 6
@@ -61,22 +59,55 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
         
         super.init(size: size)
         
-        //Node de Audio
+        self.initCombat()
+
+    }
+    
+    override func didFinishUpdate() {
+        
+    }
+    
+    func initCombat(){
+        
+        player = RTHero(imageNamed: "personagem")
+        parentNode = SKSpriteNode(imageNamed: "")
+        lado = 1
+        colisao = 0
+        chao = SKSpriteNode(imageNamed: "chao")
+        
+        velocityY  = 400
+        jump = false
+        sword = SKSpriteNode(imageNamed: "bgMedieval")
+        btnPress = false
+        pulo  = false
+        voltar = false
+        ladoDir = SKSpriteNode(imageNamed: "")
+        ladoEsq = SKSpriteNode(imageNamed: "")
+        mobCount = 0
+        mobDeathCount = 0
+        mobDeathLabel = SKLabelNode(text: String(0))
+        bossBattle = false
+        invulnerabilty = false
+
+        
+        parentNode.removeAllChildren()
+        self.removeAllChildren()
         
         //Background da Scene
         background = RTBackground(imageNamed: "bgMedieval")
         self.background!.position = CGPoint(x: 0.0, y: 0.0)
         self.background?.zPosition = -2
-
+        
         self.addChild(background!)
         
         //--------------------------------------------------------------------------
         // HUD
         
-        self.boardHud = RTHud()
-        self.boardHud?.windowPopUp!.position.y = self.size.height
-        self.boardHud?.windowPopUp?.zPosition += 1
-        self.addChild(boardHud!)
+        GHud?.removeFromParent()
+        GHud = RTHud()
+        GHud?.windowPopUp!.position.y = self.size.height
+        GHud?.windowPopUp?.zPosition += 1
+        self.addChild(GHud!)
         
         //--------------------------------------------------------------------------
         
@@ -101,8 +132,6 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
         
         //--------------------------------------------------------------------------
         
-
-        
         
         //Gravidade
         physicsWorld.gravity = CGVectorMake(0.0, -15)
@@ -111,8 +140,8 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
         
         createMob()
         
-        mobDeathLabel.position = CGPoint(x: frame.midX, y: frame.maxY - 50)
-        addChild(mobDeathLabel)
+//        mobDeathLabel.position = CGPoint(x: frame.midX, y: frame.maxY - 50)
+//        self.addChild(mobDeathLabel)
         
         parentNode.size = CGSize(width: 1, height: 1)
         parentNode.position = CGPoint(x: 280, y: frame.midY)
@@ -123,7 +152,7 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
         parentNode.physicsBody?.dynamic = true
         parentNode.physicsBody?.categoryBitMask = parentBitMask
         parentNode.physicsBody?.collisionBitMask = floorBitMask | edgesBitMask
-        addChild(parentNode)
+        self.addChild(parentNode)
         
         ladoDir.position = CGPoint(x: frame.maxX + 10, y: frame.midY)
         ladoDir.size = CGSize(width: 10, height: frame.maxY)
@@ -134,7 +163,7 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
         ladoDir.physicsBody?.collisionBitMask = heroBitMask | parentBitMask
         ladoDir.physicsBody?.pinned = true
         ladoDir.hidden = true
-        addChild(ladoDir)
+        self.addChild(ladoDir)
         
         ladoEsq.position = CGPoint(x: frame.minX - 10, y: frame.midY)
         ladoEsq.size = CGSize(width: 10, height: frame.maxY)
@@ -145,7 +174,7 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
         ladoEsq.physicsBody?.collisionBitMask = heroBitMask | parentBitMask
         ladoEsq.physicsBody?.pinned = true
         ladoEsq.hidden = true
-        addChild(ladoEsq)
+        self.addChild(ladoEsq)
         
         sword.size = CGSize(width: 100, height: 25)
         sword.position = CGPoint(x: 40, y: -18)
@@ -172,8 +201,8 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
         player.physicsBody!.contactTestBitMask = mobsBitMask | fireballBitMask
         player.physicsBody!.collisionBitMask = floorBitMask | weaponBitMask | parentBitMask | heroBitMask | edgesBitMask
         player.xScale = -1
-        parentNode.addChild(player)
-        parentNode.addChild(sword)
+        self.parentNode.addChild(player)
+        self.parentNode.addChild(sword)
         
         let tamanhoChao : CGSize = CGSize(width: chao.size.width, height: chao.size.height)
         
@@ -296,10 +325,6 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
         runAction(SKAction.repeatActionForever(SKAction.sequence([wait, skeletonMob])))
     }
     
-    override func didFinishUpdate() {
-        
-    }
-    
     //Chamado a todo frame. Usado para realizar o update dos nodes da Scene, em cascata.
     override func update(currentTime: NSTimeInterval) {
         super.update(currentTime)
@@ -363,12 +388,12 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
         }
 
         
-        if((contactA == heroBitMask) && (contactB == fireballBitMask)){
+        if((contactA == weaponBitMask) && (contactB == fireballBitMask)){
             self.damageHero()
             secondNode?.removeFromParent()
             
         }
-        else if((contactA == fireballBitMask)  && (contactB == heroBitMask)){
+        else if((contactA == fireballBitMask)  && (contactB == weaponBitMask)){
             self.damageHero()
             firstNode?.removeFromParent()
         }
@@ -444,17 +469,22 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
     }
     
     func damageHero(){
+        
         GHeroesManager?.currentHero.attributes.loseHealth(10)
+        GHud?.refreshContent(RTHud.HudAttributes.Health)
+        
         //HUD
         let wait = SKAction.waitForDuration(0.25)
         let colorIn = SKAction.colorizeWithColor(SKColor.redColor(), colorBlendFactor: 0.8, duration: 0)
         let colorOut = SKAction.colorizeWithColorBlendFactor(0, duration: 0)
         let sequence = SKAction.sequence([colorIn, wait, colorOut, wait])
         let repeat = SKAction.repeatAction(sequence, count: 3)
+        
         self.invulnerabilty = true
         player.runAction(repeat, completion:{
             self.invulnerabilty = false
         })
+        
     }
     
     override func didSimulatePhysics() {

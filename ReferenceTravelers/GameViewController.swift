@@ -26,6 +26,7 @@ var GStageSelectionScene: RTStageSelectionScene?
 var GBoardScene: RTBoardScene?
 var GCombatScene: RTCombatScene?
 var GSettingsScene: RTSettingsScene?
+var GGameOver: RTGameOver?
 
 var GSize = CGSize(width: 1024, height: 768)
 var GGamePaused: Bool = false
@@ -54,6 +55,7 @@ class GameViewController: UIViewController {
         GTitleScene = RTTitleScene(size: size)
         GHeroSelectionScene = RTHeroSelectionScene(size: size)
         GStageSelectionScene = RTStageSelectionScene(size: size)
+        GGameOver = RTGameOver(size: size)
         
         GBoardScene = RTBoardScene(size: size)
         GCombatScene = RTCombatScene(size: size)
@@ -66,7 +68,7 @@ class GameViewController: UIViewController {
         
         GCombatScene!.scaleMode = .AspectFill
         
-        skView.presentScene(GTitleScene!)
+        skView.presentScene(GGameOver!)
 
     }
     

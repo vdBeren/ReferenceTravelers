@@ -30,7 +30,7 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
     var buttonPause: RTButton?
     var pauseWindow: RTPauseWindow?
     
-    var velocityY : Int = 400
+    var velocityY : CGFloat = 400
     var jump : Bool = false
     var sword = SKSpriteNode(imageNamed: "bgMedieval")
     var btnPress : Bool = false
@@ -108,10 +108,15 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
         self.physicsWorld.contactDelegate = self
         userInteractionEnabled = true
         
+        //--------------------------------------------------------------------------
+        
+        // Função criar mob
+        
         createMob()
         
-        mobDeathLabel.position = CGPoint(x: frame.midX, y: frame.maxY - 50)
-        addChild(mobDeathLabel)
+        //--------------------------------------------------------------------------
+        
+        // Configurando física e posição do parentNode, node que serve como parent da sword e do player
         
         parentNode.size = CGSize(width: 1, height: 1)
         parentNode.position = CGPoint(x: 280, y: frame.midY)
@@ -124,6 +129,11 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
         parentNode.physicsBody?.collisionBitMask = floorBitMask | edgesBitMask
         addChild(parentNode)
         
+        //--------------------------------------------------------------------------
+        
+        // Instanciando nodes invisiveis que servem como limite de locomoção do player
+        // Node invisivel do lado direito
+        
         ladoDir.position = CGPoint(x: frame.maxX + 10, y: frame.midY)
         ladoDir.size = CGSize(width: 10, height: frame.maxY)
         ladoDir.physicsBody = SKPhysicsBody(rectangleOfSize: ladoDir.size)
@@ -135,6 +145,10 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
         ladoDir.hidden = true
         addChild(ladoDir)
         
+        //--------------------------------------------------------------------------
+        
+        // Node invisível do lado esquerdo
+        
         ladoEsq.position = CGPoint(x: frame.minX - 10, y: frame.midY)
         ladoEsq.size = CGSize(width: 10, height: frame.maxY)
         ladoEsq.physicsBody = SKPhysicsBody(rectangleOfSize: ladoEsq.size)
@@ -145,6 +159,10 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
         ladoEsq.physicsBody?.pinned = true
         ladoEsq.hidden = true
         addChild(ladoEsq)
+        
+        //--------------------------------------------------------------------------
+        
+        // Configuração do node da espada
         
         sword.size = CGSize(width: 100, height: 25)
         sword.position = CGPoint(x: 40, y: -18)
@@ -160,6 +178,10 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
         sword.physicsBody?.contactTestBitMask = mobsBitMask | fireballBitMask
         sword.physicsBody?.collisionBitMask = floorBitMask | weaponBitMask | parentBitMask | heroBitMask | edgesBitMask
         
+        //--------------------------------------------------------------------------
+        
+        // Configuração node do player e adiciona player e sword ao parentNode
+        
         player.size = CGSize(width: 150, height: 100)
         player.position = CGPoint(x: 0, y: 0)
         player.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: 50, height: 100), center: CGPoint(x: 45, y: 0))
@@ -173,7 +195,9 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
         player.xScale = -1
         parentNode.addChild(player)
         parentNode.addChild(sword)
+        //--------------------------------------------------------------------------
         
+        // Instancia e configura node que serve como chão da scene
         let tamanhoChao : CGSize = CGSize(width: chao.size.width, height: chao.size.height)
         
         chao.position = CGPoint(x: frame.midX , y: frame.minY + tamanhoChao.height/2)
@@ -183,11 +207,19 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
         chao.physicsBody!.pinned = true
         chao.physicsBody!.categoryBitMask = floorBitMask
         self.addChild(chao)
+        //--------------------------------------------------------------------------
+        
+        // Configuração do botões direcionais
+        // Quando o botão é pressionado e a condição satisfeita, a physicsBody da sword é refeita na posição correta, além da altura ser ajustada para evitar que a gravidade puxe antes de ser pinada.
+        
+        // Botão direito
         
         btnDir.position = CGPoint(x: 200 , y: 30)
         btnDir.zPosition = 2
         btnDir.setRTButtonAction({ () -> () in
             if(self.lado == 2 || self.lado == 0){
+                // Quando o botão é pressionado e a condição satisfeita, a physicsBody da sword é refeita na posição correta, além da altura ser ajustada para evitar que a gravidade puxe antes de ser pinada.
+                
                 self.parentNode.physicsBody!.velocity = CGVectorMake(200, 0)
                 self.sword.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: 75, height: 30), center: CGPointMake(0.5, 0.5))
                 self.sword.position.y = -18
@@ -203,6 +235,9 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
             }
         })
         addChild(btnDir)
+        //--------------------------------------------------------------------------
+        
+        // Botão esquerdo
         
         btnEsq.position = CGPoint(x: 0, y: 30)
         btnEsq.zPosition = 2
@@ -223,6 +258,9 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
             }
         })
         addChild(btnEsq)
+        //--------------------------------------------------------------------------
+        
+        // Configurando botão de pulo
         
         btnPulo.position = CGPoint(x: frame.maxX - 350, y: 30)
         btnPulo.zPosition = 2
@@ -243,9 +281,12 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
             }
         })
         addChild(btnPulo)
+        //--------------------------------------------------------------------------
         
         
     }
+    
+    // Função para criar skeletons e fireballs
     
     func createMob() {
         let waitHalf = SKAction.waitForDuration(0.5)
@@ -295,9 +336,7 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
         runAction(SKAction.repeatActionForever(SKAction.sequence([wait, skeletonMob])))
     }
     
-    override func didFinishUpdate() {
-        
-    }
+    //--------------------------------------------------------------------------
     
     //Chamado a todo frame. Usado para realizar o update dos nodes da Scene, em cascata.
     override func update(currentTime: NSTimeInterval) {
@@ -311,17 +350,23 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
             aux?.update()
         }
         
+        // Condição que chama função de vitória quando a contagem de mobs mortos chega ou passa 50
         if(mobDeathCount >= 50){
             self.winCombat()
         }
+        //--------------------------------------------------------------------------
         
+        // Aumenta gravidade toda vez que o player pula, serve para dar mais fidelidade física ao pulo
         if(jump){
             physicsWorld.gravity.dy = -100
         }
+        //--------------------------------------------------------------------------
         
+        // Condição que chama função de derrota quando a HP do player chega ou passa de 0
         if(GHeroesManager?.currentHero.attributes.health <= 0){
             self.loseCombat()
         }
+        //--------------------------------------------------------------------------
     }
     
     func didBeginContact(contact: SKPhysicsContact) {
@@ -338,6 +383,7 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
             self.spawnParticle(secondNode!, fire: false)
             
         }
+        //--------------------------------------------------------------------------
         // Contato de monstro com arma
         else if(contactB == weaponBitMask && contactA == mobsBitMask){
 
@@ -345,68 +391,67 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
             self.spawnParticle(firstNode!, fire: false)
   
         }
-        
+        // Contato de mobs com hero
         if((contactB == heroBitMask) && (contactA == mobsBitMask) && !invulnerabilty){
             self.damageHero()
-            
+           // Contado de hero com mobs
         } else if((contactA == heroBitMask) && (contactB == mobsBitMask) && !invulnerabilty){
             self.damageHero()
         }
-        
+        // Contato de fireball com hero
         if((contactB == heroBitMask) && (contactA == fireballBitMask) && !invulnerabilty){
             self.damageHero()
-            
+            // Contato de hero com fireball
         } else if((contactA == heroBitMask) && (contactB == fireballBitMask) && !invulnerabilty){
             self.damageHero()
         }
-
         
-        if((contactA == heroBitMask) && (contactB == fireballBitMask)){
-            self.damageHero()
+        // Contato de arma com fireball
+        if((contactA == weaponBitMask) && (contactB == fireballBitMask)){
+            monsterDeath()
             secondNode?.removeFromParent()
             
-        }
-        else if((contactA == fireballBitMask)  && (contactB == heroBitMask)){
-            self.damageHero()
+        } // Contato de fireball com arma
+        else if((contactA == fireballBitMask)  && (contactB == weaponBitMask)){
+            monsterDeath()
             firstNode?.removeFromParent()
         }
-        
+        // Contato de chão com fireball
         if((contactA == floorBitMask) && (contactB == fireballBitMask)){
             
             self.spawnParticle(secondNode!, fire: true)
-        
-        }
+        } //  Contato de fireball com chão
         else if((contactA == fireballBitMask) && (contactB == floorBitMask)){
             
-            
             self.spawnParticle(firstNode!, fire: true)
-            
-
         }
     }
     
+    // Função que quantifica a quantidade de monstros mortos
     private func monsterDeath(){
         mobCount--
         mobDeathCount++
-        mobDeathLabel.text = String(mobDeathCount)
     }
     
+    // Função que spawna particulas
     private func spawnParticle(node: SKNode, fire: Bool){
         
         let sparkEmmiter: SKEmitterNode?
         let waitTime: NSTimeInterval
         
+        // Caso a partícula for Bool == True, cria uma particula de fogo
         if fire{
             sparkEmmiter = SKEmitterNode(fileNamed: "FireballDeathParticle.sks")
             sparkEmmiter!.name = "fireEmmitter"
             waitTime = 0.2
-        }
+        } // Caso Bool == False, cria uma partícula de fumaça
         else{
             sparkEmmiter = SKEmitterNode(fileNamed: "MobDeathParticle.sks")
             sparkEmmiter!.name = "sparkEmmitter"
             waitTime = 0.6
         }
         
+        // Para de spawnar particulas e certo tempo depois, remove variavel de particula da scene
         let stopSpark = SKAction.runBlock({
             
             sparkEmmiter!.particleBirthRate = 0
@@ -418,7 +463,7 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
             
             
         })
-        
+        // Instancia a particula e adiciona na scene
         let wait = SKAction.waitForDuration(0.6)
         let sequence = SKAction.sequence([wait, stopSpark])
         sparkEmmiter!.position = CGPointMake(node.position.x, node.position.y - 40)
@@ -433,14 +478,17 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
 
     }
     
+    // Função dee endgame, caso o usuário não cumpra a condição de vitória
     func loseCombat(){
         
     }
     
+    // Função de endgame, caso o usuário cumpra a condição de vitória
     func winCombat(){
         
     }
     
+    // Função chamada quando usuário sofre dano, atualiza HUD e deixa o player invencível por certo tempo
     func damageHero(){
         GHeroesManager?.currentHero.attributes.loseHealth(10)
         //HUD
@@ -455,20 +503,15 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
         })
     }
     
+    // Função chamada a todo frame após simular a física
     override func didSimulatePhysics() {
         
+        // Movimentação do player
         if(lado == 1 && colisao != 1){
             parentNode.physicsBody!.velocity = CGVector(dx: 200, dy: parentNode.physicsBody!.velocity.dy)
         } else if(lado == 2 && colisao != 2) {
             parentNode.physicsBody!.velocity = CGVector(dx: -200, dy: parentNode.physicsBody!.velocity.dy)
-        } else {
-            parentNode.physicsBody!.velocity = CGVector(dx: 0, dy: parentNode.physicsBody!.velocity.dy)
         }
-    }
-    
-    //Recebe toques na Scene.
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-        
     }
     
     required init?(coder aDecoder: NSCoder) {

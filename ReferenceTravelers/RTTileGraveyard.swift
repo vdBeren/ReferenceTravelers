@@ -30,7 +30,7 @@ class RTTileGraveyard: RTTile {
                 GEventManager!.callEventCombat()
             }
             else if random >= 1{
-                base = arc4random_uniform(10)
+                base = arc4random_uniform(15)+1
                 GEventManager!.callEventTheft(Int(base))
             }
         }

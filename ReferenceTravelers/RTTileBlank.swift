@@ -14,7 +14,7 @@ class RTTileBlank: RTTile {
         super.init(imageNamed: "tileNeutral")
         
         tileName = "An empty field"
-        tileDescription = "You stumble into nothing at all."
+        tileDescription = "Nothing to see here. Or is it?"
         tileType = TileType.Neutral
         tileLevel = 1
         

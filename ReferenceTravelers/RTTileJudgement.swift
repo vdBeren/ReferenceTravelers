@@ -29,13 +29,13 @@ class RTTileJudgement: RTTile {
             case 0:
                 // MIRACLE
                 let attribute = GHeroesManager!.currentHero.attributes.pickRandomAttribute()
-                base = arc4random_uniform(3)
+                base = arc4random_uniform(3)+1
                 GEventManager!.callEventMiracle(attribute, randomBase: Int(base))
 
             case 1:
                 // DISASTER
                 let attribute = GHeroesManager!.currentHero.attributes.pickRandomAttribute()
-                base = arc4random_uniform(3)
+                base = arc4random_uniform(3)+1
                 GEventManager!.callEventDisaster(attribute, randomBase: Int(base))
                 
             default:

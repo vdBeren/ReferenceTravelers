@@ -27,12 +27,12 @@ class RTTileCitadel: RTTile {
             
             if random > 25{
                 // HEAL
-                base = arc4random_uniform(20)
+                base = arc4random_uniform(30)+1
                 GEventManager!.callEventHeal(Int(base))
             }
             else if random >= 1{
                 // THEFT
-                base = arc4random_uniform(10)
+                base = arc4random_uniform(10)+1
                 GEventManager!.callEventTheft(Int(base))
             }
         }

@@ -21,7 +21,7 @@ class RTTileVillage: RTTile {
         //Ação do Tile
         self.setRTTileEvent { () -> () in
             // HEAL
-            var base = arc4random_uniform(10)
+            var base = arc4random_uniform(10)+1
             GEventManager!.callEventHeal(Int(base))
         }
         

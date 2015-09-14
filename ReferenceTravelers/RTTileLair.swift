@@ -30,13 +30,13 @@ class RTTileLair: RTTile {
             }
             else if random > 20{
                 //TREASURE
-                base = arc4random_uniform(30)
+                base = arc4random_uniform(30)+1
                 GEventManager!.callEventTreasure(Int(base))
             }
             else if random >= 1{
                 //DISASTER
                 let attribute = GHeroesManager!.currentHero.attributes.pickRandomAttribute()
-                base = arc4random_uniform(3)
+                base = arc4random_uniform(3)+1
                 GEventManager!.callEventDisaster(attribute, randomBase: Int(base))
             }
         }

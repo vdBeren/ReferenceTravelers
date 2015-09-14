@@ -11,7 +11,7 @@ import SpriteKit
 
 // Classe da cena do Tabuleiro. Gerencia os tiles e suas mecânicas.
 
-// KNOWN BUGS: Apertar Skip logo após tela de Pack movimenta um a mais.
+// KNOWN BUGS: Apertar Skip, logo após tela de Pack, movimenta um a mais.
 
 
 class RTBoardScene: SKScene {
@@ -23,6 +23,7 @@ class RTBoardScene: SKScene {
     var blackStrip: SKSpriteNode?
     var heroDisplay: RTSelectable?
     
+    var boardHud: RTHud?
     
     var pauseWindow: RTPauseWindow?
     
@@ -43,11 +44,22 @@ class RTBoardScene: SKScene {
         
     }
     
+    func initHud(){
+        boardHud = RTHud()
+        self.boardHud?.windowPopUp!.position.y = self.size.height
+        self.boardHud?.windowPopUp?.zPosition -= 1
+        self.addChild(boardHud!)
+    }
+    
+    func refresehHud(){
+        self.boardHud?.refreshContents()
+    }
     
     func initBoard(){
         
         // Limpa a scene do tabuleiro e reseta variaveis.
         self.removeAllChildren()
+        self.removeAllActions()
         
         self.boardPath.removeAll(keepCapacity: false)
         self.boardPathIndex = 0
@@ -73,11 +85,7 @@ class RTBoardScene: SKScene {
         //--------------------------------------------------------------------------
         // HUD
         
-        GHud?.removeFromParent()
-        GHud = RTHud()
-        GHud?.windowPopUp!.position.y = self.size.height
-        GHud?.windowPopUp?.zPosition -= 1
-        self.addChild(GHud!)
+        self.initHud()
         
         //--------------------------------------------------------------------------
         

@@ -15,7 +15,7 @@ class RTAttributes: NSObject {
     var primary, agility, luck, greed, health, stamina, level, maxHealth, maxStamina: Int
     var primaryBuff, agilityBuff, luckBuff, greedBuff: Int
     var primaryType: RTAttributes.PrimariesEnum
-    var minimumStatValue: Int = 1
+    var minimumStatValue: Int = -99
     
     enum PrimariesEnum : String{
         case Strength = "STRENGTH"
@@ -54,13 +54,23 @@ class RTAttributes: NSObject {
         level = 1
     }
     
+    func restoreAttributes(){
+        health = maxHealth
+        stamina = maxStamina
+        
+        primaryBuff = 0
+        agilityBuff = 0
+        luckBuff = 0
+        greedBuff = 0
+    }
+    
     // ========================================================================
     // GOLD
     func obtainGold(base: Int) -> Int{
         var result = formulaObtainGold(base)
         GPlayerManager.gold += result
         
-        GHud?.refreshContent(RTHud.HudAttributes.Gold)
+        GBoardScene!.boardHud!.refreshContent(RTHud.HudAttributes.Gold)
         
         return result
     }
@@ -69,7 +79,7 @@ class RTAttributes: NSObject {
         var result = formulaLoseGold(base)
         GPlayerManager.gold = checkForNegative(GPlayerManager.gold + result)
         
-        GHud?.refreshContent(RTHud.HudAttributes.Gold)
+        GBoardScene!.boardHud!.refreshContent(RTHud.HudAttributes.Gold)
         
         return result
     }
@@ -87,7 +97,7 @@ class RTAttributes: NSObject {
         var result = formulaRecoverHealth(base)
         health = checkForMax(health + result, max: self.maxHealth)
         
-        GHud?.refreshContent(RTHud.HudAttributes.Health)
+        GBoardScene!.boardHud!.refreshContent(RTHud.HudAttributes.Health)
         
         return result
     }
@@ -96,7 +106,7 @@ class RTAttributes: NSObject {
         var result = checkForNegative(formulaLoseHealth(base))
         health = checkForMin(health - result)
         
-        GHud?.refreshContent(RTHud.HudAttributes.Health)
+        GBoardScene!.boardHud!.refreshContent(RTHud.HudAttributes.Health)
         
         return result
     }
@@ -114,7 +124,7 @@ class RTAttributes: NSObject {
         var result = checkForMax(formulaRecoverStamina(base), max: self.maxStamina)
         stamina += result
         
-        GHud?.refreshContent(RTHud.HudAttributes.Stamina)
+        GBoardScene!.boardHud!.refreshContent(RTHud.HudAttributes.Stamina)
         
         return result
     }
@@ -123,7 +133,7 @@ class RTAttributes: NSObject {
         var result = checkForNegative(formulaLoseStamina(base))
         stamina = checkForMin(stamina - result)
         
-        GHud?.refreshContent(RTHud.HudAttributes.Stamina)
+        GBoardScene!.boardHud!.refreshContent(RTHud.HudAttributes.Stamina)
         
         return result
     }
@@ -147,32 +157,45 @@ class RTAttributes: NSObject {
         
         switch statType{
         case RTAttributes.AttributesEnum.Primary:
-            GHud?.refreshContent(RTHud.HudAttributes.PrimaryBuff)
-            return checkForMin(self.primaryBuff + statValue)
+            
+            self.primaryBuff = checkForMin(self.primaryBuff + statValue)
+            GBoardScene!.boardHud!.refreshContent(RTHud.HudAttributes.PrimaryBuff)
+            return self.primaryBuff
             
         case RTAttributes.AttributesEnum.Agility:
-            GHud?.refreshContent(RTHud.HudAttributes.AgilityBuff)
-            return checkForMin(self.agilityBuff + statValue)
+            
+            self.agilityBuff = checkForMin(self.agilityBuff + statValue)
+            GBoardScene!.boardHud!.refreshContent(RTHud.HudAttributes.AgilityBuff)
+            return self.agilityBuff
             
         case RTAttributes.AttributesEnum.Luck:
-            GHud?.refreshContent(RTHud.HudAttributes.LuckBuff)
-            return checkForMin(self.luckBuff + statValue)
+            
+            self.luckBuff = checkForMin(self.luckBuff + statValue)
+            GBoardScene!.boardHud!.refreshContent(RTHud.HudAttributes.LuckBuff)
+            return self.luckBuff
             
         case RTAttributes.AttributesEnum.Greed:
-            GHud?.refreshContent(RTHud.HudAttributes.GreedBuff)
-            return checkForMin(self.greedBuff + statValue)
+            
+            self.greedBuff = checkForMin(self.greedBuff + statValue)
+            GBoardScene!.boardHud!.refreshContent(RTHud.HudAttributes.GreedBuff)
+            return self.greedBuff
             
         case RTAttributes.AttributesEnum.MaxHealth:
-            GHud?.refreshContent(RTHud.HudAttributes.MaxHealth)
-            return checkForMin(self.maxHealth + statValue)
+            
+            self.maxHealth = self.maxHealth + statValue
+            GBoardScene!.boardHud!.refreshContent(RTHud.HudAttributes.MaxHealth)
+            return self.maxHealth
             
         case RTAttributes.AttributesEnum.MaxStamina:
-            GHud?.refreshContent(RTHud.HudAttributes.MaxStamina)
-            return checkForMin(self.maxStamina + statValue)
+            
+            self.maxStamina = self.maxStamina + statValue
+            GBoardScene!.boardHud!.refreshContent(RTHud.HudAttributes.MaxStamina)
+            return self.maxStamina
             
         default:
             break
         }
+     
         
     }
     

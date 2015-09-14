@@ -26,6 +26,33 @@ class RTCombatManager: NSObject {
         
     }
     
+    func quitCombat(gameOver: Bool){
+        
+        if gameOver{
+            GAudioManager?.playMusic(RTAudioManager.MusicsEnum.Title)
+            GGameOverScene?.initGameOver()
+            
+            GHeroesManager?.currentHero.attributes.restoreAttributes()
+            
+            let transition = SKTransition.crossFadeWithDuration(1.2)
+            GCombatScene!.scene?.view?.presentScene(GGameOverScene, transition: transition)
+            
+            
+        }
+        else{
+            
+            GAudioManager?.playMusic(RTAudioManager.MusicsEnum.Board)
+
+            let transition = SKTransition.crossFadeWithDuration(1.5)
+            GCombatScene!.scene?.view?.presentScene(GBoardScene, transition: transition)
+            
+            GBoardScene!.refresehHud()
+            GBoardScene!.setCurrentTileUsed()
+            
+            
+        }
+    }
+    
     private func combatIntroAnimation(){
         
         
@@ -33,10 +60,10 @@ class RTCombatManager: NSObject {
             
             // GAudioManager?.playMusic(RTAudioManager.MusicsEnum.Board) COLOCAR MUSICA DE COMBATE
             
-            let transition = SKTransition.crossFadeWithDuration(1.2)
-            //let transition = SKTransition.pushWithDirection(SKTransitionDirection.Down, duration: 1.5)
+            let transition = SKTransition.crossFadeWithDuration(2.0)
             
             GCombatScene!.initCombat()
+            GCombatScene!.refreshHud()
             GBoardScene!.scene?.view?.presentScene(GCombatScene, transition: transition)
         })
         

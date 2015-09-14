@@ -28,34 +28,34 @@ class RTTileRandom: RTTile {
             switch random{
             case 0:
                 // TREASURE
-                base = arc4random_uniform(15)
+                base = arc4random_uniform(15)+1
                 GEventManager!.callEventTreasure(Int(base))
             
             case 1:
                 // THEFT
-                base = arc4random_uniform(15)
+                base = arc4random_uniform(15)+1
                 GEventManager!.callEventTheft(Int(base))
                 
             case 2:
                 // HEAL
-                base = arc4random_uniform(10)
+                base = arc4random_uniform(10)+1
                 GEventManager!.callEventHeal(Int(base))
                 
             case 3:
                 // TRAP
-                base = arc4random_uniform(15)
+                base = arc4random_uniform(15)+1
                 GEventManager!.callEventTrap(Int(base))
               
             case 4:
                 // MIRACLE
                 let attribute = GHeroesManager!.currentHero.attributes.pickRandomAttribute()
-                base = arc4random_uniform(3)
+                base = arc4random_uniform(3)+1
                 GEventManager!.callEventMiracle(attribute, randomBase: Int(base))
                 
             case 5:
                 // DISASTER
                 let attribute = GHeroesManager!.currentHero.attributes.pickRandomAttribute()
-                base = arc4random_uniform(3)
+                base = arc4random_uniform(3)+1
                 GEventManager!.callEventDisaster(attribute, randomBase: Int(base))
 
             case 6:

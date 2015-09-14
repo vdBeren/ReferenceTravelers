@@ -15,6 +15,7 @@ import SpriteKit
 class RTLabelValueHud: RTLabel {
     
     var labelValue, labelValueAux: RTLabelText?
+    var stats: Bool?
     
     init(text: String, value: Int, valueAux: Int, fontSize: CGFloat, xAlign: CGFloat, stats: Bool){
         
@@ -22,6 +23,7 @@ class RTLabelValueHud: RTLabel {
         
         self.minimum = 7
         self.setLabelText(text)
+        self.stats = stats
         
         // Configura e adiciona label de valor.
         self.labelValue = RTLabelText(text: String(value), fontSize: fontSize, minimum: 2)
@@ -34,23 +36,7 @@ class RTLabelValueHud: RTLabel {
         
         
         // Configura e adiciona label de valor auxiliar (maxHealth, stats extras)
-        let auxText: String
-        
-        if stats{
-            if value >= 0{
-                auxText = "+\(valueAux)"
-            }
-            else{
-                auxText = "\(valueAux)"
-            }
-            
-        }
-        else{
-            auxText = "/ \(valueAux)"
-        }
-        
-        
-        self.labelValueAux = RTLabelText(text: auxText, fontSize: fontSize, minimum: 2)
+        self.labelValueAux = RTLabelText(text: formatValueAux(valueAux), fontSize: fontSize, minimum: 2)
         self.labelValueAux!.fontColor = SKColor.whiteColor()
         self.labelValueAux!.fontSize = fontSize
         self.labelValueAux!.position.x += xAlign*1.4
@@ -66,18 +52,52 @@ class RTLabelValueHud: RTLabel {
         self.labelValueAux?.introAnimation()
     }
     
+
+    
+    func refreshValue(){
+        self.labelValue?.introAnimation()
+    }
+    
+    func refreshValueAux(){
+        self.labelValueAux?.introAnimation()
+    }
+    
+    
     func setValues(value: Int, valueAux: Int){
+        
         self.labelValue!.setLabelText(String(value))
-        self.labelValueAux?.setLabelText(String(valueAux))
+        self.labelValueAux?.setLabelText(formatValueAux(valueAux))
     }
     
     func setValue(value: Int){
         self.labelValue!.setLabelText(String(value))
     }
     
-    func refreshValue(){
-        self.labelValue?.introAnimation()
+    func setValueAux(valueAux: Int){
+        self.labelValueAux?.setLabelText(formatValueAux(valueAux))
     }
+    
+
+    private func formatValueAux(valueAux: Int) -> String{
+        var auxText: String
+        
+        if self.stats!{
+            if valueAux >= 0{
+                auxText = "+\(valueAux)"
+            }
+            else{
+                auxText = "\(valueAux)"
+            }
+            
+        }
+        else{
+            auxText = "/ \(valueAux)"
+        }
+        
+        return auxText
+    }
+
+    
     
     func getValuePosition() -> CGPoint{
         return self.labelValue!.position

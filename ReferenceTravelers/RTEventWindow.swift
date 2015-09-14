@@ -73,7 +73,7 @@ class RTEventWindow: RTWindow {
     
     
     private func labelAnimation(){
-        self.labelEventValue?.moveLabelTo(GHud!.getLabelPosition(self.attribute!))
+        self.labelEventValue?.moveLabelTo(GBoardScene!.boardHud!.getLabelPosition(self.attribute!))
     }
     
     func setContents(){
@@ -93,7 +93,7 @@ class RTEventWindow: RTWindow {
         // Se valor recebido for menor que 0, não mostra o valor do evento.
         self.labelEventValue = RTLabelText(text: String(value), fontSize: 36, minimum: 3)
         
-        if self.value > 0{
+        if self.value != -999{
             self.labelEventValue!.fontSize += 16
             self.labelEventValue!.fontColor = SKColor.orangeColor()
             //self.labelEventValue!.position.y += self.size.height/10

@@ -14,6 +14,8 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
     
     var background: RTBackground?
     
+    var combatHud: RTHud?
+    
     var player : RTHero = RTHero(imageNamed: "personagem")
     var parentNode : SKSpriteNode = SKSpriteNode(imageNamed: "")
     var lado : Int = 1
@@ -67,7 +69,25 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
         
     }
     
+    func initHud(){
+        
+        self.combatHud?.removeFromParent()
+        combatHud = RTHud()
+        self.combatHud?.windowPopUp!.position.y = self.size.height
+        self.combatHud?.windowPopUp?.zPosition += 1
+        self.addChild(combatHud!)
+
+    }
+    
+    func refreshHud(){
+        self.combatHud?.refreshContents()
+    }
+    
     func initCombat(){
+        
+        parentNode.removeAllChildren()
+        self.removeAllChildren()
+        self.removeAllActions()
         
         player = RTHero(imageNamed: "personagem")
         parentNode = SKSpriteNode(imageNamed: "")
@@ -90,8 +110,6 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
         invulnerabilty = false
 
         
-        parentNode.removeAllChildren()
-        self.removeAllChildren()
         
         //Background da Scene
         background = RTBackground(imageNamed: "bgMedieval")
@@ -103,11 +121,7 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
         //--------------------------------------------------------------------------
         // HUD
         
-        GHud?.removeFromParent()
-        GHud = RTHud()
-        GHud?.windowPopUp!.position.y = self.size.height
-        GHud?.windowPopUp?.zPosition += 1
-        self.addChild(GHud!)
+        self.initHud()
         
         //--------------------------------------------------------------------------
         
@@ -278,8 +292,8 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
     }
     
     func createMob() {
-        let waitHalf = SKAction.waitForDuration(0.5)
-        let wait = SKAction.waitForDuration(1)
+        let waitHalf = SKAction.waitForDuration(0.8)
+        let wait = SKAction.waitForDuration(1.0)
         let mobSubir = SKAction.moveToY(280, duration: 2)
         let skeletonMob = SKAction.runBlock({
             if(self.mobCount < 15 && !self.bossBattle){
@@ -337,17 +351,12 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
             aux?.update()
         }
         
-        if(mobDeathCount >= 50){
-            self.winCombat()
-        }
         
         if(jump){
             physicsWorld.gravity.dy = -100
         }
         
-        if(GHeroesManager?.currentHero.attributes.health <= 0){
-            self.loseCombat()
-        }
+ 
     }
     
     func didBeginContact(contact: SKPhysicsContact) {
@@ -416,6 +425,10 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
         mobCount--
         mobDeathCount++
         mobDeathLabel.text = String(mobDeathCount)
+        
+        if(mobDeathCount >= 15){
+            self.winCombat()
+        }
     }
     
     private func spawnParticle(node: SKNode, fire: Bool){
@@ -461,17 +474,17 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
     }
     
     func loseCombat(){
-        
+        GCombatManager?.quitCombat(true)
     }
     
     func winCombat(){
-        
+        GCombatManager?.quitCombat(false)
     }
     
     func damageHero(){
         
         GHeroesManager?.currentHero.attributes.loseHealth(10)
-        GHud?.refreshContent(RTHud.HudAttributes.Health)
+        combatHud?.refreshContent(RTHud.HudAttributes.Health)
         
         //HUD
         let wait = SKAction.waitForDuration(0.25)
@@ -485,6 +498,9 @@ class RTCombatScene: SKScene, SKPhysicsContactDelegate{
             self.invulnerabilty = false
         })
         
+        if(GHeroesManager?.currentHero.attributes.health <= 1){
+            self.loseCombat()
+        }
     }
     
     override func didSimulatePhysics() {

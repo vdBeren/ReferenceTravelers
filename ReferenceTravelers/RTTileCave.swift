@@ -38,7 +38,7 @@ class RTTileCave: RTTile {
                 
             case 2:
                 // TRAP
-                base = arc4random_uniform(15) + 1
+                base = arc4random_uniform(30) + 1
                 GEventManager!.callEventTrap(Int(base))
                 
             default:

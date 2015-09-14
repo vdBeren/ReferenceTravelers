@@ -143,7 +143,7 @@ class RTEventManager: NSObject {
         
         // ========================================================================
         self.name = "The Pit"
-        self.desc = "You fell into the pit. *I fell into the piit, we all fell into that piit*" // Referencia Parks and Rec :P
+        self.desc = "You fell into the pit. I fell into the pit, we all fell into that pit" // Referencia Parks and Rec :P
         self.imgName = ""
         self.value = 1
         
@@ -198,7 +198,7 @@ class RTEventManager: NSObject {
         
         // ========================================================================
         self.name = "Nothing"
-        self.desc = "You stumble into nothing at all."
+        self.desc = "No, there wasn't."
         self.imgName = ""
         self.value = 1
         
@@ -222,7 +222,7 @@ class RTEventManager: NSObject {
     }
     
     private func eventEnds(){
-        self.eventType = RTEvent.EventType.Start
+        self.eventType = RTEvent.EventType.End
         
         // ========================================================================
         self.name = "The End"
@@ -295,6 +295,7 @@ class RTEventManager: NSObject {
         
         let gold = GHeroesManager!.currentHero.attributes.obtainGold(randomBase)
         self.openEventWindow(event, value: gold, attribute: RTHud.HudAttributes.Gold)
+        
     }
     
     func callEventTheft(randomBase: Int){
@@ -379,7 +380,7 @@ class RTEventManager: NSObject {
     func callEventBlank(){
         let event = GEventManager!.pickEvent(RTEvent.EventType.Blank)
         
-        self.openEventWindow(event, value: -1, attribute: RTHud.HudAttributes.Primary)
+        self.openEventWindow(event, value: -999, attribute: RTHud.HudAttributes.Primary)
     }
 
     // ========================================================================
@@ -387,7 +388,7 @@ class RTEventManager: NSObject {
     func callEventStart(){
         let event = GEventManager!.pickEvent(RTEvent.EventType.Start)
         
-        self.openEventWindow(event, value: -1, attribute: RTHud.HudAttributes.Primary)
+        self.openEventWindow(event, value: -999, attribute: RTHud.HudAttributes.Primary)
     }
     
     // ========================================================================
@@ -395,7 +396,7 @@ class RTEventManager: NSObject {
     func callEventEnd(){
         let event = GEventManager!.pickEvent(RTEvent.EventType.End)
         
-        self.openEventWindow(event, value: -1, attribute: RTHud.HudAttributes.Primary)
+        self.openEventWindow(event, value: -999, attribute: RTHud.HudAttributes.Primary)
     }
     
 }
@@ -404,7 +405,7 @@ class RTEventManager: NSObject {
 extension Array {
     func pickRandomItem() -> T {
        // println("\(self.count-1)")
-        let index = Int(arc4random_uniform(UInt32(self.count-1)))
+        let index = Int(arc4random_uniform(UInt32(self.count)))
         return self[index]
     }
 }

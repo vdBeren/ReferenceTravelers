@@ -79,6 +79,7 @@ class RTPauseWindow: RTWindow {
             
             GAudioManager?.playMusic(RTAudioManager.MusicsEnum.Title)
             GHeroSelectionScene!.returningFromStage()
+            GHeroesManager?.currentHero.attributes.restoreAttributes()
             
             let transition = SKTransition.crossFadeWithDuration(1.2)
             self.scene?.view?.presentScene(GHeroSelectionScene!, transition: transition)

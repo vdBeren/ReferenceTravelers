@@ -59,6 +59,7 @@
 		5475B9611B6DFE04004877C2 /* RTHeroManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5475B9601B6DFE04004877C2 /* RTHeroManager.swift */; };
 		547AAD961B8515BC001562A1 /* RTCombatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547AAD951B8515BC001562A1 /* RTCombatManager.swift */; };
 		547AAD981B854EB1001562A1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 547AAD971B854EB1001562A1 /* Images.xcassets */; };
+		547AAD9C1B87C4B2001562A1 /* RTGameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547AAD9B1B87C4B2001562A1 /* RTGameOverScene.swift */; };
 		5489501E1B584B3800032B67 /* RTGamePad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5489501D1B584B3800032B67 /* RTGamePad.swift */; };
 		548950211B58C03100032B67 /* RTSelectorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548950201B58C03100032B67 /* RTSelectorButton.swift */; };
 		548950251B633CA800032B67 /* RTTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548950241B633CA800032B67 /* RTTile.swift */; };
@@ -159,6 +160,7 @@
 		5475B9601B6DFE04004877C2 /* RTHeroManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTHeroManager.swift; sourceTree = "<group>"; };
 		547AAD951B8515BC001562A1 /* RTCombatManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTCombatManager.swift; sourceTree = "<group>"; };
 		547AAD971B854EB1001562A1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		547AAD9B1B87C4B2001562A1 /* RTGameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTGameOverScene.swift; sourceTree = "<group>"; };
 		5489501D1B584B3800032B67 /* RTGamePad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTGamePad.swift; sourceTree = "<group>"; };
 		548950201B58C03100032B67 /* RTSelectorButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTSelectorButton.swift; sourceTree = "<group>"; };
 		548950241B633CA800032B67 /* RTTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTTile.swift; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 				540711F11B5428AA00252EF9 /* RTBoardScene.swift */,
 				540711E61B5419F800252EF9 /* RTCombatScene.swift */,
 				5407120C1B572ABE00252EF9 /* RTSettingsScene.swift */,
+				547AAD9B1B87C4B2001562A1 /* RTGameOverScene.swift */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -551,16 +554,6 @@
 			name = Particles;
 			sourceTree = "<group>";
 		};
-		C76A0D6E1B86449A00230353 /* Particles */ = {
-			isa = PBXGroup;
-			children = (
-				C76A0D6A1B863D8900230353 /* MobDeathParticle.sks */,
-				C76A0D6B1B863D8900230353 /* spark.png */,
-				C76A0D6F1B86453400230353 /* FireballDeathParticle.sks */,
-			);
-			name = Particles;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -677,6 +670,7 @@
 				5475B9571B6D88D5004877C2 /* RTLabelValue.swift in Sources */,
 				540711F41B54297B00252EF9 /* RTHideRequired.swift in Sources */,
 				5407120B1B571F8D00252EF9 /* RTBackground.swift in Sources */,
+				547AAD9C1B87C4B2001562A1 /* RTGameOverScene.swift in Sources */,
 				54305D401B6E9DA6008A85D0 /* RTTextButton.swift in Sources */,
 				5407120D1B572ABE00252EF9 /* RTSettingsScene.swift in Sources */,
 				540711F61B542A0700252EF9 /* RTHero.swift in Sources */,

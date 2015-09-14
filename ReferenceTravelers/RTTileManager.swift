@@ -80,7 +80,7 @@ class RTTileManager: NSObject {
         var tileArray: [RTTile] = []
         var tile: RTTile
         
-        for i in 0...1{
+        for i in 0...2{
             
             tile = self.pickTile(tileType)
             tileArray.append(tile)

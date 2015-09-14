@@ -88,9 +88,14 @@ class RTHud: RTWindow {
         
         self.updateAttributesArray()
         
+        var count = 0
+        
         for (index, label) in enumerate(contentsArray){
-            label.setValues(attributeArray[index], valueAux: attributeArray[index+1])
+            
+            label.setValues(attributeArray[count], valueAux: attributeArray[count+1])
             label.refreshValues()
+            
+            count += 2
         }
 
         self.labelGold?.refreshValue()
@@ -98,6 +103,7 @@ class RTHud: RTWindow {
     }
     
     func refreshContent(attribute: HudAttributes){
+        
         self.updateAttributesArray()
         
         switch(attribute){
@@ -108,17 +114,17 @@ class RTHud: RTWindow {
             self.labelStamina?.setValue(self.attributeArray[attribute.rawValue])
             self.labelStamina?.refreshValue()
         case .PrimaryBuff:
-            self.labelPrimary?.setValues(self.attributeArray[attribute.rawValue-1], valueAux: self.attributeArray[attribute.rawValue])
-            self.labelPrimary?.refreshValues()
+            self.labelPrimary?.setValueAux(self.attributeArray[attribute.rawValue])
+            self.labelPrimary?.refreshValueAux()
         case .AgilityBuff:
-            self.labelAgility?.setValues(self.attributeArray[attribute.rawValue-1], valueAux: self.attributeArray[attribute.rawValue])
-            self.labelAgility?.refreshValues()
+            self.labelAgility?.setValueAux(self.attributeArray[attribute.rawValue])
+            self.labelAgility?.refreshValueAux()
         case .LuckBuff:
-            self.labelLuck?.setValues(self.attributeArray[attribute.rawValue-1], valueAux: self.attributeArray[attribute.rawValue])
-            self.labelLuck?.refreshValues()
+            self.labelLuck?.setValueAux(self.attributeArray[attribute.rawValue])
+            self.labelLuck?.refreshValueAux()
         case .GreedBuff:
-            self.labelGreed?.setValues(self.attributeArray[attribute.rawValue-1], valueAux: self.attributeArray[attribute.rawValue])
-            self.labelGreed?.refreshValues()
+            self.labelGreed?.setValueAux(self.attributeArray[attribute.rawValue])
+            self.labelGreed?.refreshValueAux()
         case .Gold:
             self.labelGold?.setValue(GPlayerManager.gold)
             self.labelGold?.refreshValue()
@@ -129,8 +135,14 @@ class RTHud: RTWindow {
     }
     
     private func updateAttributesArray(){
+        
+        self.heroAttributes = GHeroesManager!.currentHero.attributes
+        
         // Array com os atributos e atributos buffs. A ordem tem que respeitar a ordem dos labels do contentArray.
         self.attributeArray = [heroAttributes.health, heroAttributes.maxHealth, heroAttributes.stamina, heroAttributes.maxStamina, heroAttributes.primary, heroAttributes.primaryBuff, heroAttributes.agility, heroAttributes.agilityBuff, heroAttributes.luck, heroAttributes.luckBuff, heroAttributes.greed, heroAttributes.greedBuff]
+        for i in self.attributeArray{
+            println("\(i)")
+        }
         
         self.labelGold?.setValue(GPlayerManager.gold)
         

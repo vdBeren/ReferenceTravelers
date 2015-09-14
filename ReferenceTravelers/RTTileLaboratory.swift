@@ -30,13 +30,13 @@ class RTTileLaboratory: RTTile {
             }
             else if random > 30{
                 // TRAP
-                base = arc4random_uniform(15) + 1
+                base = arc4random_uniform(20) + 1
                 GEventManager!.callEventTrap(Int(base))
             }
             else if random >= 1{
                 // MIRACLE
                 let attribute = GHeroesManager!.currentHero.attributes.pickRandomAttribute()
-                base = arc4random_uniform(3)
+                base = arc4random_uniform(3)+1
                 GEventManager!.callEventMiracle(attribute, randomBase: Int(base))
             }
         }
